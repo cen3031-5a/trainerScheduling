@@ -1,7 +1,6 @@
 <section ng-controller=CalendarviewsListController id="app">
   <script>
     $(document).ready(function() {
-
       var data = angular.element(document.getElementById('app')).scope().data;
       console.log(data);
       $('#calendar').fullCalendar({
@@ -12,8 +11,8 @@
         },
         defaultDate: Date.now(),
         navLinks: true, // can click day/week titles to navigate views
-        selectable: false,
-        selectHelper: false,
+        selectable: true,
+        selectHelper: true,
         /*select: function(start, end) {
           var title = prompt('Event Title:');
           var start = prompt('Event start Time:');
@@ -65,7 +64,7 @@
     </a>
   </div-->
 
-</br>
+  </br>
   <div class="col-lg-9">
     <div id='calendar'></div>
   </div>
