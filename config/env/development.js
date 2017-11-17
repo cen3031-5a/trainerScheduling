@@ -70,10 +70,8 @@ module.exports = {
     options: {
       service: process.env.MAILER_SERVICE_PROVIDER || 'MAILER_SERVICE_PROVIDER',
       auth: {
-        //user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
-        //pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
-        user: 'lisbecg@gmail.com',
-        pass: 'P@ssword123'
+        user: process.env.MAILER_EMAIL_ID || 'MAILER_EMAIL_ID',
+        pass: process.env.MAILER_PASSWORD || 'MAILER_PASSWORD'
       }
     }
   },
