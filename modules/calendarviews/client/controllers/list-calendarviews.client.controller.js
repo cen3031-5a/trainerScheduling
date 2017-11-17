@@ -50,9 +50,9 @@
       //}
       //alert(Date.parse('11/10/2017 1:13 PM').toISOString());
 
-      console.log(Date.parse('11/10/2017 1:13 PM').toISOString());
+      var yo = result;
       $scope.data = result;
-
+      console.log(Date.parse('11/17/2017 4:55 PM').toISOString());
     });
 
   }

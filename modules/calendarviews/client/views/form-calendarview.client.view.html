@@ -40,12 +40,13 @@
                 <span class="glyphicon glyphicon-calendar"></span>
                 </span>
                 <script type="text/javascript">
-                  function hi() {
+                  $(function() {
                     $('#datetimepicker1').datetimepicker({
                       sideBySide:true,
                     });
-                    console.log('hi');
-                    $("#start").trigger("input");
+                    $('#datetimepicker1').datetimepicker('show');
+                    console.log('please');
+                    $("#datetimepicker1").trigger("input");
                     $('#datetimepicker2').datetimepicker({
                       sideBySide:true,
                       useCurrent: false //Important! See issue #1075
@@ -57,7 +58,7 @@
                     $("#datetimepicker2").on("dp.change", function(e) {
                       $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
                     });
-                  };
+                  });
                 </script>
               </div>
               <div ng-messages="vm.form.calendarviewForm.end.$error" role="alert">
