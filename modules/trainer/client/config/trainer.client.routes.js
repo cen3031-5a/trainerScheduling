@@ -40,18 +40,33 @@
         data: {
           roles: ['admin']
         }
+      })
+      .state('announcementArchive', {
+        url: '/announcements/archive',
+        templateUrl: 'modules/trainer/client/views/announcementArchive.html',
+        controller: 'TrainerListController',
+        controllerAs: 'vm',
+      })
+      .state('viewAnnouncement', {
+        url: '/announcements/view/:trainerId',
+        templateUrl: 'modules/trainer/client/views/viewAnnouncement.client.view.html',
+        controller: 'TrainerController',
+        controllerAs: 'vm',
+        resolve: {
+          trainerResolve: getTrainer
+        }
       });
 
   }
-  getTrainer.$inject = ['$stateParams', 'TrainerService'];
+  getTrainer.$inject = ['$stateParams', 'trainerService'];
 
-  function getTrainer($stateParams, trainerService) {
-    return trainerService.get({
+  function getTrainer($stateParams, TrainerService) {
+    return TrainerService.get({
       trainerId: $stateParams.trainerId
     }).$promise;
   }
 
-  newTrainer.$inject = ['TrainerService'];
+  newTrainer.$inject = ['trainerService'];
 
   function newTrainer(TrainerService) {
     return new TrainerService();
