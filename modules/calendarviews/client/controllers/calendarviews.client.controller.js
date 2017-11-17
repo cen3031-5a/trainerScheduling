@@ -41,9 +41,7 @@
       }
 
       function successCallback(res) {
-        $state.go('calendarviews.view', {
-          calendarviewId: res._id
-        });
+        $state.go('calendarviews.list');
       }
 
       function errorCallback(res) {
