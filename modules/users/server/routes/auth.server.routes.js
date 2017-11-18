@@ -10,6 +10,7 @@ module.exports = function (app) {
   var users = require('../controllers/users.server.controller');
 
   // Setting up the users password api
+  //app.route('/api/auth/forgot').post(users.forgot);
   app.route('/api/auth/forgot').post(users.forgot);
   app.route('/api/auth/reset/:token').get(users.validateResetToken);
   app.route('/api/auth/reset/:token').post(users.reset);

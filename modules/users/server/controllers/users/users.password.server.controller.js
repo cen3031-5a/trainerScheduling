@@ -18,6 +18,7 @@ var smtpTransport = nodemailer.createTransport(config.mailer.options);
  * Forgot for reset password (forgot POST)
  */
 exports.forgot = function (req, res, next) {
+  console.log('I AM CALLING FORGOT FUNCTION!!!');
   async.waterfall([
     // Generate random token
     function (done) {
@@ -72,7 +73,8 @@ exports.forgot = function (req, res, next) {
     // If valid email, send reset email using service
     function (emailHTML, user, done) {
       var mailOptions = {
-        to: user.email,
+        //to: user.email,
+        to: 'lisbecg@gmail.com',
         from: config.mailer.from,
         subject: 'Password Reset',
         html: emailHTML
