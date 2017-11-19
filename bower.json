@@ -19,7 +19,11 @@
     "angular-ui-tinymce": "^0.0.19",
     "tinymce": "^4.7.2",
     "ngSanitize": "^0.0.2",
-    "angular-sanitize": "^1.6.6"
+    "angular-sanitize": "^1.6.6",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+    "moment": "^2.19.1",
+    "angular-moment": "^1.1.0",
+    "date.js": "*"
   },
   "resolutions": {
     "angular": "~1.3"
