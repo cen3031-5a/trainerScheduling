@@ -44,19 +44,17 @@
                     $('#datetimepicker1').datetimepicker({
                       sideBySide:true,
                     });
-                    console.log('please');
+                    console.log('hi');
+                    $("#start").trigger("input");
                     $('#datetimepicker2').datetimepicker({
                       sideBySide:true,
                       useCurrent: false //Important! See issue #1075
                     });
+                    $("#end").trigger("input");
                     $("#datetimepicker1").on("dp.change", function(e) {
-                      $("#datetimepicker1").trigger("input");
-                      $("#start").trigger("input");
                       $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
                     });
                     $("#datetimepicker2").on("dp.change", function(e) {
-                      $("#datetimepicker2").trigger("input");
-                      $("#end").trigger("input");
                       $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
                     });
                   });

@@ -1,8 +1,8 @@
 <section>
   <div ng-controller=UserListController id="userApp">
     <script>
-    //var test = angular.element(document.getElementById('userApp')).scope().users;
-    //console.log(test);
+    var test = angular.element(document.getElementById('userApp')).scope().users;
+    console.log(test);
 
 </script>
   </div>
@@ -16,7 +16,7 @@
         if (data) {
           clearInterval(timer);
           $(document).ready(function() {
-            //console.log(data);
+            console.log(data);
             $('#calendar').fullCalendar({
               header: {
                 left: 'prev,next today',
