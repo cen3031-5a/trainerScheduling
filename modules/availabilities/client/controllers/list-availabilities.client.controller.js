@@ -5,11 +5,14 @@
     .module('availabilities')
     .controller('AvailabilitiesListController', AvailabilitiesListController);
 
-  AvailabilitiesListController.$inject = ['AvailabilitiesService'];
+  AvailabilitiesListController.$inject = ['$scope', 'AvailabilitiesService'];
 
-  function AvailabilitiesListController(AvailabilitiesService) {
+  function AvailabilitiesListController($scope, AvailabilitiesService) {
     var vm = this;
 
-    vm.availabilities = AvailabilitiesService.query();
+    vm.availabilities = AvailabilitiesService.query().sort('start');
+    vm.availabilitie = AvailabilitiesService.query().$promise.then(function (result) {
+      $scope.data = result;
+    });
   }
 }());
