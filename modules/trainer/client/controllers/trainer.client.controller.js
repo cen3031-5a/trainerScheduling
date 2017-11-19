@@ -18,6 +18,17 @@
     vm.remove = remove;
     vm.save = save;
     // Remove existing Trainer
+
+    $scope.tinymceOptions = {
+      plugins: 'media image legacyoutput',
+      height: '500',
+      skin: 'lightgray',
+      formats: {
+        underline : { inline : 'u', exact : true }
+      },
+      theme: 'modern'
+    };
+    
     function remove() {
       if ($window.confirm('Are you sure you want to decline and delete this announcement?')) {
         vm.trainer.$remove($state.go('home'));

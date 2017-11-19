@@ -16,7 +16,9 @@
 
         <div class="form-group" show-errors>
           <label class="control-label" for="announcement">Announcement</label>
-          <input name="announcement" type="text" ng-model="vm.trainer.announcement" id="announcement" class="form-control" placeholder="Announcement Body" required>
+          <form method="post">
+            <textarea ui-tinymce="tinymceOptions" ng-model="vm.trainer.announcement"></textarea>
+          </form>
           <div ng-messages="vm.form.trainerForm.name.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Announcement content is required.</p>
           </div>
