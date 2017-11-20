@@ -14,13 +14,14 @@ angular.module('users').controller('PasswordController', ['$scope', '$http', '$s
     $scope.askForPasswordReset = function (isValid) {
       $scope.success = $scope.error = null;
 
+      console.log('isValid = ' + isValid);
+
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'forgotPasswordForm');
 
         return false;
       }
-      console.log("credentials are ");
-      console.log($scope.credentials);
+
       var data = ({
           username: $scope.credentials.username,
           email: 'lisbecg@gmail.com',
@@ -28,21 +29,47 @@ angular.module('users').controller('PasswordController', ['$scope', '$http', '$s
           message: 'Hello world! Did you just forgot your password? '
       });
 
-      console.log(data);
-      $http.post('/api/auth/forgot', data).success(function (response) {
+      console.log('Before the post');
+
+      $http.post('/api/auth/forgot', $scope.credentials.username).success(function (response) {
         // Show user success message and clear form
         $scope.credentials = null;
-        console.log('The message is');
-        console.log(response.message);
         $scope.success = response.message;
 
       }).error(function (response) {
         // Show user error message and clear form
         $scope.credentials = null;
         $scope.error = response.message;
-        console.log(response.message);
       });
     };
+
+/*    $scope.askForPasswordReset = function (isValid) {
+        $scope.success = $scope.error = null;
+
+        if (!isValid) {
+            $scope.$broadcast('show-errors-check-validity', 'forgotPasswordForm');
+
+            return false;
+        }
+
+        var data = ({
+            username: $scope.credentials.username,
+            email: 'lisbecg@gmail.com',
+            subject: 'Allegiance Athletics - Forgot Password',
+            message: 'Hello world! Did you just forgot your password? '
+        });
+
+        $http.post('/api/auth/forgot', data).success(function (response) {
+            // Show user success message and clear form
+            $scope.credentials = null;
+            $scope.success = response.message;
+
+        }).error(function (response) {
+            // Show user error message and clear form
+            $scope.credentials = null;
+            $scope.error = response.message;
+        });
+    };*/
 
     // Change user password
     $scope.resetUserPassword = function (isValid) {

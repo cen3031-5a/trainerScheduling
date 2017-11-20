@@ -19,6 +19,7 @@ var smtpTransport = nodemailer.createTransport(config.mailer.options);
  */
 exports.forgot = function (req, res, next) {
   console.log('I AM CALLING FORGOT FUNCTION!!!');
+  console.log(req);
   async.waterfall([
     // Generate random token
     function (done) {
@@ -75,7 +76,8 @@ exports.forgot = function (req, res, next) {
       var mailOptions = {
         //to: user.email,
         to: 'lisbecg@gmail.com',
-        from: config.mailer.from,
+        //from: config.mailer.from,
+        from: 'lisbecg@gmail.com',
         subject: 'Password Reset',
         html: emailHTML
       };
