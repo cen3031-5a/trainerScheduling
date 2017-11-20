@@ -8,11 +8,13 @@ var passport = require('passport');
 module.exports = function (app) {
   // User Routes
   var users = require('../controllers/users.server.controller');
-  //var users-forgotPassword = require('../controllers/users/users.password.server.controller');
+  var usersForgotPassword = require('../controllers/users/users.password.server.controller');
 
   // Setting up the users password api
-  //app.route('/api/forgot-password').post(users.forgot);
-  app.route('/api/auth/forgot').post(users.forgot);
+  console.log('I am here');
+  console.log(users);
+  app.route('/api/forgot-password').post(usersForgotPassword.forgot);
+  //app.route('/api/auth/forgot').post(users.forgot);
   app.route('/api/auth/reset/:token').get(users.validateResetToken);
   app.route('/api/auth/reset/:token').post(users.reset);
 
