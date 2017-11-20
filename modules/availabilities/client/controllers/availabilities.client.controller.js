@@ -11,13 +11,14 @@
   function AvailabilitiesController ($scope, $state, $window, Authentication, availability) {
     var vm = this;
 
+
     vm.authentication = Authentication;
     vm.availability = availability;
     vm.error = null;
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-
+    //vm.currentuser = Authentication.currentuser;
 
     $scope.toDelete = function (id) {
       $state.go('availabilities.view', {

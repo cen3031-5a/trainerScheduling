@@ -1,13 +1,22 @@
 <section ng-controller=AvailabilitiesListController id="app">
-  <h2 align="center">Update Availability</h2>
+  <h2 align="center">{{vm.authentication.user.firstName}} {{vm.authentication.user.lastName}} Update Availability</h2>
 <script>
   var timer = setInterval(checkDataReady, 100);
   function checkDataReady(){
         
         var data =angular.element(document.getElementById('app')).scope().data;
-        
-  if (data){
+        var userInfo =angular.element(document.getElementById('app')).scope().user;
+  if (data&&userInfo&&(user.firstName!=null)){
     clearInterval(timer);
+    var name = user.firstName+' '+user.lastName;
+    var preData = data;
+    for(var i = 0;i<data.length;i++){
+      //alert("i is"+i+"and"+data[i].trainer+" vs "+name);
+
+      if(name!=data[i].trainer){
+        data.splice(i,1);
+      }
+    }
       $(document).ready(function() {
         console.log(data);
 
@@ -23,8 +32,9 @@
       selectable: true,
       selectHelper: true,
       columnFormat: "ddd",
+      allDaySlot: false,
       select: function(start, end) {
-        var title = "available";//prompt('Event Title:');
+        var title = name+" Available";//prompt('Event Title:');
         var eventData;
         if (title) {
           eventData = {
@@ -34,9 +44,9 @@
           };
           $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
           //data.push(eventData);
-          document.getElementById("eventForm").title.value = 'Available';
+          document.getElementById("eventForm").title.value = name+" Available";
           $("#title").trigger("input");
-          document.getElementById("eventForm").trainer.value = 'Not Sure';
+          document.getElementById("eventForm").trainer.value = name;
           $("#trainer").trigger("input");
           document.getElementById("eventForm").start.value = start;
           $("#start").trigger("input");
@@ -52,8 +62,6 @@
       },
       eventClick: function(calEvent, jsEvent, view) {
           if (confirm('Are you sure you want to delete this availability?')){
-              //var elementPos = data.map(function(x) {return x._id; }).indexOf(calEvent._id);
-              //console.log(calEvent._id);
               angular.element(document.getElementById('app')).scope().toDelete(calEvent._id);
               $('#calendar').fullCalendar('removeEvents',calEvent._id);
           }
