@@ -21,7 +21,7 @@
 <!-- List the blog entries -->
 <div class="scroll">
 <div class="list-group">
-  <a ng-repeat="blog in vm.blogs | filter:Blog_Input" ui-sref="blogs.view({ blogId: blog._id })" class="list-group-item">
+  <a ng-repeat="blog in vm.blogs | orderBy:'created':true | filter:Blog_Input" ui-sref="blogs.view({ blogId: blog._id })" class="list-group-item">
     <small class="list-group-item-text">
       Posted on
       <span ng-bind="blog.created | date:'mediumDate'"></span>
