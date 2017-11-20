@@ -5,9 +5,10 @@
     .module('trainer')
     .controller('TrainerListController', TrainerListController);
 
-  TrainerListController.$inject = ['trainerService', '$scope', '$sce'];
+  TrainerListController.$inject = ['trainerService', '$state', '$window', '$scope', '$sce'];
 
-  function TrainerListController(trainerService, $scope, $sce) {
+  function TrainerListController(trainerService, $state, $window, $scope, $sce) {
+
     var vm = this;
 
     vm.trainer = trainerService.query();

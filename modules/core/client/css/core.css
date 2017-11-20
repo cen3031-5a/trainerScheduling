@@ -48,10 +48,17 @@ a:hover .header-profile-image {
 }
 
 .scroll {
-  width: 1150px;
-  height: 1000px;
+  width: auto;
+  height: 750px;
   overflow: auto;
 }
+
+.homescroll {
+  width: auto;
+  height: 525px;
+  overflow: auto;
+}
+
 
 .navbar-custom {
     background-color: #9932CC;

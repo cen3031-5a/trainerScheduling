@@ -10,7 +10,7 @@
   function menuConfig(menuService) {
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
-      title: 'Blogs',
+      title: 'Blog',
       state: 'blogs.list',
       //type: 'dropdown',
       roles: ['user','admin']

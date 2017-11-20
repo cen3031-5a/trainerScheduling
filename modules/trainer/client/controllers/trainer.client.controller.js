@@ -30,8 +30,8 @@
     };
     
     function remove() {
-      if ($window.confirm('Are you sure you want to decline and delete this announcement?')) {
-        vm.trainer.$remove($state.go('home'));
+      if ($window.confirm('Are you sure you want to delete this announcement?')) {
+        vm.trainer.$remove($state.go('homeadmin'));
       }
     }
 
