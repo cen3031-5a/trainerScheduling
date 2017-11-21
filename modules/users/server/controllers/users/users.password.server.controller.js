@@ -178,7 +178,7 @@ exports.resetPost = function (req, res, next) {
         to: user.email,
         from: 'mronda11@gmail.com',
         subject: 'Your password has been changed',
-        text: text: 'Hello,\n\n' +
+        text: 'Hello,\n\n' +
         'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
       };
 
