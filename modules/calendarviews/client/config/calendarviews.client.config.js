@@ -18,14 +18,21 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'calendarviews', {
-      title: 'List Calendarviews',
+      title: 'Show Calendar',
       state: 'calendarviews.list'
     });
 
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'calendarviews', {
-      title: 'Create Calendarview',
+      title: 'Create Event',
       state: 'calendarviews.create',
+      roles: ['admin']
+    });
+
+    // Add the request create item
+    menuService.addSubMenuItem('topbar', 'calendarviews', {
+      title: 'Request Off',
+      state: 'calendarviews.request',
       roles: ['admin']
     });
   }

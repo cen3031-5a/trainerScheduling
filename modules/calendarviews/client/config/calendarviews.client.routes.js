@@ -32,13 +32,26 @@
           calendarviewResolve: newCalendarview
         },
         data: {
-          roles: ['user', 'admin'],
+          roles: ['admin'],
           pageTitle: 'Calendarviews Create'
         }
       })
       .state('calendarviews.edit', {
         url: '/:calendarviewId/edit',
         templateUrl: 'modules/calendarviews/client/views/form-calendarview.client.view.html',
+        controller: 'CalendarviewsController',
+        controllerAs: 'vm',
+        resolve: {
+          calendarviewResolve: getCalendarview
+        },
+        data: {
+          roles: ['admin'],
+          pageTitle: 'Edit Calendarview {{ calendarviewResolve.name }}'
+        }
+      })
+      .state('calendarviews.request', {
+        url: '/:calendarviewId/request',
+        templateUrl: 'modules/calendarviews/client/views/request-calendarview.client.view.html',
         controller: 'CalendarviewsController',
         controllerAs: 'vm',
         resolve: {
