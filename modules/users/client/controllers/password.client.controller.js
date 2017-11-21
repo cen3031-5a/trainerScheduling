@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('users').controller('PasswordController', ['$scope', '$stateParams', '$http', '$location', 'Authentication', 'PasswordValidator',
-  function ($scope, $stateParams, $http, $location, Authentication, PasswordValidator) {
+angular.module('users').controller('PasswordController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'PasswordValidator',
+  function ($scope, $http, $stateParams, $location, Authentication, PasswordValidator) {
     $scope.authentication = Authentication;
     $scope.popoverMsg = PasswordValidator.getPopoverMsg();
 
@@ -14,13 +14,17 @@ angular.module('users').controller('PasswordController', ['$scope', '$stateParam
     $scope.askForPasswordReset = function (isValid) {
       $scope.success = $scope.error = null;
 
+      console.log('isValid = ' + isValid);
+
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'forgotPasswordForm');
 
         return false;
       }
 
-      $http.post('/api/auth/forgot', $scope.credentials).success(function (response) {
+      console.log('Before the post');
+
+      $http.post('/api/auth/forgot', $scope.credentials.username).success(function (response) {
         // Show user success message and clear form
         $scope.credentials = null;
         $scope.success = response.message;
@@ -31,6 +35,34 @@ angular.module('users').controller('PasswordController', ['$scope', '$stateParam
         $scope.error = response.message;
       });
     };
+
+/*    $scope.askForPasswordReset = function (isValid) {
+        $scope.success = $scope.error = null;
+
+        if (!isValid) {
+            $scope.$broadcast('show-errors-check-validity', 'forgotPasswordForm');
+
+            return false;
+        }
+
+        var data = ({
+            username: $scope.credentials.username,
+            email: 'lisbecg@gmail.com',
+            subject: 'Allegiance Athletics - Forgot Password',
+            message: 'Hello world! Did you just forgot your password? '
+        });
+
+        $http.post('/api/auth/forgot', data).success(function (response) {
+            // Show user success message and clear form
+            $scope.credentials = null;
+            $scope.success = response.message;
+
+        }).error(function (response) {
+            // Show user error message and clear form
+            $scope.credentials = null;
+            $scope.error = response.message;
+        });
+    };*/
 
     // Change user password
     $scope.resetUserPassword = function (isValid) {

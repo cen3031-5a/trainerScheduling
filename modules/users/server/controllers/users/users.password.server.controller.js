@@ -7,8 +7,10 @@ var path = require('path'),
   config = require(path.resolve('./config/config')),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   mongoose = require('mongoose'),
+  passport = require('passport'),
   User = mongoose.model('User'),
   nodemailer = require('nodemailer'),
+  bcrypt = require('bcrypt-nodejs'),
   async = require('async'),
   crypto = require('crypto');
 
@@ -28,58 +30,49 @@ exports.forgot = function (req, res, next) {
     },
     // Lookup user by username
     function (token, done) {
-      if (req.body.username) {
+      if (req.body.email) {
         User.findOne({
-          username: req.body.username.toLowerCase()
-        }, '-salt -password', function (err, user) {
+          email: req.body.email.toLowerCase()
+        }, function (err, user) {
           if (!user) {
             return res.status(400).send({
-              message: 'No account with that username has been found'
-            });
-          } else if (user.provider !== 'local') {
-            return res.status(400).send({
-              message: 'It seems like you signed up using your ' + user.provider + ' account'
-            });
-          } else {
-            user.resetPasswordToken = token;
-            user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
-
-            user.save(function (err) {
-              done(err, token, user);
+              message: 'No account with that email has been found'
             });
           }
+          user.resetPasswordToken = token;
+          user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+          user.save(function (err) {
+            done(err, token, user);
+          });
         });
       } else {
         return res.status(400).send({
-          message: 'Username field must not be blank'
+          message: 'Email field must not be blank'
         });
       }
     },
-    function (token, user, done) {
-
-      var httpTransport = 'http://';
-      if (config.secure && config.secure.ssl === true) {
-        httpTransport = 'https://';
-      }
-      res.render(path.resolve('modules/users/server/templates/reset-password-email'), {
-        name: user.displayName,
-        appName: config.app.title,
-        url: httpTransport + req.headers.host + '/api/auth/reset/' + token
-      }, function (err, emailHTML) {
-        done(err, emailHTML, user);
-      });
-    },
     // If valid email, send reset email using service
-    function (emailHTML, user, done) {
+    function (token, user, done) {
+     var smtpTransport = nodemailer.createTransport('SMTP', {
+       service: 'SendGrid', // Choose email service, default SendGrid
+       auth: {
+         user: 'mronda11@gmail.com',
+         pass: '4Lo-HfK-wxC-X6c'
+         }
+      });
       var mailOptions = {
         to: user.email,
-        from: config.mailer.from,
+        from: 'mronda11@gmail.com',
         subject: 'Password Reset',
-        html: emailHTML
+        text: 'text: \'You are receiving this because you (or someone else) have requested the reset of the password for your account.\\n\\n\' +\n' +
+        '\t\t\'Please click on the following link, or paste this into your browser to complete the process:\\n\\n\' +\n' +
+        '\t\t\'http://\' + req.headers.host + \'/auth/reset/\' + token + \'\\n\\n\' +\n' +
+        ' \t\t\'If you did not request this, please ignore this email and your password will remain unchanged.\\n\''
       };
       smtpTransport.sendMail(mailOptions, function (err) {
         if (!err) {
-          res.send({
+          res.send(200, {
             message: 'An email has been sent to the provided email with further instructions.'
           });
         } else {
@@ -88,7 +81,7 @@ exports.forgot = function (req, res, next) {
           });
         }
 
-        done(err);
+        done(err, 'done');
       });
     }
   ], function (err) {
@@ -101,7 +94,7 @@ exports.forgot = function (req, res, next) {
 /**
  * Reset password GET from email token
  */
-exports.validateResetToken = function (req, res) {
+exports.resetGet = function (req, res) {
   User.findOne({
     resetPasswordToken: req.params.token,
     resetPasswordExpires: {
@@ -119,7 +112,7 @@ exports.validateResetToken = function (req, res) {
 /**
  * Reset password POST from email token
  */
-exports.reset = function (req, res, next) {
+exports.resetPost = function (req, res, next) {
   // Init Variables
   var passwordDetails = req.body;
   var message = null;
@@ -172,21 +165,21 @@ exports.reset = function (req, res, next) {
         }
       });
     },
-    function (user, done) {
-      res.render('modules/users/server/templates/reset-password-confirm-email', {
-        name: user.displayName,
-        appName: config.app.title
-      }, function (err, emailHTML) {
-        done(err, emailHTML, user);
-      });
-    },
     // If valid email, send reset email using service
-    function (emailHTML, user, done) {
+    function (user, done) {
+        var smtpTransport = nodemailer.createTransport('SMTP', {
+            service: 'SendGrid', // Choose email service, default SendGrid
+            auth: {
+                user: 'mronda11@gmail.com',
+                pass: '4Lo-HfK-wxC-X6c'
+            }
+        });
       var mailOptions = {
         to: user.email,
-        from: config.mailer.from,
+        from: 'mronda11@gmail.com',
         subject: 'Your password has been changed',
-        html: emailHTML
+        text: text: 'Hello,\n\n' +
+        'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
       };
 
       smtpTransport.sendMail(mailOptions, function (err) {
