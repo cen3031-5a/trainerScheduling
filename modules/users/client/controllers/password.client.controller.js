@@ -22,13 +22,6 @@ angular.module('users').controller('PasswordController', ['$scope', '$http', '$s
         return false;
       }
 
-      var data = ({
-          username: $scope.credentials.username,
-          email: 'lisbecg@gmail.com',
-          subject: 'Allegiance Athletics - Forgot Password',
-          message: 'Hello world! Did you just forgot your password? '
-      });
-
       console.log('Before the post');
 
       $http.post('/api/auth/forgot', $scope.credentials.username).success(function (response) {

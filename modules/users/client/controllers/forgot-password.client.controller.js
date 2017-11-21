@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('users').controller('ForgotPasswordController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'PasswordValidator',
+angular.module('users').controller('PasswordController', ['$scope', '$http', '$stateParams', '$location', 'Authentication', 'PasswordValidator',
   function ($scope, $http, $stateParams, $location, Authentication, PasswordValidator) {
     $scope.authentication = Authentication;
     $scope.popoverMsg = PasswordValidator.getPopoverMsg();
@@ -32,7 +32,7 @@ angular.module('users').controller('ForgotPasswordController', ['$scope', '$http
 
       console.log('Before the post');
 
-      $http.post('/api/forgot-password', data).success(function (response) {
+      $http.post('/api/auth/forgot', data).success(function (response) {
         // Show user success message and clear form
         console.log('success!!!!');
         $scope.credentials = null;
