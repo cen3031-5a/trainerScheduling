@@ -20,7 +20,16 @@
         controller: 'CalendarviewsListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Calendarviews List'
+          pageTitle: 'Calendar'
+        }
+      })
+      .state('calendarviews.requestOff', {
+        url: '/requestOff',
+        templateUrl: 'modules/calendarviews/client/views/requestList-calendarviews.client.view.html',
+        controller: 'CalendarviewsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Request Off'
         }
       })
       .state('calendarviews.create', {
@@ -32,8 +41,8 @@
           calendarviewResolve: newCalendarview
         },
         data: {
-          roles: ['admin'],
-          pageTitle: 'Calendarviews Create'
+          roles: ['user','admin'],
+          pageTitle: 'Create Event'
         }
       })
       .state('calendarviews.edit', {
@@ -45,8 +54,8 @@
           calendarviewResolve: getCalendarview
         },
         data: {
-          roles: ['admin'],
-          pageTitle: 'Edit Calendarview {{ calendarviewResolve.name }}'
+          roles: ['user','admin'],
+          pageTitle: 'Edit Calendarview {{ calendarviewResolve.title }}'
         }
       })
       .state('calendarviews.request', {
@@ -59,7 +68,7 @@
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Edit Calendarview {{ calendarviewResolve.name }}'
+          pageTitle: 'Request Off {{ calendarviewResolve.title }}'
         }
       })
       .state('calendarviews.view', {
@@ -71,7 +80,7 @@
           calendarviewResolve: getCalendarview
         },
         data: {
-          pageTitle: 'Calendarview {{ calendarviewResolve.name }}'
+          pageTitle: 'Calendarview {{ calendarviewResolve.title }}'
         }
       });
   }

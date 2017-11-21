@@ -29,10 +29,10 @@
       roles: ['admin']
     });
 
-    // Add the request create item
+    // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'calendarviews', {
       title: 'Request Off',
-      state: 'calendarviews.request',
+      state: 'calendarviews.requestOff',
       roles: ['admin']
     });
   }

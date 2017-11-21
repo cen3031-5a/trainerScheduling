@@ -34,7 +34,13 @@ var CalendarviewSchema = new Schema({
     required: 'Please fill in end',
     trim: true
   },
+  color: String,
   details: String,
+  requestOff: String,
+  requestOffBool: {
+    type : Boolean,
+    default: false,
+  },
   created: {
     type: Date,
     default: Date.now

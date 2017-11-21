@@ -34,12 +34,13 @@
 
   angular.module('calendarviews').controller('CalendarviewsListController', CalendarviewsListController);
 
-  CalendarviewsListController.$inject = ['$scope', 'CalendarviewsService'];
+  CalendarviewsListController.$inject = ['$scope','$stateParams','$state','$window', 'Authentication','CalendarviewsService'];
 
-  function CalendarviewsListController($scope, CalendarviewsService) {
+  function CalendarviewsListController($scope, $stateParams, $state, $window, Authentication, CalendarviewsService) {
     var vm = this;
     var entry;
-    vm.calendarviews = CalendarviewsService.query().sort('start');
+    vm.authentication = Authentication;
+    vm.calendarviews = CalendarviewsService.query();
     vm.calendarview = CalendarviewsService.query().$promise.then(function(result) {
       //vm.calendarviews = CalendarviewsService.query();
       //for(var i =0;i<result.length;i++){
@@ -50,10 +51,19 @@
       //}
       //alert(Date.parse('11/10/2017 1:13 PM').toISOString());
 
-      console.log(Date.parse('11/10/2017 1:13 PM').toISOString());
+      console.log(vm.authentication);
+      var userOnly = [];
+      for(var i=0;i<result.length;i++){
+        if(vm.authentication.user.username == result[i].trainer){
+          //console.log(result[i]);
+          userOnly.push(result[i]);
+        };
+      }
       $scope.data = result;
+      $scope.userData = userOnly;
 
     });
+
 
   }
 }());

@@ -20,7 +20,7 @@
     // Remove existing Calendarview
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        vm.calendarview.$remove($state.go('calendarviews.list'));
+        vm.calendarview.$remove();
       }
     }
 
