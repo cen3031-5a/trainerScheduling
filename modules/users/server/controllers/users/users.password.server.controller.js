@@ -57,7 +57,7 @@ exports.forgot = function (req, res, next) {
      var smtpTransport = nodemailer.createTransport('SMTP', {
        service: 'SendGrid', // Choose email service, default SendGrid
        auth: {
-         user: 'mronda11@gmail.com',
+         user: 'mronda11',
          pass: '4Lo-HfK-wxC-X6c'
          }
       });
@@ -170,7 +170,7 @@ exports.resetPost = function (req, res, next) {
         var smtpTransport = nodemailer.createTransport('SMTP', {
             service: 'SendGrid', // Choose email service, default SendGrid
             auth: {
-                user: 'mronda11@gmail.com',
+                user: 'mronda11',
                 pass: '4Lo-HfK-wxC-X6c'
             }
         });
