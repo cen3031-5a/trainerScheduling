@@ -59,12 +59,12 @@
           userOnly.push(result[i]);
         }
       }
-      if(vm.authentication.user.roles == 'admin'){
+      if(vm.authentication.user.roles === 'admin'){
         $scope.data = result;
       }else{
         $scope.data = userOnly;
       }
-      
+
     });
 
 
