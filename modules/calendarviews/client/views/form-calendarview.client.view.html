@@ -93,8 +93,8 @@
 
             <div class='col-md-4'>
               <label class="control-label" for="end">Repeat</label>
-              <div class='input-group date' ng-model="vm.calendarview.repeat" id='datetimepicker2'>
-                <input name="repeat" type='text' ng-model="vm.calendarview.repeat" id="repeat" class="form-control" placeholder="Repeat" required />
+              <div class='input-group date' ng-model="vm.calendarview.repeat" id='datetimepicker3'>
+                <input name="repeat" type='text' ng-model="vm.calendarview.repeat" id="repeat" class="form-control" placeholder="Repeat" />
                 <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
                 </span>
@@ -155,7 +155,7 @@
       </fieldset>
     </form>
   </div>
-  <div class="col-md-12">
+  <div class="col-md-12" ng-show="vm.authentication.user.roles == 'admin'">
     <!--change this to the site name-->
     <iframe style="width:100%;height:50em;"src="/availabilities">
   </iframe>

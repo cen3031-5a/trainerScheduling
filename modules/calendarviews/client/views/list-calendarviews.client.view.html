@@ -83,15 +83,18 @@
     </div>
     <div class="col-lg-3" style="text-align:center;" ng-if="vm.calendarviews.length">
       <h4>List of Events</h4>
-      <a ng-repeat="calendar in vm.calendarviews | orderBy:'start'" ng-if="calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin'" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
-        <span>{{calendar.title}}</span>
-        <span>{{calendar.start}}</span>
-        <span>{{calendar.end}}</span>
-        <span class="btn btn-primary" ng-if="vm.authentication.user.roles == 'user'" ui-sref="calendarviews.edit({ calendarviewId: calendar._id })">
-          <i class="glyphicon glyphicon-edit"></i>
-        </span>
-      </br>
-      </a>
+      <table class="table" style="text-align:center;">
+        <tr>
+          <th>Class Name</th>
+          <th>Start Time</th>
+          <th>End Time</th>
+        </tr>
+        <tr ng-repeat="calendar in vm.calendarviews | orderBy:'start'" ng-if="calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin'" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
+          <td>{{calendar.title}}</td>
+          <td>{{calendar.start}}</td>
+          <td>{{calendar.end}}</td>
+        </tr>
+      </table>
     </div>
   </div>
 </section>
