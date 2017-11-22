@@ -107,28 +107,28 @@
             </div>
 
             <script type="text/javascript">
-                  $(function() {
-                    $('#datetimepicker1').datetimepicker({
-                      sideBySide: true,
-                    });
-                    $("#start").trigger("input");
-                    $('#datetimepicker2').datetimepicker({
-                      sideBySide: true,
-                      useCurrent: false //Important! See issue #1075
-                    });
-                    $("#end").trigger("input");
-                    $("#datetimepicker1").on("dp.change", function(e) {
-                      $("#datetimepicker1").trigger("input");
-                      $("#start").trigger("input");
-                      $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
-                    });
-                    $("#datetimepicker2").on("dp.change", function(e) {
-                      $("#datetimepicker2").trigger("input");
-                      $("#end").trigger("input");
-                      $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
-                    });
-                  });
-                </script>
+              $(function() {
+                $('#datetimepicker1').datetimepicker({
+                  sideBySide: true,
+                });
+                $("#start").trigger("input");
+                $('#datetimepicker2').datetimepicker({
+                  sideBySide: true,
+                  useCurrent: false //Important! See issue #1075
+                });
+                $("#end").trigger("input");
+                $("#datetimepicker1").on("dp.change", function(e) {
+                  $("#datetimepicker1").trigger("input");
+                  $("#start").trigger("input");
+                  $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+                });
+                $("#datetimepicker2").on("dp.change", function(e) {
+                  $("#datetimepicker2").trigger("input");
+                  $("#end").trigger("input");
+                  $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+                });
+              });
+            </script>
           </div>
 
           <div ng-if="vm.authentication.user.roles == 'admin'">
@@ -137,16 +137,23 @@
           </div>
 
           <div ng-if="vm.authentication.user.roles == 'user'">
-            <label class="control-label" for="details">Request Off Reason</label>
+            <label class="control-label" for="requestOff">Request Off Reason</label>
             <input name="requestOff" type="text" ng-model="vm.calendarview.requestOff" id="requestOff" class="form-control" placeholder="Reason to Request Off">
           </div>
 
+
           <div ng-if="vm.calendarview._id && (vm.authentication.user.roles == 'user' || vm.authentication.user.roles == 'admin')">
-            <label class="control-label" for="details">Request Off?</label>
-            <input name="requestOffBool" style="" type="checkbox" ng-model="vm.calendarview.requestOffBool" id="requestOffBool" class="form-control">
+            </br>
+            <label>Request Off?</label>
+            <label class="check">
+            <input name="requestOffBool" type="checkbox" ng-model="vm.calendarview.requestOffBool" id="requestOffBool" class="form-control">
+            <span class="checkmark"></span>
+          </label>
           </div>
+
         </div>
 
+        </br>
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.calendarview._id ? 'Update' : 'Create'}}</button>
         </div>
@@ -158,7 +165,74 @@
   </div>
   <div class="col-md-12" ng-show="vm.authentication.user.roles == 'admin'">
     <!--change this to the site name-->
-    <iframe style="width:100%;height:50em;"src="/availabilities">
+    <iframe style="width:100%;height:50em;" src="/availabilities">
   </iframe>
   </div>
+  <style>
+    /* The check */
+
+    .check {
+      display: block;
+      position: relative;
+      padding-left: 35px;
+      margin-bottom: 12px;
+      cursor: pointer;
+      font-size: 22px;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    /* Hide the browser's default checkbox */
+
+    .check input {
+      position: absolute;
+      opacity: 0;
+    }
+    /* Create a custom checkbox */
+
+    .checkmark {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 25px;
+      width: 25px;
+      background-color: #eee;
+    }
+    /* On mouse-over, add a grey background color */
+
+    .check:hover input~.checkmark {
+      background-color: #ccc;
+    }
+    /* When the checkbox is checked, add a blue background */
+
+    .check input:checked~.checkmark {
+      background-color: #2196F3;
+    }
+    /* Create the checkmark/indicator (hidden when not checked) */
+
+    .checkmark:after {
+      content: "";
+      position: absolute;
+      display: none;
+    }
+    /* Show the checkmark when checked */
+
+    .check input:checked~.checkmark:after {
+      display: block;
+    }
+    /* Style the checkmark/indicator */
+
+    .check .checkmark:after {
+      left: 9px;
+      top: 5px;
+      width: 5px;
+      height: 10px;
+      border: solid white;
+      border-width: 0 3px 3px 0;
+      -webkit-transform: rotate(45deg);
+      -ms-transform: rotate(45deg);
+      transform: rotate(45deg);
+    }
+  </style>
 </section>

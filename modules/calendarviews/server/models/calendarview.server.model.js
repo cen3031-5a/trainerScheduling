@@ -23,13 +23,13 @@ var CalendarviewSchema = new Schema({
     trim: true
   },
   start: {
-    type: Date,
+    type: String,
     default: '',
     required: 'Please fill in start',
     trim: true
   },
   end: {
-    type: Date,
+    type: String,
     default: '',
     required: 'Please fill in end',
     trim: true
@@ -40,7 +40,11 @@ var CalendarviewSchema = new Schema({
     trim: true
   },
   color: String,
-  details: String,
+  details: {
+    type: String,
+    default: 'Not Available',
+    trim: true
+  },
   requestOff: String,
   requestOffBool: {
     type : Boolean,
