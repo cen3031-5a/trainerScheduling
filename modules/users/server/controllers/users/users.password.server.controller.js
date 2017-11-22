@@ -172,6 +172,7 @@ exports.resetPost = function (req, res, next) {
             auth: {
                 user: 'mronda11',
                 pass: '4Lo-HfK-wxC-X6c'
+                pass: '4Lo-HfK-wxC-X6c'
             }
         });
       var mailOptions = {
