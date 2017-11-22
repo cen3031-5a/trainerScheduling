@@ -55,7 +55,7 @@
       var today = new Date();
       //console.log(today);
       return Date.parse(calendar.start) > today;
-    }
+    };
 
   }
 }());
