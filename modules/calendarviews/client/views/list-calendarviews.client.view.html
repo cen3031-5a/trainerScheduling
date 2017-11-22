@@ -1,11 +1,4 @@
 <section>
-  <!--div ng-controller=UserListController id="userApp">
-    <script>
-    var test = angular.element(document.getElementById('userApp')).scope().users;
-    console.log(test);
-
-    </script>
-  </div-->
   <div ng-controller=CalendarviewsListController id="app">
     <script>
       var timer = setInterval(checkDataReady, 100);
@@ -29,6 +22,7 @@
               navLinks: true, // can click day/week titles to navigate views
               selectable: false,
               selectHelper: false,
+              timezone: 'local',
               /*select: function(start, end) {
                 var title = prompt('Event Title:');
                 var start = prompt('Event start Time:');

@@ -34,6 +34,11 @@ var CalendarviewSchema = new Schema({
     required: 'Please fill in end',
     trim: true
   },
+  repeat: {
+    type: String,
+    default: '',
+    trim: true
+  },
   color: String,
   details: String,
   requestOff: String,

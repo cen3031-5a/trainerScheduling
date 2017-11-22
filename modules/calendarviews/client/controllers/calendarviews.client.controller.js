@@ -41,7 +41,8 @@
       }
 
       function successCallback(res) {
-        $state.go('calendarviews.list');
+        //$state.go('calendarviews.list');
+        $window.location.href="/calendarviews"
       }
 
       function errorCallback(res) {

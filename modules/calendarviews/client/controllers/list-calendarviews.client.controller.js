@@ -1,37 +1,6 @@
 (function() {
   'use strict';
 
-  angular.module('users.admin').controller('UserListController', [
-    '$scope',
-    '$filter',
-    'Admin',
-    function($scope, $filter, Admin) {
-      Admin.query(function(data) {
-        $scope.users = data;
-        $scope.buildPager();
-      });
-
-      $scope.buildPager = function() {
-        $scope.pagedItems = [];
-        $scope.itemsPerPage = 15;
-        $scope.currentPage = 1;
-        $scope.figureOutItemsToDisplay();
-      };
-
-      $scope.figureOutItemsToDisplay = function() {
-        $scope.filteredItems = $filter('filter')($scope.users, { $: $scope.search });
-        $scope.filterLength = $scope.filteredItems.length;
-        var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
-        var end = begin + $scope.itemsPerPage;
-        $scope.pagedItems = $scope.filteredItems.slice(begin, end);
-      };
-
-      $scope.pageChanged = function() {
-        $scope.figureOutItemsToDisplay();
-      };
-    }
-  ]);
-
   angular.module('calendarviews').controller('CalendarviewsListController', CalendarviewsListController);
 
   CalendarviewsListController.$inject = ['$scope','$stateParams','$state','$window', 'Authentication','CalendarviewsService'];
@@ -55,7 +24,9 @@
       var userOnly = [];
       for(var i=0;i<result.length;i++){
         if(vm.authentication.user.username === result[i].trainer){
-          //console.log(result[i]);
+          //console.log(result[i].start );
+          result[i].start = Date.parse(result[i].start).toISOString();
+          result[i].end = Date.parse(result[i].end).toISOString();
           userOnly.push(result[i]);
         }
       }
