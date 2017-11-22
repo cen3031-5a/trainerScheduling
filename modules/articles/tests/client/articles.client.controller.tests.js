@@ -2,6 +2,7 @@
 
 (function () {
   // Articles Controller Spec
+
   describe('Articles Controller Tests', function () {
     // Initialize global variables
     var ArticlesController,

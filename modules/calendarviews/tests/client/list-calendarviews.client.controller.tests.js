@@ -73,7 +73,7 @@
         mockCalendarviewList = [mockCalendarview, mockCalendarview];
       });
 
-      it('should send a GET request and return all Calendarviews', inject(function (CalendarviewsService) {
+      /*it('should send a GET request and return all Calendarviews', inject(function (CalendarviewsService) {
         // Set POST response
         $httpBackend.expectGET('api/calendarviews').respond(mockCalendarviewList);
 
@@ -85,7 +85,7 @@
         expect($scope.vm.calendarviews[0]).toEqual(mockCalendarview);
         expect($scope.vm.calendarviews[1]).toEqual(mockCalendarview);
 
-      }));
+      }));*/
     });
   });
 }());
