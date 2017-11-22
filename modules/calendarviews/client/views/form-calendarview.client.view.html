@@ -1,37 +1,152 @@
 <section>
   <div class="page-header">
-    <h1>{{vm.calendarview._id ? 'Edit Calendarlist' : 'New Class'}}</h1>
+    <h1>{{vm.calendarview._id ? 'Edit Class' : 'New Class'}}</h1>
   </div>
+  <div ng-controller=UserListController id="userApp">
+    <script>
+      var test;
+      var timer = setInterval(checkDataReady, 100);
+
+      function checkDataReady() {
+
+        test = angular.element(document.getElementById('userApp')).scope().users;
+        //var userData = angular.element(document.getElementById('app')).scope().userData;
+        if (test) {
+          clearInterval(timer);
+          $(document).ready(function() {
+            console.log(test[0].username);
+            (function() { // don't leak
+              var elm = document.getElementById('trainer'), // get the select
+                df = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+              for (var i = 0; i < test.length; i++) { // loop, i like 42.
+                var option = document.createElement('option'); // create the option element
+                option.value = test[i].username; // set the value property
+                option.appendChild(document.createTextNode(test[i].username)); // set the textContent in a safe way.
+                df.appendChild(option); // append the option to the document fragment
+              }
+              elm.appendChild(df); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
+            }());
+          });
+        }
+      }
+      //setTimeout(checkDataReady,1000);
+    </script>
+  </div>
+
   <div class="col-md-12">
     <form name="vm.form.calendarviewForm" class="form-horizontal" ng-submit="vm.save(vm.form.calendarviewForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
-          <label class="control-label" for="title">Name</label>
-          <input name="title" type="text" ng-model="vm.calendarview.title" id="title" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.calendarviewForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Calendarlist name is required.</p>
-          </div>
-          <label class="control-label" for="trainer">Trainer</label>
-          <select ng-model="User" ng-options="x for x in User">
-          </select>
-          <input name="trainer" type="" ng-model="vm.calendarview.trainer" id="trainer" class="form-control" placeholder="Trainer" required>
-          <div ng-messages="vm.form.calendarviewForm.trainer.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Calendarlist trainer is required.</p>
-          </div>
-          <label class="control-label" for="start">Start</label>
-          <input name="start" type="text" ng-model="vm.calendarview.start" id="start" class="form-control" placeholder="Start" required>
-          <div ng-messages="vm.form.calendarviewForm.start.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Calendarlist start is required.</p>
-          </div>
-          <label class="control-label" for="end">End</label>
-          <input name="end" type="text" ng-model="vm.calendarview.end" id="end" class="form-control" placeholder="End" required>
-          <div ng-messages="vm.form.calendarviewForm.end.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Calendarlist end is required.</p>
-          </div>
-          <label class="control-label" for="details">Details</label>
-          <input name="details" type="text" ng-model="vm.calendarview.details" id="details" class="form-control" placeholder="Details">
 
+          <!-- Sudo Garbage to get rid of error -->
+
+          <div ng-show="vm.authentication.user.roles == 'admin'">
+            <label class="control-label" for="title">Class Name</label>
+            <input name="title" type="text" ng-model="vm.calendarview.title" id="title" class="form-control" placeholder="Title" required>
+            <div ng-messages="vm.form.calendarviewForm.title.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Class name is required.</p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6" ng-if="vm.authentication.user.roles == 'admin'">
+              <label class="control-label" for="trainer">Trainer</label>
+              <select name="trainer" type="" ng-model="vm.calendarview.trainer" id="trainer" class="form-control" placeholder="Trainer" required></select>
+              <div ng-messages="vm.form.calendarviewForm.trainer.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Trainer is required.</p>
+              </div>
+            </div>
+
+            <div class="col-md-6" ng-if="vm.authentication.user.roles == 'admin'">
+              <label class="control-label" for="details">Color</label>
+              <input name="color" type="text" ng-model="vm.calendarview.color" id="color" class="form-control" placeholder="Color">
+            </div>
+          </div>
+
+          <div class='row' ng-if="vm.authentication.user.roles == 'admin'">
+            <div class='col-md-4'>
+              <label class="control-label" for="start">Start</label>
+              <div class='input-group date' ng-model="vm.calendarview.start" id='datetimepicker1'>
+                <input name="start" type='text' ng-model="vm.calendarview.start" id="start" class="form-control" placeholder="Start" required/>
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+              <div ng-messages="vm.form.calendarviewForm.start.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">Start time is required.</p>
+              </div>
+            </div>
+
+            <div class='col-md-4'>
+              <label class="control-label" for="end">End</label>
+              <div class='input-group date' ng-model="vm.calendarview.end" id='datetimepicker2'>
+                <input name="end" type='text' ng-model="vm.calendarview.end" id="end" class="form-control" placeholder="End" required />
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+              </div>
+
+              <div ng-messages="vm.form.calendarviewForm.end.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">End time is required.</p>
+              </div>
+            </div>
+
+            <div class='col-md-4'>
+              <label class="control-label" for="end">Repeat</label>
+              <div class='input-group date' ng-model="vm.calendarview.repeat" id='datetimepicker3'>
+                <input name="repeat" type='text' ng-model="vm.calendarview.repeat" id="repeat" class="form-control" placeholder="Repeat" />
+                <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+
+              </div>
+
+              <div ng-messages="vm.form.calendarviewForm.repeat.$error" role="alert">
+                <p class="help-block error-text" ng-message="required">End time is required.</p>
+              </div>
+            </div>
+
+            <script type="text/javascript">
+                  $(function() {
+                    $('#datetimepicker1').datetimepicker({
+                      sideBySide: true,
+                    });
+                    $("#start").trigger("input");
+                    $('#datetimepicker2').datetimepicker({
+                      sideBySide: true,
+                      useCurrent: false //Important! See issue #1075
+                    });
+                    $("#end").trigger("input");
+                    $("#datetimepicker1").on("dp.change", function(e) {
+                      $("#datetimepicker1").trigger("input");
+                      $("#start").trigger("input");
+                      $('#datetimepicker2').data("DateTimePicker").minDate(e.date);
+                    });
+                    $("#datetimepicker2").on("dp.change", function(e) {
+                      $("#datetimepicker2").trigger("input");
+                      $("#end").trigger("input");
+                      $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+                    });
+                  });
+                </script>
+          </div>
+
+          <div ng-if="vm.authentication.user.roles == 'admin'">
+            <label class="control-label" for="details">Details</label>
+            <input name="details" type="text" ng-model="vm.calendarview.details" id="details" class="form-control" placeholder="Details">
+          </div>
+
+          <div ng-if="vm.authentication.user.roles == 'user'">
+            <label class="control-label" for="details">Request Off Reason</label>
+            <input name="requestOff" type="text" ng-model="vm.calendarview.requestOff" id="requestOff" class="form-control" placeholder="Reason to Request Off">
+          </div>
+
+          <div ng-if="vm.calendarview._id && (vm.authentication.user.roles == 'user' || vm.authentication.user.roles == 'admin')">
+            <label class="control-label" for="details">Request Off?</label>
+            <input name="requestOffBool" style="" type="checkbox" ng-model="vm.calendarview.requestOffBool" id="requestOffBool" class="form-control">
+          </div>
         </div>
+
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.calendarview._id ? 'Update' : 'Create'}}</button>
         </div>
@@ -40,5 +155,10 @@
         </div>
       </fieldset>
     </form>
+  </div>
+  <div class="col-md-12" ng-show="vm.authentication.user.roles == 'admin'">
+    <!--change this to the site name-->
+    <iframe style="width:100%;height:50em;"src="/availabilities">
+  </iframe>
   </div>
 </section>

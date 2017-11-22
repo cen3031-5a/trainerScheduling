@@ -25,10 +25,10 @@ exports.invokeRolesPolicies = function () {
     roles: ['user'],
     allows: [{
       resources: '/api/calendarviews',
-      permissions: ['get', 'post']
+      permissions: '*'
     }, {
       resources: '/api/calendarviews/:calendarviewId',
-      permissions: ['get']
+      permissions: '*'
     }]
   }, {
     roles: ['guest'],

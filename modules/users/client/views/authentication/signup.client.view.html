@@ -42,6 +42,94 @@
             </div>
           </div>
         </div>
+
+        </div>
+         <div class="form-group" show-errors>
+          <label class="control-label" for="position">Position</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="position" ng-model="user.position" id="position" ng-list required />
+            <div ng-messages="userForm.position.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Position at gym required.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="birthday">Birthday</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="birthday" ng-model="user.birthday" id="birthday" ng-list required />
+            <div ng-messages="userForm.birthday.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Birthday required.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="officialTitle">Official Title</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="officialTitle" ng-model="user.officialTitle" id="officialTitle" ng-list required />
+            <div ng-messages="userForm.officialTitle.$error" role="alert">
+              <p class="help-block error-text" ng-message="required">Official Title required.</p>
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="miscNotes">Miscellaneous Notes</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="miscNotes" ng-model="user.miscNotes" id="miscNotes"/>
+          </div>
+        </div>
+        
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="favoriteColor">Favorite Color</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="favoriteColor" ng-model="user.favoriteColor" id="favoriteColor"/>
+          </div>
+        </div>
+        
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="favoriteAnimal">Favorite Animal</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="favoriteAnimal" ng-model="user.favoriteAnimal" id="favoriteAnimal"/>
+          </div>
+        </div>
+        
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="favoriteCake">Favorite Cake Flavor</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="favoriteCake" ng-model="user.favoriteCake" id="favoriteCake"/>
+          </div>
+        </div>
+        
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="favoriteKidsBook">Favorite Kids Book</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="favoriteKidsBook" ng-model="user.favoriteKidsBook" id="favoriteKidsBook"/>
+          </div>
+        </div>
+        
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="favoriteReasonToWorkAtGym">Favorite Reason to Work At the Gym</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="favoriteReasonToWorkAtGym" ng-model="user.favoriteReasonToWorkAtGym" id="favoriteReasonToWorkAtGym"/>
+          </div>
+        </div>
+
+
+        <div class="form-group" show-errors>
+          <label class="control-label" for="favoriteOther">Favorite Anything Else!</label>
+          <div class="controls">
+            <input class="form-control" type="text" name="favoriteOther" ng-model="user.favoriteOther" id="favoriteOther"/>
+          </div>
+        </div>
+        
         <div class="form-group" ng-show="!userForm.password.$error.required">
           <label>Password Requirements</label>
           <progressbar value="requirementsProgress" type="{{requirementsColor}}"><span style="color:white; white-space:nowrap;">{{requirementsProgress}}%</span></progressbar>

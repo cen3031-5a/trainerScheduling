@@ -24,17 +24,28 @@ var CalendarviewSchema = new Schema({
   },
   start: {
     type: Date,
-    default: Date.now,
+    default: '',
     required: 'Please fill in start',
     trim: true
   },
   end: {
     type: Date,
-    default: Date.now,
+    default: '',
     required: 'Please fill in end',
     trim: true
   },
+  repeat: {
+    type: String,
+    default: '',
+    trim: true
+  },
+  color: String,
   details: String,
+  requestOff: String,
+  requestOffBool: {
+    type : Boolean,
+    default: false,
+  },
   created: {
     type: Date,
     default: Date.now

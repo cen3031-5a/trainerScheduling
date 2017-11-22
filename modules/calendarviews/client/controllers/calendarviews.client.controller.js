@@ -20,12 +20,14 @@
     // Remove existing Calendarview
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
-        vm.calendarview.$remove($state.go('calendarviews.list'));
+        vm.calendarview.$remove();
       }
     }
 
     // Save Calendarview
     function save(isValid) {
+      //console.log(vm.calendarview.end);
+      //alert(Date.parse('11/10/2017 1:13 PM').toISOString());
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.calendarviewForm');
         return false;
@@ -39,9 +41,8 @@
       }
 
       function successCallback(res) {
-        $state.go('calendarviews.view', {
-          calendarviewId: res._id
-        });
+        //$state.go('calendarviews.list');
+        $window.location.href="/calendarviews";
       }
 
       function errorCallback(res) {

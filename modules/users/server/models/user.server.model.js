@@ -63,6 +63,71 @@ var UserSchema = new Schema({
     type: String,
     default: ''
   },
+  birthday: {
+    type: String,
+    default: ''
+  },
+  hireDate: {
+    type: String,
+    default: ''
+  },
+  certifications: {
+    type: String,
+    default: 'None'
+  },
+  positions: {
+    type: String,
+    default: 'Employee'
+  },
+  officialTitle: {
+    type: String,
+    default: 'Employee'
+  },
+  miscNotes: {
+    type: String,
+    default: ''
+  },
+  daysLate: {
+    type: String,
+    default: '0'
+  },
+  dateOfTermination: {
+    type: String,
+    default: 'Currently Employed'
+  },
+  terminationNotes: {
+    type: String,
+    default: 'N/A'
+  },
+  //whether or not they can log in
+  active: {
+    type: String,
+    default: 'Active'
+  },
+  favoriteColor: {
+    type: String,
+    default: ''
+  },
+  favoriteCake: {
+    type: String,
+    default: ''
+  },
+  favoriteAnimal: {
+    type: String,
+    default: ''
+  },
+  favoriteKidsBook: {
+    type: String,
+    default: ''
+  },
+  favoriteReasonToWorkAtGym: {
+    type: String,
+    default: ''
+  },
+  favoriteOther: {
+    type: String,
+    default: ''
+  },
   salt: {
     type: String
   },
