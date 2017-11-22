@@ -31,6 +31,7 @@ describe('Calendarlist Model Unit Tests:', function() {
     user.save(function() {
       calendarlist = new Calendarlist({
         name: 'Calendarlist Name',
+        trainer: 'example',
         user: user
       });
 
