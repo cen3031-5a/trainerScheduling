@@ -10,17 +10,18 @@
     </div>
     <br>
     <div class="" style="background-color:white; width: auto ; height: 600px; border: 1px solid black; margin: 10px;">
-      <h3 style="color:white; background-color:#672C8E; text-align: center; margin: 0px; padding: 12px;">Announcements</h3>
+      <h3 style="color:white; background-color:#672C8E; text-align: center; margin: 0px; padding: 12px;">Announcements
+              <a ng-if="buttonnew" ui-sref="createAnnouncement" class="btn btn-info btn-lg">
+          <span class="glyphicon glyphicon-plus-sign"></span>New</a></h3>
 
       <div class="homescroll" id="cc-homepage-announcements">
-        <a ng-repeat="train in vm.trainer | orderBy:'created':true | limitTo:4" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">
+        <a ng-repeat="train in vm.trainer | orderBy:'created':true | limitTo:3" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">
           <h2> <span ng-bind="train.name"></span></h2>
-          <p><span ng-bind="train.announcement"></span></p>
-          Posted on <span ng-bind="train.created | date:'mediumDate'"></span> by <span ng-if="train.user" ng-bind="train.user.displayName"></span></span>
+          Posted on <span ng-bind="train.created | date:'mediumDate'"></span> by <span ng-bind="train.user.firstName"></span> <span ng-bind="train.user.lastName"></span>
         </a>
       </div>
     </div>
-      <h4 style="text-align: right" ui-sref="announcementArchive">Archive of announcments</h4>
+      <button ui-sref="announcementArchive">Archive of announcments</button>
   </div>
 
 

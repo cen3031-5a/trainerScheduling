@@ -20,15 +20,6 @@
           roles: ['user', 'admin']
         }
       })
-      .state('homeadmin', {
-        url: '/homeadmin',
-        templateUrl: 'modules/trainer/client/views/homeadmin.client.view.html',
-        controller: 'TrainerListController',
-        controllerAs: 'vm',
-        data: {
-          roles: ['admin']
-        }
-      })
       .state('createAnnouncement', {
         url: '/createAnnouncement',
         templateUrl: 'modules/trainer/client/views/createAnnouncement.client.view.html',
