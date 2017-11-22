@@ -24,6 +24,7 @@
             <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
           </div>
         </div>
+
         <div class="form-group" show-errors>
           <label for="username">Username</label>
           <input type="text" id="username" name="username" class="form-control" ng-model="user.username" placeholder="Username" lowercase required>
@@ -31,6 +32,33 @@
             <p class="help-block error-text" ng-message="required">Username is required.</p>
           </div>
         </div>
+
+        <div class="form-group" show-errors>
+          <label for="favoriteColor">Favorite Color</label>
+          <input type="text" id="favoriteColor" name="favoriteColor" class="form-control" ng-model="user.favoriteColor" placeholder="Favorite Color">
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="favoriteAnimal">Favorite Animal</label>
+          <input type="text" id="favoriteAnimal" name="favoriteAnimal" class="form-control" ng-model="user.favoriteAnimal" placeholder="Favorite Animal">
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="favoriteCake">Favorite Cake Flavor</label>
+          <input type="text" id="favoriteCake" name="favoriteCake" class="form-control" ng-model="user.favoriteCake" placeholder="Cake Flavor">
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="favoriteKidsBook">Favorite Kids Book</label>
+          <input type="text" id="favoriteKidsBook" name="favoriteKidsBook" class="form-control" ng-model="user.favoriteKidsBook" placeholder="Kids Book">
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="favoriteOther">Favorite Random Fact About You</label>
+          <input type="text" id="favoriteOther" name="favoriteOther" class="form-control" ng-model="user.favoriteOther" placeholder="Fact">
+        </div>
+
+
         <div class="text-center form-group">
           <button type="submit" class="btn btn-primary">Save Profile</button>
         </div>
