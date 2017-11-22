@@ -54,14 +54,17 @@
       console.log(vm.authentication);
       var userOnly = [];
       for(var i=0;i<result.length;i++){
-        if(vm.authentication.user.username == result[i].trainer){
+        if(vm.authentication.user.username === result[i].trainer){
           //console.log(result[i]);
           userOnly.push(result[i]);
-        };
+        }
       }
-      $scope.data = result;
-      $scope.userData = userOnly;
-
+      if(vm.authentication.user.roles == 'admin'){
+        $scope.data = result;
+      }else{
+        $scope.data = userOnly;
+      }
+      
     });
 
 

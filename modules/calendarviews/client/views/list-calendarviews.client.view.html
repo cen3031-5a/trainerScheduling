@@ -13,12 +13,12 @@
       function checkDataReady() {
 
         var data = angular.element(document.getElementById('app')).scope().data;
-        var userData = angular.element(document.getElementById('app')).scope().userData;
+        //var userData = angular.element(document.getElementById('app')).scope().userData;
         if (data) {
           clearInterval(timer);
           $(document).ready(function() {
-            //console.log(data);
-            console.log(userData);
+            console.log(data);
+            //console.log(userData);
             $('#calendar').fullCalendar({
               header: {
                 left: 'prev,next today',
@@ -46,7 +46,7 @@
               },*/
               editable: false,
               eventLimit: true, // allow "more" link when too many events
-              events: userData,
+              events: data,
             });
           });
         }
@@ -89,15 +89,15 @@
     </div>
     <div class="col-lg-3" style="text-align:center;" ng-if="vm.calendarviews.length">
       <h4>List of Events</h4>
-      <li ng-repeat="calendar in vm.calendarviews | orderBy:'start'" ng-if="calendar.trainer==vm.authentication.user.username" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
+      <a ng-repeat="calendar in vm.calendarviews | orderBy:'start'" ng-if="calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin'" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
         <span>{{calendar.title}}</span>
         <span>{{calendar.start}}</span>
         <span>{{calendar.end}}</span>
-        <div></div>
-        <a class="btn btn-primary" ng-if="vm.authentication.user.roles == 'user'" ui-sref="calendarviews.edit({ calendarviewId: calendar._id })">
+        <span class="btn btn-primary" ng-if="vm.authentication.user.roles == 'user'" ui-sref="calendarviews.edit({ calendarviewId: calendar._id })">
           <i class="glyphicon glyphicon-edit"></i>
-        </a>
-      </li>
+        </span>
+      </br>
+      </a>
     </div>
   </div>
 </section>
