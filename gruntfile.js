@@ -214,13 +214,37 @@ module.exports = function (grunt) {
     },
     protractor: {
       options: {
-        configFile: 'protractor.conf.js',
+        configFile: "protractor.conf.js",
         noColor: false,
         webdriverManagerUpdate: true
       },
       e2e: {
         options: {
-          args: {} // Target-specific arguments
+          configFile: "protractor.conf.js",
+          args: {includeStackTrace: true, seleniumPort: 4444} // Target-specific arguments
+        }
+      }
+    },
+    protractor_webdriver:{
+      options: {},
+      e2e: {
+        killPlease: {
+          options: {
+            stdout: true
+          },
+        command: 'curl http://127.0.0.1:4444/selenium-server/driver/?cmd=shutDownSeleniumServer'
+        },
+        keepAlive: false
+      }
+    },
+    connect: {
+      options: {
+        port: 9000,
+        hostname: 'localhost'
+      },
+      test: {
+        options: {
+          base: ['app']
         }
       }
     },
@@ -249,6 +273,9 @@ module.exports = function (grunt) {
   // Load NPM tasks
   require('load-grunt-tasks')(grunt);
   grunt.loadNpmTasks('grunt-protractor-coverage');
+  grunt.loadNpmTasks('grunt-contrib-connect');
+  grunt.loadNpmTasks('grunt-protractor-runner');
+  grunt.loadNpmTasks('grunt-protractor-webdriver');
 
   // Make sure upload directory exists
   grunt.task.registerTask('mkdir:upload', 'Task that makes sure upload directory exists.', function () {
@@ -314,10 +341,10 @@ module.exports = function (grunt) {
   grunt.registerTask('build', ['env:dev', 'lint', 'ngAnnotate', 'uglify', 'cssmin']);
 
   // Run the project tests
-  grunt.registerTask('test', ['env:test', 'lint', 'mkdir:upload', 'copy:localConfig', 'server',  'mochaTest', 'karma:unit', 'protractor']);
+  grunt.registerTask('test', ['env:test', 'lint', 'mkdir:upload', 'copy:localConfig', 'server',  'mochaTest', 'karma:unit', 'protractor_webdriver', 'protractor']);
   grunt.registerTask('test:server', ['env:test', 'lint', 'server', 'mochaTest']);
   grunt.registerTask('test:client', ['env:test', 'lint', 'karma:unit']);
-  grunt.registerTask('test:e2e', ['env:test', 'lint', 'dropdb', 'server', 'protractor']);
+  grunt.registerTask('test:e2e', ['env:test', 'lint', 'dropdb', 'server', 'protractor_webdriver', 'protractor']);
   // Run project coverage
   grunt.registerTask('coverage', ['env:test', 'lint', 'mocha_istanbul:coverage', 'karma:unit']);
 
