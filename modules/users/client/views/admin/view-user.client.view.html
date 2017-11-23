@@ -39,7 +39,22 @@
       <hr/>
       <div class="row">
         <div class="col-md-3"><strong>Created</strong></div>
-        <div class="col-md-6" ng-bind="user.created"></div>
+        <div class="col-md-6" ng-bind="user.created | date:'mediumDate'"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Cell Phone Number</strong></div>
+        <div class="col-md-6" ng-bind="user.cellPhone"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Phone Carrier</strong></div>
+        <div class="col-md-6" ng-bind="user.phoneCarrier"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Receive Text Notifications</strong></div>
+        <div class="col-md-6" ng-bind="user.receiveTexts"></div>
       </div>
       <hr/>
       <div class="row">

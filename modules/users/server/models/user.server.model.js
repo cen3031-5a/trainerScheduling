@@ -63,6 +63,18 @@ var UserSchema = new Schema({
     type: String,
     default: ''
   },
+  cellPhone: {
+    type: String,
+    default: 'xxx-xxx-xxxx'
+  },
+  phoneCarrier: {
+    type: String,
+    default: ''
+  },
+  receiveTexts: {
+    type: Boolean,
+    default: true
+  },
   birthday: {
     type: String,
     default: ''
