@@ -81,7 +81,7 @@
     <div class="col-lg-9">
       <div id='calendar'></div>
     </div>
-    <div class="col-lg-3" style="text-align:center;" ng-if="vm.calendarviews.length">
+    <div class="col-lg-3 bootstrap" style="text-align:center;" ng-if="vm.calendarviews.length">
       <h4>List of Events</h4>
       <table class="table" style="text-align:center;">
         <tr>
@@ -91,8 +91,34 @@
         </tr>
         <tr ng-repeat="calendar in vm.calendarviews | orderBy:'start'" ng-if="calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin'" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
           <td>{{calendar.title}}</td>
-          <td>{{calendar.start}}</td>
-          <td>{{calendar.end}}</td>
+          <td>{{calendar.start | date:'medium'}}</td>
+          <td>{{calendar.end | date:'medium'}}</td>
+          
+          <script language="javascript">
+            var $scope = this;
+            var c = new Date();
+            var nhour = c.getHours();
+            var nmin = c.getMinutes();
+            var cellNum = $scope.user.cellPhone;
+            var sour = $scope.data;
+            var smin = $scope.calendarviews;
+
+            if(sour - nhour <= 2) {
+              console.log("IT IS TIME TO SEND A MESSAGE!");
+            }
+            else {
+              console.log(c);
+              console.log(nhour);
+              console.log(nmin);
+              console.log(cellNum);
+              console.log(sour);
+              console.log(smin);
+              console.log($scope.start);
+              console.log($scope.start.getHours());
+              console.log($scope.start.getMinutes());
+              console.log("Please let this work!");
+            }
+          </script>
         </tr>
       </table>
     </div>
