@@ -25,6 +25,7 @@ h2 {
 .undecorated-link:hover {
   text-decoration: none;
 }
+
 [ng\:cloak],
 [ng-cloak],
 [x-ng-cloak],
@@ -32,6 +33,7 @@ h2 {
 .x-ng-cloak {
   display: none !important;
 }
+
 .header-profile-image {
   opacity: 0.8;
   height: 28px;
@@ -56,6 +58,7 @@ a:hover .header-profile-image {
 .has-error .help-inline.error-text {
   display: inline;
 }
+
 
 .scroll {
   width: 1150px;
@@ -100,9 +103,6 @@ a:hover .header-profile-image {
     font-weight: 500;
 }
 
-.navbar-custom .navbar-brand:hover { 
-}
-
 .navbar-custom .navbar-toggle {
     background-color: #eeeeee;
 }
@@ -142,7 +142,3 @@ a:hover .header-profile-image {
   border-bottom: 1px solid #DDD;
   border-bottom-width: 80%;
 }
-
-/*.page-text {
-  margin-left: 20px;
-}*/

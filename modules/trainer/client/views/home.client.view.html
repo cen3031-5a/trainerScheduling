@@ -1,18 +1,20 @@
 <section>
   <div>
+    <div class="page-container">
     <div class="intro jumbotron">
       <img src="../modules/trainer/client/img/Logo.png" style="background-color: #fff; border-radius: 50%;">
       <span class="intro-text">Welcome Allegiance Staff</span>
     </div>
-    <div class="page-container">
+    
       <div class="page-title"><div class="page-text"><h2>Announcements</h2></div></div>
 
       <div id="cc-homepage-announcements">
         <a ng-repeat="train in vm.trainer | orderBy:'created':true | limitTo:3" class="list-group-item">
-          <h3> <span ng-bind="train.name"></span></h2>
+          <h3> <span ng-bind="train.name"></span></h3>
           <p><span ng-bind="train.announcement"></span></p>
           Posted on <span ng-bind="train.created | date:'mediumDate'"></span> by <span ng-if="train.user" ng-bind="train.user.displayName"></span></span>
         </a>
       </div>
     </div>
   </div>
+  </section>
