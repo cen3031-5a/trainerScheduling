@@ -1,11 +1,15 @@
 <section>
   <div class="page-container">
     <div class="intro jumbotron">
-      <img src="../modules/trainer/client/img/Logo.png" style="background-color: #fff; border-radius: 50%;">
+      <img src="../modules/trainer/client/img/Claw.png" alt="Allegiance Athletics" style="background-color: #fff; border-radius: 50%;">
       <span class="intro-text">Welcome Allegiance Staff</span>
     </div>
     
-      <div class="page-title"><div class="page-text"><h2>Announcements</h2></div></div>
+      <div class="page-title">
+        <div class="page-text">
+          <h2>Announcements</h2>
+        </div>
+      </div>
 
       <div class="homescroll" id="cc-homepage-announcements">
         <a ng-repeat="train in vm.trainer | orderBy:'created':true | limitTo:4" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">

@@ -106,7 +106,7 @@ a:hover .header-profile-image {
     background-color: #eeeeee;
 }
 .navbar-custom .icon-bar {
-    background-color: #33aa33;
+    background-color: #FF7E00;
 }
 
 .intro {
@@ -147,4 +147,13 @@ a:hover .header-profile-image {
 
 .homescroll h3 {
   font-weight: 700;
+}
+
+.create {
+  font-size: 20px;
+  color: #FF7E00;
+}
+
+.create:hover {
+  color: #DE6E00;
 }
