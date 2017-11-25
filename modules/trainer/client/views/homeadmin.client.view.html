@@ -4,22 +4,24 @@
       <img src="../modules/trainer/client/img/Claw.png" alt="Allegiance Athletics" style="background-color: #fff; border-radius: 50%;">
       <span class="intro-text">Welcome Allegiance Staff</span>
     </div>
-    
+
       <div class="page-title">
         <div class="page-text">
           <h2 align="left">Announcements
-          <a ui-sref="createAnnouncement"><span class="glyphicon glyphicon-plus-sign create"></span></a>
+          <a ng-if="vm.authentication.user.roles == 'admin'" ui-sref="createAnnouncement"><span class="glyphicon glyphicon-plus-sign create"></span></a>
           </h2>
         </div>
       </div>
 
       <div class="homescroll" id="cc-homepage-announcements">
-        <a ng-repeat="train in vm.trainer | orderBy:'created':true | limitTo:4" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">
+        <a ng-repeat="train in vm.trainer | orderBy:'created':true | limitTo:3" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">
           <h3> <span ng-bind="train.name"></span></h3>
           <p><span ng-bind="train.announcement"></span></p>
           <span style="font-style: italic; font-size: 10px">Posted on <span ng-bind="train.created | date:'mediumDate'"></span> by <span ng-if="train.user" ng-bind="train.user.displayName"></span></span></span>
         </a>
       </div>
+      <h4 style="text-align: right" ui-sref="announcementArchive">Archive of Announcments</h4>
+
   </div>
 </section>
 
@@ -50,7 +52,6 @@
           </a>
         </div>
       </div>
-      <h4 style="text-align: right" ui-sref="announcementArchive">Archive of announcments</h4>
     </div>
 </section>
  -->
