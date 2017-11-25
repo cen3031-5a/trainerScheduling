@@ -1,6 +1,6 @@
 <style media="screen">
 
-.nav-sidebar a {
+.nav-sidebar-custom a {
     color: #333;
     -webkit-transition: all 0.08s linear;
     -moz-transition: all 0.08s linear;
@@ -10,17 +10,20 @@
     -moz-border-radius: 4px 0 0 4px;
     border-radius: 4px 0 0 4px;
 }
-.nav-sidebar .active a {
+.nav-sidebar-custom .active a {
     cursor: default;
     background-color: #f99b3e;
     color: white;
     /*text-shadow: 1px 1px 1px #666;*/
 }
-.nav-sidebar .active a:hover {
+.nav-sidebar-custom a:hover{
+  background-color: blue;
+}
+.nav-sidebar-custom .active a:hover {
     background-color: #82578d;
 }
-.nav-sidebar .text-overflow a,
-.nav-sidebar .text-overflow .media-body {
+.nav-sidebar-custom .text-overflow a,
+.nav-sidebar-custom .text-overflow .media-body {
     white-space: nowrap;
     overflow: hidden;
     -o-text-overflow: ellipsis;
@@ -36,7 +39,7 @@
 
   <div class="row">
       <div class="col-sm-3">
-          <nav class="nav-sidebar">
+          <nav class="nav-sidebar-custom">
               <ul class="nav">
                 <li class="nav-divider"></li>
                 <li ui-sref-active="active">
