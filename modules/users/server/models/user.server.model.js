@@ -63,6 +63,71 @@ var UserSchema = new Schema({
     type: String,
     default: ''
   },
+  birthday: {
+    type: String,
+    default: ''
+  },
+  hireDate: {
+    type: String,
+    default: ''
+  },
+  certifications: {
+    type: String,
+    default: 'None'
+  },
+  positions: {
+    type: String,
+    default: 'Employee'
+  },
+  officialTitle: {
+    type: String,
+    default: 'Employee'
+  },
+  miscNotes: {
+    type: String,
+    default: ''
+  },
+  daysLate: {
+    type: String,
+    default: '0'
+  },
+  dateOfTermination: {
+    type: String,
+    default: 'Currently Employed'
+  },
+  terminationNotes: {
+    type: String,
+    default: 'N/A'
+  },
+  //whether or not they can log in
+  active: {
+    type: String,
+    default: 'Active'
+  },
+  favoriteColor: {
+    type: String,
+    default: 'purple'
+  },
+  favoriteCake: {
+    type: String,
+    default: ''
+  },
+  favoriteAnimal: {
+    type: String,
+    default: ''
+  },
+  favoriteKidsBook: {
+    type: String,
+    default: ''
+  },
+  favoriteReasonToWorkAtGym: {
+    type: String,
+    default: ''
+  },
+  favoriteOther: {
+    type: String,
+    default: ''
+  },
   salt: {
     type: String
   },
@@ -177,7 +242,7 @@ UserSchema.statics.generateRandomPassphrase = function () {
     var password = '';
     var repeatingCharacters = new RegExp('(.)\\1{2,}', 'g');
 
-    // iterate until the we have a valid passphrase. 
+    // iterate until the we have a valid passphrase.
     // NOTE: Should rarely iterate more than once, but we need this to ensure no repeating characters are present.
     while (password.length < 20 || repeatingCharacters.test(password)) {
       // build the random password

@@ -10,7 +10,7 @@
   function menuConfig(menuService) {
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
-      title: 'Calendarviews',
+      title: 'Calendar',
       state: 'calendarviews',
       type: 'dropdown',
       roles: ['user','admin']
@@ -18,14 +18,27 @@
 
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'calendarviews', {
-      title: 'List Calendarviews',
+      title: 'Show Calendar',
       state: 'calendarviews.list'
+    });
+
+    // Add the dropdown list item
+    menuService.addSubMenuItem('topbar', 'calendarviews', {
+      title: 'List All Events',
+      state: 'calendarviews.listAll'
     });
 
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'calendarviews', {
-      title: 'Create Calendarview',
+      title: 'Create Event',
       state: 'calendarviews.create',
+      roles: ['admin']
+    });
+
+    // Add the dropdown create item
+    menuService.addSubMenuItem('topbar', 'calendarviews', {
+      title: 'Request Off',
+      state: 'calendarviews.requestOff',
       roles: ['admin']
     });
   }

@@ -13,7 +13,7 @@
     $stateProvider
       .state('home', {
         url: '/',
-        templateUrl: 'modules/trainer/client/views/home.client.view.html',
+        templateUrl: 'modules/trainer/client/views/homeadmin.client.view.html',
         controller: 'TrainerListController',
         controllerAs: 'vm',
         data: {
@@ -22,11 +22,11 @@
       })
       .state('homeadmin', {
         url: '/homeadmin',
-        templateUrl: 'modules/trainer/client/views/homeadmin.client.view.html',
+        templateUrl: 'modules/trainer/client/views/home.client.view.html',
         controller: 'TrainerListController',
         controllerAs: 'vm',
         data: {
-          roles: ['admin']
+          roles: ['user', 'admin']
         }
       })
       .state('createAnnouncement', {
@@ -39,6 +39,21 @@
         },
         data: {
           roles: ['admin']
+        }
+      })
+      .state('announcementArchive', {
+        url: '/announcements/archive',
+        templateUrl: 'modules/trainer/client/views/announcementArchive.html',
+        controller: 'TrainerListController',
+        controllerAs: 'vm',
+      })
+      .state('viewAnnouncement', {
+        url: '/announcements/view/:trainerId',
+        templateUrl: 'modules/trainer/client/views/viewAnnouncement.client.view.html',
+        controller: 'TrainerController',
+        controllerAs: 'vm',
+        resolve: {
+          trainerResolve: getTrainer
         }
       });
 
@@ -57,5 +72,3 @@
     return new TrainerService();
   }
 }());
-
-

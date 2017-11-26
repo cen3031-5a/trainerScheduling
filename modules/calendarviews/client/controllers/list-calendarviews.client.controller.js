@@ -1,45 +1,22 @@
 (function() {
   'use strict';
 
-  angular.module('users.admin').controller('UserListController', [
-    '$scope',
-    '$filter',
-    'Admin',
-    function($scope, $filter, Admin) {
-      Admin.query(function(data) {
-        $scope.users = data;
-        $scope.buildPager();
-      });
-
-      $scope.buildPager = function() {
-        $scope.pagedItems = [];
-        $scope.itemsPerPage = 15;
-        $scope.currentPage = 1;
-        $scope.figureOutItemsToDisplay();
-      };
-
-      $scope.figureOutItemsToDisplay = function() {
-        $scope.filteredItems = $filter('filter')($scope.users, { $: $scope.search });
-        $scope.filterLength = $scope.filteredItems.length;
-        var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
-        var end = begin + $scope.itemsPerPage;
-        $scope.pagedItems = $scope.filteredItems.slice(begin, end);
-      };
-
-      $scope.pageChanged = function() {
-        $scope.figureOutItemsToDisplay();
-      };
-    }
-  ]);
-
   angular.module('calendarviews').controller('CalendarviewsListController', CalendarviewsListController);
 
-  CalendarviewsListController.$inject = ['$scope', 'CalendarviewsService'];
+  CalendarviewsListController.$inject = [
+    '$scope',
+    '$stateParams',
+    '$state',
+    '$window',
+    'Authentication',
+    'CalendarviewsService'
+  ];
 
-  function CalendarviewsListController($scope, CalendarviewsService) {
+  function CalendarviewsListController($scope, $stateParams, $state, $window, Authentication, CalendarviewsService) {
     var vm = this;
     var entry;
-    vm.calendarviews = CalendarviewsService.query().sort('start');
+    vm.authentication = Authentication;
+    vm.calendarviews = CalendarviewsService.query();
     vm.calendarview = CalendarviewsService.query().$promise.then(function(result) {
       //vm.calendarviews = CalendarviewsService.query();
       //for(var i =0;i<result.length;i++){
@@ -50,10 +27,35 @@
       //}
       //alert(Date.parse('11/10/2017 1:13 PM').toISOString());
 
-      console.log(Date.parse('11/10/2017 1:13 PM').toISOString());
-      $scope.data = result;
+      //console.log(vm.authentication.user.roles[0]);
+      var userOnly = [];
+      if (vm.authentication.user.roles[0] === 'admin') {
+        for (var i = 0; i < result.length; i++) {
+          //console.log(result[i].start );
+          result[i].start = Date.parse(result[i].start).toISOString();
+          result[i].end = Date.parse(result[i].end).toISOString();
+        }
+        //console.log(vm.authentication.user.roles[0]);
+        $scope.data = result;
+      } else {
+        for (var j = 0; j < result.length; j++) {
+          if (vm.authentication.user.username === result[j].trainer) {
+            //console.log(result[i].start );
+            result[j].start = Date.parse(result[j].start).toISOString();
+            result[j].end = Date.parse(result[j].end).toISOString();
+            userOnly.push(result[j]);
+          }
+        }
+        $scope.data = userOnly;
+      }
 
     });
+
+    $scope.onlyAfter = function(calendar) {
+      var today = new Date();
+      //console.log(today);
+      return Date.parse(calendar.start) > today;
+    };
 
   }
 }());

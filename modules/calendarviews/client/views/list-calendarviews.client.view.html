@@ -1,22 +1,16 @@
 <section>
-  <div ng-controller=UserListController id="userApp">
-    <script>
-    var test = angular.element(document.getElementById('userApp')).scope().users;
-    console.log(test);
-
-</script>
-  </div>
   <div ng-controller=CalendarviewsListController id="app">
     <script>
       var timer = setInterval(checkDataReady, 100);
 
       function checkDataReady() {
-
         var data = angular.element(document.getElementById('app')).scope().data;
+        //var userData = angular.element(document.getElementById('app')).scope().userData;
         if (data) {
           clearInterval(timer);
           $(document).ready(function() {
-            console.log(data);
+            //console.log(data);
+            //console.log(userData);
             $('#calendar').fullCalendar({
               header: {
                 left: 'prev,next today',
@@ -27,6 +21,7 @@
               navLinks: true, // can click day/week titles to navigate views
               selectable: false,
               selectHelper: false,
+              timezone: 'local',
               /*select: function(start, end) {
                 var title = prompt('Event Title:');
                 var start = prompt('Event start Time:');
@@ -63,36 +58,31 @@
         margin: 0 auto;
       }
     </style>
-    <!--div class="alert alert-warning text-center" ng-if="vm.calendarviews.$resolved && !vm.calendarviews.length">
-    No Events yet, do you want to <a ui-sref="calendarviews.create">create one</a>?
-  </div>
-  <!div class="list-group">
-    <a ng-repeat="calendarview in vm.calendarviews"
-       ui-sref="calendarviews.view({ calendarviewId: calendarview._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="calendarview.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="calendarview.user" ng-bind="calendarview.user.displayName"></span>
-        <span ng-if="!calendarview.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="calendarview.title"></h4>
-    </a>
-  </div-->
 
     </br>
-    <div class="col-lg-9">
+
+    <div class="col-md-9">
       <div id='calendar'></div>
     </div>
-    <div class="col-lg-3" style="text-align:center;">
-      <h4>List of Events</h4>
-      <li ng-repeat="calendar in vm.calendarviews | orderBy:'created':true">
-        <span>{{calendar.title}}</span>
-        <span>{{calendar.start}}</span>
-        <span>{{calendar.end}}</span>
-        <div></div>
-      </li>
+    <div class="col-md-3" style="text-align:center;" ng-if="vm.calendarviews.length">
+      <h4>List of Future Events</h4>
+      <div class='row'>
+        <input type="text" ng-model="title_input.username" placeholder="Search Keywords..." class="form-control">
+      </div>
+      <div class='row'>
+        <table class="table">
+          <tr>
+            <th style="text-align:center;">CLASS</th>
+            <th style="text-align:center;">START TIME</th>
+            <th style="text-align:center;">END TIME</th>
+          </tr>
+          <tr ng-repeat="calendar in vm.calendarviews | orderBy:'start' | limitTo:10| filter:title_input.username |filter:onlyAfter" ng-if="(calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin')" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
+            <td>{{calendar.title}}</td>
+            <td>{{calendar.start}}</td>
+            <td>{{calendar.end}}</td>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
 </section>
