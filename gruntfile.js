@@ -199,7 +199,7 @@ module.exports = function (grunt) {
           coverage: true,
           require: 'test.js',
           coverageFolder: 'coverage/server',
-          reportFormats: ['cobertura','lcovonly'],
+          reportFormats: ['cobertura','lcovonly', 'html'],
           check: {
             lines: 40,
             statements: 40
@@ -276,6 +276,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-protractor-runner');
   grunt.loadNpmTasks('grunt-protractor-webdriver');
+  grunt.loadNpmTasks('grunt-mocha-istanbul');
 
   // Make sure upload directory exists
   grunt.task.registerTask('mkdir:upload', 'Task that makes sure upload directory exists.', function () {
@@ -341,8 +342,8 @@ module.exports = function (grunt) {
   grunt.registerTask('build', ['env:dev', 'lint', 'ngAnnotate', 'uglify', 'cssmin']);
 
   // Run the project tests
-  grunt.registerTask('test', ['env:test', 'lint', 'mkdir:upload', 'copy:localConfig', 'server',  'mochaTest', 'karma:unit', 'protractor_webdriver', 'protractor']);
-  grunt.registerTask('test:server', ['env:test', 'lint', 'server', 'mochaTest']);
+  grunt.registerTask('test', ['env:test', 'lint', 'mkdir:upload', 'copy:localConfig', 'server',  'mochaTest', 'karma:unit', 'protractor']);
+  grunt.registerTask('test:server', ['env:test', 'lint', 'server', 'mochaTest', 'mocha_istanbul']);
   grunt.registerTask('test:client', ['env:test', 'lint', 'karma:unit']);
   grunt.registerTask('test:e2e', ['env:test', 'lint', 'dropdb', 'server', 'protractor']);
   grunt.registerTask('selenium', ['env:test'  , 'protractor_webdriver']);
