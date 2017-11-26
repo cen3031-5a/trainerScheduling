@@ -9,7 +9,7 @@ angular.module('users.admin').run(['Menus',
     });
     Menus.addSubMenuItem('topbar', 'admin', {
       title: 'Add New User',
-      state: 'authentication.signup',
+      state: 'admin.signup',
       roles: ['admin']
     });
   }

@@ -49,6 +49,38 @@ exports.create = function(req, res) {
 
   email();
 
+  //trying to email each time a new event is made
+  function email(){
+    var nodemailer = require('nodemailer');
+
+    var smtpTransport = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: 'AllegianceAthleticsEmail@gmail.com',
+        //shove this into a node env var
+        pass: '1q!Q1q!Q1q'
+      }
+    });
+
+      // setup e-mail data with unicode symbols
+    var mailOptions = {
+      to: 's1016023@mvrht.net',
+      from: 'AllegianceAthleticsEmail@gmail.com',
+      subject: 'Hello ✔', // Subject line
+      text: 'Hello world ?', // plaintext body
+      html: '<b>Hello world ?</b>' // html body
+    };
+
+    // send mail with defined transport object
+    smtpTransport.sendMail(mailOptions, function(error, info){
+      if(error){
+        return console.log(error);
+      }
+      console.log('Message sent: ' + info.response);
+    });
+  }
+  //email();
+
   calendarview.save(function(err) {
     if (err) {
       return res.status(400).send({

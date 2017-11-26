@@ -1,44 +1,39 @@
 <section>
   <div class="page-header" style="text-align:center;">
     <div class='row'>
-      <div class='col-md-6'>
-        Class:
-        <h1 ng-bind="vm.calendarview.title"></h1>
-      </div>
-      <div class='col-md-6'>
-        Class trainer:
-        <h1 ng-bind="vm.calendarview.trainer"></h1>
-      </div>
-    </div>
-    </br>
-    <div class='row'>
-      <div class='col-md-6'>
-        Start time:
-        <h4 ng-bind="vm.calendarview.start"></h4>
-      </div>
-      <div class='col-md-6'>
-        End time:
-        <h4 ng-bind="vm.calendarview.end"></h4>
-      </div>
+      <table class="table">
+        <tr>
+          <th style="text-align:center;">CLASS</th>
+          <th style="text-align:center;">TRAINER</th>
+          <th style="text-align:center;">START TIME</th>
+          <th style="text-align:center;">END TIME</th>
+        </tr>
+        <tr>
+          <td ng-bind="vm.calendarview.title"></td>
+          <td ng-bind="vm.calendarview.trainer"></td>
+          <td ng-bind="vm.calendarview.start"></td>
+          <td ng-bind="vm.calendarview.end"></td>
+        </tr>
+      </table>
     </div>
 
-    </br>
     <div class='row'>
-      <div class='col-md-6'>
-        Reason for requesting off:
-        <h5 ng-bind="vm.calendarview.requestOff"></h5>
-      </div>
-      <div class='col-md-6'>
-        Is request off true?:
-        <h5 ng-bind="vm.calendarview.requestOffBool"></h5>
-      </div>
+      <table class="table">
+        <tr>
+          <th style="text-align:center;">Is request off true?:</th>
+          <th style="text-align:center;">Reason for requesting off:</th>
+        </tr>
+        <tr>
+          <td ng-bind="vm.calendarview.requestOffBool"></td>
+          <td ng-bind="vm.calendarview.requestOff"></td>
+        </tr>
+      </table>
     </div>
-  </br>
+
     <div class='row'>
-      Details of the class:
+      <h5 style="font-weight:bold;">Details of the class:</h5>
       <h5 ng-bind="vm.calendarview.details"></h5>
     </div>
-
   </div>
   <div class="pull-right">
     <a class="btn btn-primary" ui-sref="calendarviews.edit({ calendarviewId: vm.calendarview._id })">
