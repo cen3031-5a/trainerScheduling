@@ -52,9 +52,13 @@
     });
 
     $scope.onlyAfter = function(calendar) {
-      var today = new Date();
-      //console.log(today);
-      return Date.parse(calendar.start) > today;
+      //console.log(calendar.trainer == vm.authentication.user.username);
+      if(calendar.trainer == vm.authentication.user.username || vm.authentication.user.roles == 'admin'){
+        var today = new Date();
+        //console.log(Date.parse(calendar.start) +" "+ Date.parse(calendar.start).next().week());
+        //console.log(Date.parse(calendar.start) < Date.parse(calendar.start).next().week());
+        return Date.parse(calendar.start) > today && Date.parse(calendar.start) < today.next().week();
+      }
     };
 
   }

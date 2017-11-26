@@ -25,20 +25,44 @@
 
     // Save Calendarview
     function save(isValid) {
-      //console.log(vm.calendarview.trainer);
+      //console.log(vm.calendarview.start);
       //alert(Date.parse('11/10/2017 1:13 PM').toISOString());
+      vm.calendarview.repeat='12/15/2017 1:13 PM';
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.calendarviewForm');
         return false;
       }
 
-      // TODO: move create/update logic to service
-      if (vm.calendarview._id) {
-        vm.calendarview.$update(successCallback, errorCallback);
-      } else {
-        vm.calendarview.$save(successCallback, errorCallback);
+      if(!vm.calendarview.repeat){
+        // TODO: move create/update logic to service
+        if (vm.calendarview._id) {
+          vm.calendarview.$update(successCallback, errorCallback);
+        } else {
+          vm.calendarview.$save(successCallback, errorCallback);
+        }
+      }else{
+        // TODO: move create/update logic to service
+        var startTmp =vm.calendarview.start;
+        var endTmp = vm.calendarview.end;
+        var tmp = new Date();
+        tmp = Date.parse(vm.calendarview.start);
+        while(tmp<Date.parse(vm.calendarview.repeat)){
+          vm.calendarview.start = startTmp;
+          vm.calendarview.end = endTmp;
+          if (vm.calendarview._id) {
+            vm.calendarview.$update(successCallback, errorCallback);
+          } else {
+            vm.calendarview.$save(successCallback, errorCallback);
+          }
+          tmp = tmp.next().week();
+          startTmp = tmp.toString('M/d/yyyy h:mm tt');
+          endTmp = Date.parse(endTmp).next().week().toString('M/d/yyyy h:mm tt');
+          console.log(tmp + " "+startTmp +" "+ endTmp);
+
+        }
       }
+
 
       function successCallback(res) {
         $state.go('calendarviews.list');

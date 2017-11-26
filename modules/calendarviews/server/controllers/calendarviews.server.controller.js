@@ -13,41 +13,12 @@ var path = require('path'),
  * Create a Calendarview
  */
 exports.create = function(req, res) {
+
+  //can use this in update too
   var calendarview = new Calendarview(req.body);
   calendarview.user = req.user;
   // Generate test SMTP service account from ethereal.email
   // Only needed if you don't have a real mail account for testing
-  function email() {
-    //trying to email
-    var nodemailer = require('nodemailer');
-    // create reusable transporter object using the default SMTP transport
-    var smtpTransport = nodemailer.createTransport({
-      service: 'Mailgun',
-      auth: {
-        user: 'postmaster@sandboxf1d30b95f61a4c47b8a1f7da42149bbd.mailgun.org',
-        pass: '7fcb60ba1fdd82863b98333447e08a20'
-      }
-    });
-
-    // setup email data with unicode symbols
-    var mailOptions = {
-      from: 'postmaster@sandboxf1d30b95f61a4c47b8a1f7da42149bbd.mailgun.org', // sender address
-      to: 'vli27042@kopqi.com', // list of receivers
-      subject: 'Hello ✔', // Subject line
-      text: 'Hello world?', // plain text body
-      html: '<b>Hello world?</b>' // html body
-    };
-
-    // send mail with defined transport object
-    smtpTransport.sendMail(mailOptions, function(error, info){
-      if(error){
-        return console.log(error);
-      }
-      console.log('Message sent: ' + info.response);
-    });
-  }
-
-  email();
 
   //trying to email each time a new event is made
   function email(){
