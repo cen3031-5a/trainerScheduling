@@ -12,7 +12,18 @@ var path = require('path'),
   async = require('async'),
   crypto = require('crypto');
 
-var smtpTransport = nodemailer.createTransport(config.mailer.options);
+
+// using MailGun as service
+// Can easily create an account and set up, up to 100 recovery emails a month
+
+
+var smtpTransport = nodemailer.createTransport({
+  service: 'Mailgun',
+  auth: {
+    user: 'postmaster@sandboxf1d30b95f61a4c47b8a1f7da42149bbd.mailgun.org',
+    pass: '7fcb60ba1fdd82863b98333447e08a20'
+  }
+});
 
 /**
  * Forgot for reset password (forgot POST)
