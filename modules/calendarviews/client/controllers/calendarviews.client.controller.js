@@ -28,38 +28,6 @@
       //console.log(vm.calendarview.trainer);
       //alert(Date.parse('11/10/2017 1:13 PM').toISOString());
 
-      //trying to email
-      function email() {
-        var path = require('path'),
-          nodemailer = require('nodemailer'),
-          config = require(path.resolve('./config/config')),
-          mongoose = require('mongoose'),
-          User = mongoose.model('User');
-
-        var smtpTransport = nodemailer.createTransport({
-          service: 'Mailgun',
-          auth: {
-            user: 'postmaster@sandboxf1d30b95f61a4c47b8a1f7da42149bbd.mailgun.org',
-            pass: '7fcb60ba1fdd82863b98333447e08a20'
-          }
-        });
-        var mailOptions = {
-          to: vm.calendarview.user.email,
-          from: config.mailer.from,
-          subject: 'Password Reset',
-          html: "<h1>HI</h1>"
-        };
-        smtpTransport.sendMail(mailOptions, function(err) {
-          if (!err) {
-            res.send({ message: 'An email has been sent to the provided email with further instructions.' });
-          } else {
-            return res.status(400).send({ message: 'Failure sending email' });
-          }
-
-          done(err);
-        });
-      }
-
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.calendarviewForm');
         return false;
