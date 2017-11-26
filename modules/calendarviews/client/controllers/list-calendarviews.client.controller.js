@@ -27,10 +27,10 @@
       //}
       //alert(Date.parse('11/10/2017 1:13 PM').toISOString());
 
-      console.log(vm.authentication.user.roles[0]);
+      //console.log(vm.authentication.user.roles[0]);
       var userOnly = [];
       if (vm.authentication.user.roles[0] === 'admin') {
-        for (var i = 2; i < result.length; i++) {
+        for (var i = 0; i < result.length; i++) {
           //console.log(result[i].start );
           result[i].start = Date.parse(result[i].start).toISOString();
           result[i].end = Date.parse(result[i].end).toISOString();

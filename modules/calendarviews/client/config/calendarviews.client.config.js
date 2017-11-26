@@ -22,6 +22,12 @@
       state: 'calendarviews.list'
     });
 
+    // Add the dropdown list item
+    menuService.addSubMenuItem('topbar', 'calendarviews', {
+      title: 'List All Events',
+      state: 'calendarviews.listAll'
+    });
+
     // Add the dropdown create item
     menuService.addSubMenuItem('topbar', 'calendarviews', {
       title: 'Create Event',
