@@ -23,6 +23,15 @@
           pageTitle: 'Calendar'
         }
       })
+      .state('calendarviews.listAll', {
+        url: '/listAll',
+        templateUrl: 'modules/calendarviews/client/views/listAll-calendarviews.client.view.html',
+        controller: 'CalendarviewsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Calendar'
+        }
+      })
       .state('calendarviews.requestOff', {
         url: '/requestOff',
         templateUrl: 'modules/calendarviews/client/views/requestList-calendarviews.client.view.html',

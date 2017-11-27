@@ -1,37 +1,57 @@
-<section >
+<section>
+  <div class="page-container">
+    <div class="intro jumbotron">
+      <img src="../modules/trainer/client/img/Claw.png" alt="Allegiance Athletics" style="background-color: #fff; border-radius: 50%;">
+      <span class="intro-text">Welcome Allegiance Staff</span>
+    </div>
+
+      <div class="page-title">
+        <div class="page-text">
+          <h2 align="left">Announcements
+          <a ng-if="vm.authentication.user.roles == 'admin'" ui-sref="createAnnouncement"><span class="glyphicon glyphicon-plus-sign create"></span></a>
+          </h2>
+        </div>
+      </div>
+
+      <div class="homescroll" id="cc-homepage-announcements">
+        <a ng-repeat="train in vm.trainer | orderBy:'created':true | limitTo:3" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">
+          <h3> <span ng-bind="train.name"></span></h3>
+          <p><span ng-bind="train.announcement"></span></p>
+          <span style="font-style: italic; font-size: 10px">Posted on <span ng-bind="train.created | date:'mediumDate'"></span> by <span ng-if="train.user" ng-bind="train.user.displayName"></span></span></span>
+        </a>
+      </div>
+      <h4 style="text-align: right" ui-sref="announcementArchive">Archive of Announcments</h4>
+
+  </div>
+</section>
+
+<!-- <section >
   <div class="jumbotron">
     <div class="row" style="text-align:center">
       <h2>
         Allegiance Athletics Admin View
       </h2>
       <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12">
-        <img alt="AllegianceAthletics" class="img-responsive" src="modules/trainer/client/img/logo2.gif"/>
+        <img alt="AllegianceAthletics" class="img-responsive" src="modules/trainer/client/img/logo2.GIF"/>
       </div>
     </div>
     <br>
     <div class="row" style="background-color:white; width: auto ; height: 600px; border: 1px solid black; margin: 10px; text-align: center">
 
-      <h3 style="color:white; background-color:#672C8E; text-align: center; margin: 0px; padding: 12px;">Announcements 
-        <a ui-sref="createAnnouncement" class="btn btn-info btn-lg">
+      <h3 style="color:white; background-color:#672C8E; text-align: center; margin: 0px; padding: 12px;">Announcements
+        <a ng-if="vm.authentication.user.roles == 'admin'" ui-sref="createAnnouncement" class="btn btn-info btn-lg" >
           <span class="glyphicon glyphicon-plus-sign"></span>New</a>
-        </h3> 
+        </h3>
+
 
         <div class="homescroll" id="cc-homepage-announcements">
-          <a ng-repeat="train in vm.trainer | orderBy:'created':true | limitTo:4" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">
+          <a ng-repeat="train in vm.trainer | orderBy:'created':true | limitTo:5" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">
             <h2> <span ng-bind="train.name"></span></h2>
             <p><span ng-bind="train.announcement"></span></p>
             Posted on <span ng-bind="train.created | date:'mediumDate'"></span> by <span ng-if="train.user" ng-bind="train.user.displayName"></span>
           </a>
         </div>
       </div>
-      <h4 style="text-align: right" ui-sref="announcementArchive">Archive of announcments</h4>
-    </div>
-
-    <div class="row">
-      <p style="text-align: center;">
-        <a class="btn btn-primary btn-lg" href="api/auth/signout" target="_blank">Log Out</a>
-        <br>Enjoy &amp; Keep Us Updated,
-        <br>Allegiance Athletics 
-      </p>
     </div>
 </section>
+ -->

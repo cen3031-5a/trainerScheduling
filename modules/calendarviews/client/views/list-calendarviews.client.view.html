@@ -4,13 +4,12 @@
       var timer = setInterval(checkDataReady, 100);
 
       function checkDataReady() {
-
         var data = angular.element(document.getElementById('app')).scope().data;
         //var userData = angular.element(document.getElementById('app')).scope().userData;
         if (data) {
           clearInterval(timer);
           $(document).ready(function() {
-            console.log(data);
+            //console.log(data);
             //console.log(userData);
             $('#calendar').fullCalendar({
               header: {
@@ -83,76 +82,32 @@
         margin: 0 auto;
       }
     </style>
-    <!--div class="alert alert-warning text-center" ng-if="vm.calendarviews.$resolved && !vm.calendarviews.length">
-    No Events yet, do you want to <a ui-sref="calendarviews.create">create one</a>?
-  </div>
-  <!div class="list-group">
-    <a ng-repeat="calendarview in vm.calendarviews"
-       ui-sref="calendarviews.view({ calendarviewId: calendarview._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="calendarview.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="calendarview.user" ng-bind="calendarview.user.displayName"></span>
-        <span ng-if="!calendarview.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="calendarview.title"></h4>
-    </a>
-  </div-->
 
     </br>
-    <div class="col-lg-9">
+
+    <div class="col-md-9">
       <div id='calendar'></div>
     </div>
-    <div class="col-lg-3 bootstrap" style="text-align:center;" ng-if="vm.calendarviews.length">
-      <h4>List of Events</h4>
-      <table class="table" style="text-align:center;">
-        <tr>
-          <th>Class Name</th>
-          <th>Start Time</th>
-          <th>End Time</th>
-        </tr>
-        <tr ng-repeat="calendar in vm.calendarviews | orderBy:'start'" ng-if="calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin'" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
-          <td>{{calendar.title}}</td>
-          <td>{{calendar.start | date:'medium'}}</td>
-          <td>{{calendar.end | date:'medium'}}</td>
-          
-          <!-- <script language="javascript">
-            var c = new Date();
-            var nhour = c.getHours();
-            var nmin = c.getMinutes();
-            var cellNum = $scope.user.cellPhone;
-            var sour = $scope.data;
-            var smin = $scope.calendarviews;
 
-            if(sour - nhour <= 2) {
-              console.log("IT IS TIME TO SEND A MESSAGE!");
-            }
-            else {
-              console.log(c);
-              console.log(nhour);
-              console.log(nmin);
-              console.log(cellNum);
-              console.log(sour);
-              console.log(smin);
-              console.log($scope.start);
-              console.log($scope.start.getHours());
-              console.log($scope.start.getMinutes());
-              console.log("Please let this work!");
-            }
-          </script> -->
-        </tr>
-      </table>
+    <div class="col-md-3" style="text-align:center;" ng-if="vm.calendarviews.length">
+      <h4>List of Future Events</h4>
+      <div class='row'>
+        <input type="text" ng-model="title_input.username" placeholder="Search Keywords..." class="form-control">
+      </div>
+      <div class='row'>
+        <table class="table">
+          <tr>
+            <th style="text-align:center;">CLASS</th>
+            <th style="text-align:center;">START TIME</th>
+            <th style="text-align:center;">END TIME</th>
+          </tr>
+          <tr ng-repeat="calendar in vm.calendarviews | orderBy:'start' | limitTo:10| filter:title_input.username |filter:onlyAfter" ng-if="(calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin')" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
+            <td>{{calendar.title}}</td>
+            <td>{{calendar.start}}</td>
+            <td>{{calendar.end}}</td>
+          </tr>
+        </table>
+      </div>
     </div>
-  <!--div class="col-lg-3" style="text-align:center;">
-    <h4>List of Events</h4>
-    <p<<a ng-repeat="calendar in vm.calendarviews | orderBy:'created':true">
-      <span ng-bind="calendar.title"></span>
-      <div><span ng-bind="calendar.start | date:'short'"></span> to
-      <span ng-bind="calendar.end | date:'shortTime'"></span>
-      <br/>
-    </div></p>
-  </a-->
   </div>
 </section>

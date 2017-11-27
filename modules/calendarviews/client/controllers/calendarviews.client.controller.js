@@ -21,6 +21,7 @@
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         vm.calendarview.$remove();
+        $window.location.href="/calendarviews";
       }
     }
 
@@ -41,8 +42,8 @@
       }
 
       function successCallback(res) {
-        //$state.go('calendarviews.list');
-        $window.location.href="/calendarviews";
+        $state.go('calendarviews.list');
+        //$window.location.href="/calendarviews";
       }
 
       function errorCallback(res) {
