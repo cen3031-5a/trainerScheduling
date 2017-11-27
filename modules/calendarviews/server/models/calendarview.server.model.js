@@ -24,7 +24,6 @@ var CalendarviewSchema = new Schema({
   },
   trainerName: {
     type: String,
-    default: '',
     trim: true
   },
   start: {

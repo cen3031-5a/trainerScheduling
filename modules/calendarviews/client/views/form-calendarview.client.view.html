@@ -15,7 +15,9 @@
             document.getElementById('color').value = '';
             document.getElementById('color').value = test[i].favoriteColor;
             document.getElementById('trainerName').value = '';
-            document.getElementById('trainerName').value = test[i].username;
+            document.getElementById('trainerName').value = test[i].displayName;
+            $("#trainerName").trigger("input");
+            $("#color").trigger("input");
           }
         }
 
@@ -46,7 +48,7 @@
       }
 
       function repeatEvent(){
-        
+
       }
       //setTimeout(checkDataReady,1000);
     </script>
@@ -76,10 +78,13 @@
               </div>
             </div>
 
-            <input  name="trainerName" type="hidden" ng-model="vm.calendarview.trainerName" id="trainerName" class="form-control" placeholder="Trainer Name">
+            <div class="col-md-4" ng-if="vm.authentication.user.roles == 'admin'">
+              <label class="control-label" for="trainerName">Name</label>
+              <input  name="trainerName" type="text" ng-model="vm.calendarview.trainerName" id="trainerName" class="form-control" placeholder="Trainer Name">
+            </div>
 
             <div class="col-md-4" ng-if="vm.authentication.user.roles == 'admin'">
-              <label class="control-label" for="details">Color</label>
+              <label class="control-label" for="color">Color</label>
               <input  name="color" type="text" ng-model="vm.calendarview.color" id="color" class="form-control" placeholder="Color">
             </div>
           </div>
