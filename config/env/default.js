@@ -28,7 +28,7 @@ module.exports = {
   sessionKey: 'sessionId',
   sessionCollection: 'sessions',
   logo: 'modules/trainer/client/img/logo2.GIF',
-  favicon: 'modules/trainer/client/img/Claw.png',
+  favicon: 'modules/trainer/client/img/Claw.PNG',
   uploads: {
     profileUpload: {
       dest: './modules/users/client/img/profile/uploads/', // Profile upload destination path
