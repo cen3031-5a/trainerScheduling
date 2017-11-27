@@ -28,7 +28,7 @@
     function save(isValid) {
       //console.log(vm.calendarview.start);
       //alert(Date.parse('11/10/2017 1:13 PM').toISOString());
-      vm.calendarview.repeat='12/15/2017 1:13 PM';
+      //vm.calendarview.repeat='12/15/2017 1:13 PM';
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.calendarviewForm');
@@ -71,8 +71,7 @@
 
       function successCallback(res) {
         //$state.go('calendarviews.list');
-        console.log("hi");
-        //$window.location.href="/calendarviews";
+        $window.location.href="/calendarviews";
       }
 
       function errorCallback(res) {
