@@ -8,12 +8,12 @@
   function checkDataReady(){
         
         data =angular.element(document.getElementById('app')).scope().data;
-        
+        var userInfo =angular.element(document.getElementById('app')).scope().user;
   if (data){
     clearInterval(timer);
     var nameMap={};
     var nameList=[];
-    var colorlist= ["red","blue","green"];
+    var colorlist= ["#e6194b","#3cb44b","#0082c8","##f58231","#911eb4","#f032e6","#008080","#aa6e28","#800000","#808000", "000080"];
     var counter=0;
     for(var i=0;i<data.length;i++){
       if(!(data[i].trainer in nameMap)){
@@ -36,13 +36,14 @@
       btn.innerHTML="<button id='hideAllUsers' onclick='showUser(this.id)' style='background: white;'>Hide All</button>";
       document.getElementById('userBtns').appendChild(btn); 
     for(var i =0;i<nameList.length;i++){
-      var btn = document.createElement("div");  
-      btn.className = 'btnn';      // Create a <button> element
-      btn.innerHTML="<button id='"+nameList[i]+"' onclick='showUser(this.id)' style='background:"+nameMap[nameList[i]]+";'>"+nameList[i]+"</button>";
-      //var t = document.createTextNode(nameList[i]);       // Create a text node
-      //btn.appendChild(t);                                // Append the text to <button>
-      document.getElementById('userBtns').appendChild(btn);  
-
+      if(nameList[i]!= ''){
+          var btn = document.createElement("div");  
+          btn.className = 'btnn';      // Create a <button> element
+          btn.innerHTML="<button id='"+nameList[i]+"' onclick='showUser(this.id)' style='background:"+nameMap[nameList[i]]+";'>"+nameList[i]+"</button>";
+          //var t = document.createTextNode(nameList[i]);       // Create a text node
+          //btn.appendChild(t);                                // Append the text to <button>
+          document.getElementById('userBtns').appendChild(btn);  
+      }
     }
       $(document).ready(function() {
         console.log(data);
@@ -127,7 +128,7 @@
       <h4 class="list-group-item-heading" ng-bind="availability.title"></h4>
     </a>
   </div-->
-  <div id="userBtns"></div>
+  <div id="userBtns" align="center"></div>
   <div class="col-lg-9" >
     <div id='calendar'></div>
   </div>
