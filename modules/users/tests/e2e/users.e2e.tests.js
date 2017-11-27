@@ -511,7 +511,7 @@ describe('Users E2E Tests:', function () {
 
   });
 
-  /*
+/*
   describe('Edit Profile', function () {
     it('Should report missing first name', function () {
       browser.get('http://localhost:3000/settings/profile');
