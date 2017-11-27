@@ -52,7 +52,7 @@ describe('Blogs E2E Tests:', function () {
   });
 
   describe('New Blog page', function() {
-    it('Should report missing name', function () {
+    it('Should report missing blog name', function () {
         browser.get('http://localhost:3000/blogs/create');
         // Enter Content
         element(by.model('vm.blog.content')).sendKeys(test_newBlog.content);
@@ -64,6 +64,32 @@ describe('Blogs E2E Tests:', function () {
         expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Blog name is required.');
     });
 
+    /*
+    it('Should report successful creation of a new blog', function () {
+      //Count number of blogs
+      browser.get('http://localhost:3000/blogs');
+      var oldBlogsNumber = element.all(by.repeater('blog in blogs')).count();
+      browser.waitForAngular();
+      //Create new blog
+      browser.get('http://localhost:3000/blogs/create');
+      // Enter Name
+      element(by.model('vm.blog.name')).sendKeys(test_newBlog.name);
+      // Enter Content
+      element(by.model('vm.blog.content')).sendKeys(test_newBlog.content);
+      // Enter URL
+      element(by.model('vm.blog.video')).sendKeys(test_newBlog.video);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      browser.waitForAngular();
+      browser.sleep(3000);
+      //Compare number of blogs
+      browser.get('http://localhost:3000/blogs');
+      var newBlogsNumber = oldBlogsNumber+1;
+      expect(element.all(by.repeater('blog in blogs')).count()).toEqual(newBlogsNumber);
+      //expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/blogs/' + vm.blog._id);
+    });
+    */
+    
   });
 
 });
