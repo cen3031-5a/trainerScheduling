@@ -65,7 +65,7 @@
       <div id='calendar'></div>
     </div>
     <div class="col-md-3" style="text-align:center;" ng-if="vm.calendarviews.length">
-      <h4>List of Future Events</h4>
+      <h4>Next Seven Days</h4>
       <div class='row'>
         <input type="text" ng-model="title_input.username" placeholder="Search Keywords..." class="form-control">
       </div>
@@ -76,7 +76,7 @@
             <th style="text-align:center;">START TIME</th>
             <th style="text-align:center;">END TIME</th>
           </tr>
-          <tr ng-repeat="calendar in vm.calendarviews | orderBy:'start' | limitTo:10| filter:title_input.username |filter:onlyAfter" ng-if="(calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin')" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
+          <tr ng-repeat="calendar in vm.calendarviews | orderBy:'start'| filter:title_input.username |filter:onlyAfter" ng-if="(calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin')" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
             <td>{{calendar.title}}</td>
             <td>{{calendar.start}}</td>
             <td>{{calendar.end}}</td>

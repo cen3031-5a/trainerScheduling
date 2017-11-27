@@ -13,8 +13,12 @@ var path = require('path'),
  * Create a Calendarview
  */
 exports.create = function(req, res) {
+
+  //can use this in update too
   var calendarview = new Calendarview(req.body);
   calendarview.user = req.user;
+  // Generate test SMTP service account from ethereal.email
+  // Only needed if you don't have a real mail account for testing
 
   //trying to email each time a new event is made
   function email(){
@@ -31,11 +35,11 @@ exports.create = function(req, res) {
 
       // setup e-mail data with unicode symbols
     var mailOptions = {
-      to: 's1016023@mvrht.net',
+      to: '',
       from: 'AllegianceAthleticsEmail@gmail.com',
-      subject: 'Hello ✔', // Subject line
+      subject: 'Hello', // Subject line
       text: 'Hello world ?', // plaintext body
-      html: '<b>Hello world ?</b>' // html body
+      html: '<b>HI ?</b>' // html body
     };
 
     // send mail with defined transport object
