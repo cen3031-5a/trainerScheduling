@@ -4,24 +4,31 @@
   </div>
   <div ng-controller=UserListController id="userApp">
     <script>
-      function giveSelection(selValue) {
-        //document.getElementById('color').innerHTML = '';
-        for (var i = 0; i < document.getElementById('trainer').length; i++) {
-          //console.log(document.getElementById('color')[i].dataset.option);
-          if (document.getElementById('color')[i].dataset.option != selValue) {
-            document.getElementById('color')[i].disabled = true;
-
-          }else{
-            document.getElementById('color')[i].disabled = false;
-
-          }
-
-        }
-      }
-
       var test;
       var timer = setInterval(checkDataReady, 100);
 
+      //changes the color in color
+      function giveSelection(selValue) {
+        //document.getElementById('color').innerHTML = '';
+        for(var i =0; i < test.length;i++){
+          if (test[i].username == selValue){
+            document.getElementById('color').value = '';
+            document.getElementById('color').value = test[i].favoriteColor;
+            document.getElementById('trainerName').value = '';
+            document.getElementById('trainerName').value = test[i].displayName;
+            $("#trainerName").trigger("input");
+            $("#color").trigger("input");
+          }
+<<<<<<< HEAD
+
+=======
+>>>>>>> bb6f72cb7bdd8b5404a321ad25dace92b544a9aa
+        }
+
+      }
+
+
+      //creates the options in trainer selectg
       function checkDataReady() {
 
         test = angular.element(document.getElementById('userApp')).scope().users;
@@ -31,25 +38,21 @@
           $(document).ready(function() {
             (function() { // don't leak
               var elm = document.getElementById('trainer'), // get the select
-                elm1 = document.getElementById('color'), // get the select
-                df = document.createDocumentFragment(),
-                df1 = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+                df = document.createDocumentFragment();
               for (var i = 0; i < test.length; i++) { // loop
                 var option = document.createElement('option');
                 option.value = test[i].username; // set the value property
                 option.appendChild(document.createTextNode(test[i].displayName)); // set the textContent in a safe way.
                 df.appendChild(option); // append the option to the document fragment
-                var option1 = document.createElement('option'); // create the option element
-                option1.value = test[i].favoriteColor;
-                option1.dataset.option = test[i].username;
-                option1.appendChild(document.createTextNode(test[i].favoriteColor)); // set the textContent in a safe way.
-                df1.appendChild(option1); // append the option to the document fragment
               }
               elm.appendChild(df); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
-              elm1.appendChild(df1); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
             }());
           });
         }
+      }
+
+      function repeatEvent(){
+
       }
       //setTimeout(checkDataReady,1000);
     </script>
@@ -71,7 +74,7 @@
           </div>
 
           <div class="row">
-            <div class="col-md-6" ng-if="vm.authentication.user.roles == 'admin'">
+            <div class="col-md-8" ng-if="vm.authentication.user.roles == 'admin'">
               <label class="control-label" for="trainer">Trainer</label>
               <select onchange="giveSelection(this.value)" name="trainer" type="" ng-model="vm.calendarview.trainer" id="trainer" class="form-control" placeholder="Trainer" required></select>
               <div ng-messages="vm.form.calendarviewForm.trainer.$error" role="alert">
@@ -79,9 +82,14 @@
               </div>
             </div>
 
-            <div class="col-md-6" ng-if="vm.authentication.user.roles == 'admin'">
-              <label class="control-label" for="details">Color</label>
-              <select  name="color" type="" ng-model="vm.calendarview.color" id="color" class="form-control" placeholder="Color"></select>
+            <div class="" ng-show="1==-1">
+              <label class="control-label" for="trainerName">Name</label>
+              <input  name="trainerName" type="text" ng-model="vm.calendarview.trainerName" id="trainerName" class="form-control" placeholder="Trainer Name">
+            </div>
+
+            <div class="col-md-4" ng-if="vm.authentication.user.roles == 'admin'">
+              <label class="control-label" for="color">Color</label>
+              <input  name="color" type="text" ng-model="vm.calendarview.color" id="color" class="form-control" placeholder="Color">
             </div>
           </div>
 
@@ -116,7 +124,7 @@
             <div class='col-md-4'>
               <label class="control-label" for="repeat">Repeat</label>
               <div class='input-group date' ng-model="vm.calendarview.repeat" id='datetimepicker3'>
-                <input name="repeat" type='text' ng-model="vm.calendarview.repeat" id="repeat" class="form-control" placeholder="Repeat" />
+                <input name="repeat" type='text' ng-model="vm.calendarview.repeat" id="repeat" class="form-control" placeholder="Repeat" onclick="repeatEvent()"/>
                 <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
                 </span>

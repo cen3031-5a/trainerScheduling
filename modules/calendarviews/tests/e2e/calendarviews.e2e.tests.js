@@ -98,7 +98,6 @@ describe('Calendarviews E2E Tests:', function () {
       // Click Create button
       //element(by.css('button[type=submit]')).click();
       element(by.id('editClassButton')).click();
-      browser.sleep(3000);
       //Trainer error
       expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Trainer is required.');
     });
@@ -120,7 +119,6 @@ describe('Calendarviews E2E Tests:', function () {
       // Click Create button
       //element(by.css('button[type=submit]')).click();
       element(by.id('editClassButton')).click();
-      browser.sleep(3000);
       //Start time error
       expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Start time is required.');
     });
@@ -142,7 +140,6 @@ describe('Calendarviews E2E Tests:', function () {
       // Click Create button
       //element(by.css('button[type=submit]')).click();
       element(by.id('editClassButton')).click();
-      browser.sleep(3000);
       //Start time error
       expect(element.all(by.css('.error-text')).get(0).getText()).toBe('End time is required.');
     });
