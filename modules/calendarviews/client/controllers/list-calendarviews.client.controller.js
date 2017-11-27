@@ -57,7 +57,7 @@
     var c = new Date();
     var nhour = c.getHours();
     var nmin = c.getMinutes();
-    var sour = $scope.calendarviews.start;
+    var sour = $scope.data;
     var smin = $scope.calendarviews.start;
 
     if(sour - nhour <= 2) {
@@ -69,7 +69,7 @@
       console.log(nmin);
       console.log(sour);
       console.log(smin);
-      console.log($scope.start);
+      console.log($scope.data);
       console.log($scope.start.getHours());
       console.log($scope.start.getMinutes());
       console.log("Please let this work!");
