@@ -35,11 +35,11 @@ exports.create = function(req, res) {
 
       // setup e-mail data with unicode symbols
     var mailOptions = {
-      to: 's1016023@mvrht.net',
+      to: '5616854935@txt.att.net',
       from: 'AllegianceAthleticsEmail@gmail.com',
-      subject: 'Hello ✔', // Subject line
+      subject: 'Hello', // Subject line
       text: 'Hello world ?', // plaintext body
-      html: '<b>Hello world ?</b>' // html body
+      html: '<b>HI ?</b>' // html body
     };
 
     // send mail with defined transport object
@@ -50,7 +50,7 @@ exports.create = function(req, res) {
       console.log('Message sent: ' + info.response);
     });
   }
-  //email();
+  email();
 
   calendarview.save(function(err) {
     if (err) {

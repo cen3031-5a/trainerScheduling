@@ -22,6 +22,11 @@ var CalendarviewSchema = new Schema({
     required: 'Please fill in trainer',
     trim: true
   },
+  trainerName: {
+    type: String,
+    default: '',
+    trim: true
+  },
   start: {
     type: String,
     default: '',

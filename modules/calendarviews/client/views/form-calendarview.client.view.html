@@ -4,24 +4,23 @@
   </div>
   <div ng-controller=UserListController id="userApp">
     <script>
-      function giveSelection(selValue) {
-        //document.getElementById('color').innerHTML = '';
-        for (var i = 0; i < document.getElementById('trainer').length; i++) {
-          //console.log(document.getElementById('color')[i].dataset.option);
-          if (document.getElementById('color')[i].dataset.option != selValue) {
-            document.getElementById('color')[i].disabled = true;
-
-          }else{
-            document.getElementById('color')[i].disabled = false;
-
-          }
-          
-        }
-      }
-
       var test;
       var timer = setInterval(checkDataReady, 100);
 
+      //changes the color in color
+      function giveSelection(selValue) {
+        //document.getElementById('color').innerHTML = '';
+        for(var i =0; i < test.length;i++){
+          if (test[i].username == selValue){
+            document.getElementById('color').value = '';
+            document.getElementById('color').value = test[i].favoriteColor;
+          }
+        }
+
+      }
+
+
+      //creates the options in trainer select
       function checkDataReady() {
 
         test = angular.element(document.getElementById('userApp')).scope().users;
@@ -31,22 +30,14 @@
           $(document).ready(function() {
             (function() { // don't leak
               var elm = document.getElementById('trainer'), // get the select
-                elm1 = document.getElementById('color'), // get the select
-                df = document.createDocumentFragment(),
-                df1 = document.createDocumentFragment(); // create a document fragment to hold the options while we create them
+                df = document.createDocumentFragment();
               for (var i = 0; i < test.length; i++) { // loop
                 var option = document.createElement('option');
                 option.value = test[i].username; // set the value property
                 option.appendChild(document.createTextNode(test[i].displayName)); // set the textContent in a safe way.
                 df.appendChild(option); // append the option to the document fragment
-                var option1 = document.createElement('option'); // create the option element
-                option1.value = test[i].favoriteColor;
-                option1.dataset.option = test[i].username;
-                option1.appendChild(document.createTextNode(test[i].favoriteColor)); // set the textContent in a safe way.
-                df1.appendChild(option1); // append the option to the document fragment
               }
               elm.appendChild(df); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
-              elm1.appendChild(df1); // append the document fragment to the DOM. this is the better way rather than setting innerHTML a bunch of times (or even once with a long string)
             }());
           });
         }
@@ -81,7 +72,7 @@
 
             <div class="col-md-6" ng-if="vm.authentication.user.roles == 'admin'">
               <label class="control-label" for="details">Color</label>
-              <select  name="color" type="" ng-model="vm.calendarview.color" id="color" class="form-control" placeholder="Color"></select>
+              <input  name="color" type="text" ng-model="vm.calendarview.color" id="color" class="form-control" placeholder="Color">
             </div>
           </div>
 

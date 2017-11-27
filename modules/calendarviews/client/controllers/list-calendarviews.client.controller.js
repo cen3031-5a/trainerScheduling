@@ -52,8 +52,8 @@
     });
 
     $scope.onlyAfter = function(calendar) {
-      //console.log(calendar.trainer == vm.authentication.user.username);
-      if(calendar.trainer == vm.authentication.user.username || vm.authentication.user.roles == 'admin'){
+      //console.log(calendar.trainer === vm.authentication.user.username || vm.authentication.user.roles.toString() === 'admin');
+      if(calendar.trainer === vm.authentication.user.username || vm.authentication.user.roles.toString() === 'admin'){
         var today = new Date();
         //console.log(Date.parse(calendar.start) +" "+ Date.parse(calendar.start).next().week());
         //console.log(Date.parse(calendar.start) < Date.parse(calendar.start).next().week());
