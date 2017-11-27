@@ -15,6 +15,12 @@ describe('Blogs E2E Tests:', function () {
     favoriteOther: 'reading'
   };
 
+  var test_newBlog = {
+    name: 'Test blog',
+    content: 'Puppy video',
+    video: 'https://youtu.be/6CaJ2PjbXxM'
+  };
+
   var signin = function(user){
     browser.get('http://localhost:3000/authentication/signin');
     //Enter username
@@ -43,6 +49,21 @@ describe('Blogs E2E Tests:', function () {
       expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/blogs/create');
     });
 
+  });
+
+  describe('New Blog page', function() {
+    it('Should report missing name', function () {
+        browser.get('http://localhost:3000/blogs/create');
+        // Enter Content
+        element(by.model('vm.blog.content')).sendKeys(test_newBlog.content);
+        // Enter URL
+        element(by.model('vm.blog.video')).sendKeys(test_newBlog.video);
+        // Click Submit button
+        element(by.css('button[type=submit]')).click();
+        // Blog Name Missing Error
+        expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Blog name is required.');
+    });
 
   });
+
 });
