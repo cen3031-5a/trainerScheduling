@@ -511,10 +511,25 @@ describe('Users E2E Tests:', function () {
 
   });
 
-/*
   describe('Edit Profile', function () {
-    it('Should report missing first name', function () {
+
+    var clearProfileFields = function () {
       browser.get('http://localhost:3000/settings/profile');
+      element(by.model('user.firstName')).clear();
+      element(by.model('user.lastName')).clear();
+      element(by.model('user.email')).clear();
+      element(by.model('user.username')).clear();
+      element(by.model('user.favoriteColor')).clear();
+      element(by.model('user.favoriteAnimal')).clear();
+      element(by.model('user.favoriteCake')).clear();
+      element(by.model('user.favoriteKidsBook')).clear();
+      element(by.model('user.favoriteOther')).clear();
+    };
+
+    it('Should report missing first name', function () {
+      //Clear fields first.
+      clearProfileFields();
+      browser.waitForAngular();
       // Enter Last Name
       element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
       // Enter Email
@@ -538,7 +553,10 @@ describe('Users E2E Tests:', function () {
     });
 
     it('Should report missing last name', function () {
-      browser.get('http://localhost:3000/settings/profile');
+      //Clear fields first.
+      clearProfileFields();
+      browser.waitForAngular();
+      //browser.get('http://localhost:3000/settings/profile');
       // Enter First Name
       element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
       // Enter Email
@@ -561,165 +579,167 @@ describe('Users E2E Tests:', function () {
       expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Last name is required.');
     });
 
-    it('Should report missing email address', function () {
-      browser.get('http://localhost:3000/settings/profile');
-      // Enter First Name
-      element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
-      // Enter Last Name
-      element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
-      // Enter Username
-      element(by.model('user.username')).sendKeys(testuser_admin.username);
-      // Enter Favorite Color
-      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
-      // Enter Favorite Animal
-      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
-      // Enter Favorite Cake
-      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
-      // Enter Favorite Kids Book
-      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
-      // Enter Favorite Other
-      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
-      // Click Submit button
-      element(by.css('button[type=submit]')).click();
-      // Email address error
-      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Email address is required.');
-    });
+      /*
 
-    it('Should report invalid email address - "123"', function () {
-      browser.get('http://localhost:3000/settings/profile');
-      // Enter First Name
-      element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
-      // Enter Last Name
-      element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
-      // Enter Email
-      element(by.model('user.email')).sendKeys('123');
-      // Enter Username
-      element(by.model('user.username')).sendKeys(testuser_admin.username);
-      // Enter Favorite Color
-      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
-      // Enter Favorite Animal
-      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
-      // Enter Favorite Cake
-      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
-      // Enter Favorite Kids Book
-      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
-      // Enter Favorite Other
-      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
-      // Click Submit button
-      element(by.css('button[type=submit]')).click();
-      // Email address error
-      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Email address is invalid.');
-    });
+  it('Should report missing email address', function () {
+    browser.get('http://localhost:3000/settings/profile');
+    // Enter First Name
+    element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
+    // Enter Last Name
+    element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
+    // Enter Username
+    element(by.model('user.username')).sendKeys(testuser_admin.username);
+    // Enter Favorite Color
+    element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+    // Enter Favorite Animal
+    element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+    // Enter Favorite Cake
+    element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+    // Enter Favorite Kids Book
+    element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+    // Enter Favorite Other
+    element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+    // Click Submit button
+    element(by.css('button[type=submit]')).click();
+    // Email address error
+    expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Email address is required.');
+  });
 
-     //Note: 123@123 is a valid email adress according to HTML5.
-     //However, 123@123@123 is an invalid email address.
-    it('Should report invalid email address - "123@123@123"', function () {
-      browser.get('http://localhost:3000/settings/profile');
-      // Enter First Name
-      element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
-      // Enter Last Name
-      element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
-      // Enter Email
-      element(by.model('user.email')).sendKeys('123@123@123');
-      // Enter Username
-      element(by.model('user.username')).sendKeys(testuser_admin.username);
-      // Enter Favorite Color
-      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
-      // Enter Favorite Animal
-      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
-      // Enter Favorite Cake
-      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
-      // Enter Favorite Kids Book
-      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
-      // Enter Favorite Other
-      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
-      // Click Submit button
-      element(by.css('button[type=submit]')).click();
-      // Email address error
-      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Email address is invalid.');
-    });
+  it('Should report invalid email address - "123"', function () {
+    browser.get('http://localhost:3000/settings/profile');
+    // Enter First Name
+    element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
+    // Enter Last Name
+    element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
+    // Enter Email
+    element(by.model('user.email')).sendKeys('123');
+    // Enter Username
+    element(by.model('user.username')).sendKeys(testuser_admin.username);
+    // Enter Favorite Color
+    element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+    // Enter Favorite Animal
+    element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+    // Enter Favorite Cake
+    element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+    // Enter Favorite Kids Book
+    element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+    // Enter Favorite Other
+    element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+    // Click Submit button
+    element(by.css('button[type=submit]')).click();
+    // Email address error
+    expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Email address is invalid.');
+  });
 
-    it('Should report missing username', function () {
-      browser.get('http://localhost:3000/settings/profile');
-      // Enter First Name
-      element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
-      // Enter Last Name
-      element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
-      // Enter Email
-      element(by.model('user.email')).sendKeys(testuser_admin.email);
-      // Enter Favorite Color
-      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
-      // Enter Favorite Animal
-      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
-      // Enter Favorite Cake
-      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
-      // Enter Favorite Kids Book
-      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
-      // Enter Favorite Other
-      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
-      // Click Submit button
-      element(by.css('button[type=submit]')).click();
-      // Username Error
-      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Username is required.');
-    });
+   //Note: 123@123 is a valid email adress according to HTML5.
+   //However, 123@123@123 is an invalid email address.
+  it('Should report invalid email address - "123@123@123"', function () {
+    browser.get('http://localhost:3000/settings/profile');
+    // Enter First Name
+    element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
+    // Enter Last Name
+    element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
+    // Enter Email
+    element(by.model('user.email')).sendKeys('123@123@123');
+    // Enter Username
+    element(by.model('user.username')).sendKeys(testuser_admin.username);
+    // Enter Favorite Color
+    element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+    // Enter Favorite Animal
+    element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+    // Enter Favorite Cake
+    element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+    // Enter Favorite Kids Book
+    element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+    // Enter Favorite Other
+    element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+    // Click Submit button
+    element(by.css('button[type=submit]')).click();
+    // Email address error
+    expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Email address is invalid.');
+  });
 
-    it('Should report Email already exists', function () {
-      // Make sure user is signed out first
-      signout();
-      // Signup
-      browser.get('http://localhost:3000/settings/profile');
-      // Enter First Name
-      element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
-      // Enter Last Name
-      element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
-      // Enter Email
-      element(by.model('user.email')).sendKeys(user1.email);
-      // Enter Username
-      element(by.model('user.username')).sendKeys(testuser_admin.username);
-      // Enter Favorite Color
-      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
-      // Enter Favorite Animal
-      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
-      // Enter Favorite Cake
-      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
-      // Enter Favorite Kids Book
-      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
-      // Enter Favorite Other
-      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
-      // Click Submit button
-      element(by.css('button[type=submit]')).click();
-      // Password Error
-      expect(element.all(by.css('strong')).get(0).getText()).toBe('Email already exists');
-    });
+  it('Should report missing username', function () {
+    browser.get('http://localhost:3000/settings/profile');
+    // Enter First Name
+    element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
+    // Enter Last Name
+    element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
+    // Enter Email
+    element(by.model('user.email')).sendKeys(testuser_admin.email);
+    // Enter Favorite Color
+    element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+    // Enter Favorite Animal
+    element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+    // Enter Favorite Cake
+    element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+    // Enter Favorite Kids Book
+    element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+    // Enter Favorite Other
+    element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+    // Click Submit button
+    element(by.css('button[type=submit]')).click();
+    // Username Error
+    expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Username is required.');
+  });
 
-    it('Should report Username already exists', function () {
-      // Signup
-      browser.get('http://localhost:3000/settings/profile');
-      // Enter First Name
-      element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
-      // Enter Last Name
-      element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
-      // Enter Email
-      element(by.model('user.email')).sendKeys(testuser_admin.email);
-      // Enter Username
-      element(by.model('user.username')).sendKeys(user1.username);
-      // Enter Favorite Color
-      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
-      // Enter Favorite Animal
-      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
-      // Enter Favorite Cake
-      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
-      // Enter Favorite Kids Book
-      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
-      // Enter Favorite Other
-      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
-      // Click Submit button
-      element(by.css('button[type=submit]')).click();
-      // Password Error
-      expect(element.all(by.css('strong')).get(0).getText()).toBe('Username already exists');
-    });
+  it('Should report Email already exists', function () {
+    // Make sure user is signed out first
+    signout();
+    // Signup
+    browser.get('http://localhost:3000/settings/profile');
+    // Enter First Name
+    element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
+    // Enter Last Name
+    element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
+    // Enter Email
+    element(by.model('user.email')).sendKeys(user1.email);
+    // Enter Username
+    element(by.model('user.username')).sendKeys(testuser_admin.username);
+    // Enter Favorite Color
+    element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+    // Enter Favorite Animal
+    element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+    // Enter Favorite Cake
+    element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+    // Enter Favorite Kids Book
+    element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+    // Enter Favorite Other
+    element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+    // Click Submit button
+    element(by.css('button[type=submit]')).click();
+    // Password Error
+    expect(element.all(by.css('strong')).get(0).getText()).toBe('Email already exists');
+  });
+
+  it('Should report Username already exists', function () {
+    // Signup
+    browser.get('http://localhost:3000/settings/profile');
+    // Enter First Name
+    element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
+    // Enter Last Name
+    element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
+    // Enter Email
+    element(by.model('user.email')).sendKeys(testuser_admin.email);
+    // Enter Username
+    element(by.model('user.username')).sendKeys(user1.username);
+    // Enter Favorite Color
+    element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+    // Enter Favorite Animal
+    element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+    // Enter Favorite Cake
+    element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+    // Enter Favorite Kids Book
+    element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+    // Enter Favorite Other
+    element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+    // Click Submit button
+    element(by.css('button[type=submit]')).click();
+    // Password Error
+    expect(element.all(by.css('strong')).get(0).getText()).toBe('Username already exists');
+  });
+  */
 
   });
-*/
 
 });
