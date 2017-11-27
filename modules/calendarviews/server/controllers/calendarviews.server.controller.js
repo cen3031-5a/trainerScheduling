@@ -35,7 +35,7 @@ exports.create = function(req, res) {
 
       // setup e-mail data with unicode symbols
     var mailOptions = {
-      to: '5616854935@txt.att.net',
+      to: '',
       from: 'AllegianceAthleticsEmail@gmail.com',
       subject: 'Hello', // Subject line
       text: 'Hello world ?', // plaintext body
@@ -50,7 +50,7 @@ exports.create = function(req, res) {
       console.log('Message sent: ' + info.response);
     });
   }
-  email();
+  //email();
 
   calendarview.save(function(err) {
     if (err) {

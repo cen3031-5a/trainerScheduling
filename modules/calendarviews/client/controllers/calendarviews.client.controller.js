@@ -19,6 +19,7 @@
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         vm.calendarview.$remove();
+        //$state.go('calendarviews.list')
         $window.location.href = "/calendarviews";
       }
     }
@@ -27,7 +28,7 @@
     function save(isValid) {
       //console.log(vm.calendarview.start);
       //alert(Date.parse('11/10/2017 1:13 PM').toISOString());
-      //vm.calendarview.repeat='12/15/2017 1:13 PM';
+      vm.calendarview.repeat='12/15/2017 1:13 PM';
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'vm.form.calendarviewForm');
@@ -42,7 +43,7 @@
           vm.calendarview.$save(successCallback, errorCallback);
         }
       }
-      /*else{
+      else{
         // TODO: move create/update logic to service
         var startTmp =vm.calendarview.start;
         var endTmp = vm.calendarview.end;
@@ -56,18 +57,21 @@
             vm.calendarview.$update(successCallback, errorCallback);
           } else {
             vm.calendarview.$save(successCallback, errorCallback);
+            console.log(vm.calendarview._id+" "+tmp + " "+startTmp +" "+ endTmp + " "+vm.calendarview.start+ " "+vm.calendarview.end);
+
           }
-          console.log(vm.calendarview._id+" "+tmp + " "+startTmp +" "+ endTmp);
+          //console.log(vm.calendarview._id+" "+tmp + " "+startTmp +" "+ endTmp);
           tmp = tmp.next().week();
           startTmp = tmp.toString('M/d/yyyy h:mm tt');
           endTmp = Date.parse(endTmp).next().week().toString('M/d/yyyy h:mm tt');
 
         }
-      }*/
+      }
 
 
       function successCallback(res) {
-        $state.go('calendarviews.list');
+        //$state.go('calendarviews.list');
+        console.log("hi");
         //$window.location.href="/calendarviews";
       }
 
