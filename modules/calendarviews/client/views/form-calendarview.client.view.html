@@ -153,6 +153,16 @@
                   $("#end").trigger("input");
                   $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
                 });
+                $('#datetimepicker3').datetimepicker({
+                  sideBySide: true,
+                  useCurrent: false //Important! See issue #1075
+                });
+                $("#repeat").trigger("input");
+                $("#datetimepicker3").on("dp.change", function(e) {
+                  $("#datetimepicker3").trigger("input");
+                  $("#repeat").trigger("input");
+                  $('#datetimepicker1').data("DateTimePicker").maxDate(e.date);
+                });
               });
             </script>
           </div>
