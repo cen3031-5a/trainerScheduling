@@ -467,11 +467,10 @@ describe('Users E2E Tests:', function () {
       browser.get('http://localhost:3000/settings/password');
       // Enter Current Password
       element(by.model('passwordDetails.currentPassword')).sendKeys(testuser_admin.password);
-      var possibleNewPassword = 'P@$$w0rds!!';
       // Enter New Password
-      element(by.model('passwordDetails.newPassword')).sendKeys(possibleNewPassword);
+      element(by.model('passwordDetails.newPassword')).sendKeys('P@$$w0rds!!');
       // Verify New Password
-      element(by.model('passwordDetails.verifyPassword')).sendKeys(possibleNewPassword);
+      element(by.model('passwordDetails.verifyPassword')).sendKeys('P@$$w0rds!');
       // Click Submit button
       element(by.css('button[type=submit]')).click();
       // Password Errors
@@ -482,23 +481,37 @@ describe('Users E2E Tests:', function () {
     it('Should change the password to - "P@$$w0rds!!"', function () {
       browser.get('http://localhost:3000/settings/password');
       // Enter Current Password
-      element(by.model('passwordDetails.currentPassword')).sendKeys(user1.password);
+      element(by.model('passwordDetails.currentPassword')).sendKeys(testuser_admin.password);
       // Enter New Password
-      var newPassword = 'P@$$w0rds!!';
       element(by.model('passwordDetails.newPassword')).sendKeys(newPassword);
       // Verify New Password
       element(by.model('passwordDetails.verifyPassword')).sendKeys(newPassword);
       // Click Submit button
       element(by.css('button[type=submit]')).click();
+      browser.sleep(10000);
       // Password Changed
-      //TODO: check why this test fails.
-      var text = element.all(by.css('.text-success')).get(0).getText();
-      console.log(text);
+      expect(element.all(by.id('.text-success')).get(0).getText()).toBe('Password Changed Successfully');
+    });
+
+    it('Should change the password to previous password', function () {
+      browser.get('http://localhost:3000/settings/password');
+      // Enter Current Password
+      element(by.model('passwordDetails.currentPassword')).sendKeys(newPassword);
+      // Enter New Password
+      element(by.model('passwordDetails.newPassword')).sendKeys(testuser_admin.password);
+      // Verify New Password
+      element(by.model('passwordDetails.verifyPassword')).sendKeys(testuser_admin.password);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      browser.sleep(10000);
+      // Password Changed
       expect(element.all(by.id('.text-success')).get(0).getText()).toBe('Password Changed Successfully');
     });
     */
+
   });
 
+  /*
   describe('Edit Profile', function () {
     it('Should report missing first name', function () {
       browser.get('http://localhost:3000/settings/profile');
@@ -707,5 +720,6 @@ describe('Users E2E Tests:', function () {
     });
 
   });
+*/
 
 });
