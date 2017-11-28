@@ -12,7 +12,17 @@ var path = require('path'),
   async = require('async'),
   crypto = require('crypto');
 
-var smtpTransport = nodemailer.createTransport(config.mailer.options);
+
+// using MailGun as service
+// Can easily create an account and set up, up to 100 recovery emails a month
+var smtpTransport = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'AllegianceAthleticsEmail@gmail.com',
+    //shove this into a node env var
+    pass: '1q!Q1q!Q1q'
+  }
+});
 
 /**
  * Forgot for reset password (forgot POST)
@@ -73,7 +83,7 @@ exports.forgot = function (req, res, next) {
     function (emailHTML, user, done) {
       var mailOptions = {
         to: user.email,
-        from: config.mailer.from,
+        from: 'AllegianceAthleticsEmail@gmail.com',
         subject: 'Password Reset',
         html: emailHTML
       };

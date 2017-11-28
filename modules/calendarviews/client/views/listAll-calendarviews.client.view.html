@@ -1,0 +1,30 @@
+<section>
+  <div ng-controller=CalendarviewsListController id="app">
+
+    <div class="" style="text-align:center;" ng-if="vm.calendarviews.length">
+      <h4>All Events</h4>
+      <div class='row'>
+        <input type="text" ng-model="title_input.username" placeholder="Search Keywords..." class="form-control">
+      </div>
+      <div class='row'>
+        <table class="table">
+          <tr>
+            <th style="text-align:center;">CLASS</th>
+            <th style="text-align:center;">TRAINER</th>
+            <th style="text-align:center;">START TIME</th>
+            <th style="text-align:center;">END TIME</th>
+          </tr>
+          <tr ng-repeat="calendar in vm.calendarviews | orderBy:'start' | filter:title_input.username" ng-if="(calendar.trainer==vm.authentication.user.username || vm.authentication.user.roles=='admin')" ui-sref="calendarviews.view({ calendarviewId: calendar._id })">
+            <td>{{calendar.title}}</td>
+            <td>{{calendar.trainerName}}</td>
+            <td>{{calendar.start}}</td>
+            <td>{{calendar.end}}</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="" style="text-align:center;" ng-if="!vm.calendarviews.length">
+      <h4>No Events</h4>
+    </div>
+  </div>
+</section>

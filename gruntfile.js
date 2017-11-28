@@ -1,5 +1,8 @@
 'use strict';
 
+//These two lines help testing
+//process.env.NODE_ENV = 'test';
+//process.env.MONGOLAB_URI = 'mongodb://Jgruber27:jamesgruber1227@ds141175.mlab.com:41175/project-test';
 /**
  * Module dependencies.
  */
@@ -9,6 +12,7 @@ var _ = require('lodash'),
   testConfig = require('./config/env/test'),
   fs = require('fs'),
   path = require('path');
+  //server = require('./server');
 
 module.exports = function (grunt) {
   // Project Configuration
@@ -297,8 +301,10 @@ module.exports = function (grunt) {
     var path = require('path');
     var app = require(path.resolve('./config/lib/app'));
     var server = app.start(function () {
+      
       done();
     });
+
   });
 
   // Lint CSS and JavaScript files.

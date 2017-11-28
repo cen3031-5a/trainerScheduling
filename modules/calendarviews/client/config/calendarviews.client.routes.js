@@ -20,7 +20,25 @@
         controller: 'CalendarviewsListController',
         controllerAs: 'vm',
         data: {
-          pageTitle: 'Calendarviews List'
+          pageTitle: 'Calendar'
+        }
+      })
+      .state('calendarviews.listAll', {
+        url: '/listAll',
+        templateUrl: 'modules/calendarviews/client/views/listAll-calendarviews.client.view.html',
+        controller: 'CalendarviewsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Calendar'
+        }
+      })
+      .state('calendarviews.requestOff', {
+        url: '/requestOff',
+        templateUrl: 'modules/calendarviews/client/views/requestList-calendarviews.client.view.html',
+        controller: 'CalendarviewsListController',
+        controllerAs: 'vm',
+        data: {
+          pageTitle: 'Request Off'
         }
       })
       .state('calendarviews.create', {
@@ -32,8 +50,8 @@
           calendarviewResolve: newCalendarview
         },
         data: {
-          roles: ['user', 'admin'],
-          pageTitle: 'Calendarviews Create'
+          roles: ['user','admin'],
+          pageTitle: 'Create Event'
         }
       })
       .state('calendarviews.edit', {
@@ -45,8 +63,21 @@
           calendarviewResolve: getCalendarview
         },
         data: {
+          roles: ['user','admin'],
+          pageTitle: 'Edit Calendarview {{ calendarviewResolve.title }}'
+        }
+      })
+      .state('calendarviews.request', {
+        url: '/:calendarviewId/request',
+        templateUrl: 'modules/calendarviews/client/views/request-calendarview.client.view.html',
+        controller: 'CalendarviewsController',
+        controllerAs: 'vm',
+        resolve: {
+          calendarviewResolve: getCalendarview
+        },
+        data: {
           roles: ['user', 'admin'],
-          pageTitle: 'Edit Calendarview {{ calendarviewResolve.name }}'
+          pageTitle: 'Request Off {{ calendarviewResolve.title }}'
         }
       })
       .state('calendarviews.view', {
@@ -58,7 +89,7 @@
           calendarviewResolve: getCalendarview
         },
         data: {
-          pageTitle: 'Calendarview {{ calendarviewResolve.name }}'
+          pageTitle: 'Calendarview {{ calendarviewResolve.title }}'
         }
       });
   }
