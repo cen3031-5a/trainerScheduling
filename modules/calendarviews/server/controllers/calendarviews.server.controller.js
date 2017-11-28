@@ -13,8 +13,46 @@ var path = require('path'),
  * Create a Calendarview
  */
 exports.create = function(req, res) {
+
+  //can use this in update too
   var calendarview = new Calendarview(req.body);
   calendarview.user = req.user;
+  // Generate test SMTP service account from ethereal.email
+  // Only needed if you don't have a real mail account for testing
+
+  //trying to email each time a new event is made
+  function email(){
+    var nodemailer = require('nodemailer');
+
+    var smtpTransport = nodemailer.createTransport({
+      service: 'Gmail',
+      auth: {
+        user: 'AllegianceAthleticsEmail@gmail.com',
+        //shove this into a node env var
+        pass: '1q!Q1q!Q1q'
+      }
+    });
+
+      // setup e-mail data with unicode symbols
+    var mailOptions = {
+      //the to can also be sent as a text if needed just need to follow the right
+      //format that texts you instad of email.
+      to: calendarview.email,
+      from: 'AllegianceAthleticsEmail@gmail.com',
+      subject: 'Class Updates', // Subject line
+      text: 'Hello. You have a class at '+calendarview.start+'. Please enter into your own calendar.', // plaintext body
+      html: '' // html body
+    };
+
+    // send mail with defined transport object
+    smtpTransport.sendMail(mailOptions, function(error, info){
+      if(error){
+        return console.log(error);
+      }
+      console.log('Message sent: ' + info.response);
+    });
+  }
+  email();
 
   calendarview.save(function(err) {
     if (err) {

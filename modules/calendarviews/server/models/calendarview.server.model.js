@@ -22,15 +22,19 @@ var CalendarviewSchema = new Schema({
     required: 'Please fill in trainer',
     trim: true
   },
+  trainerName: {
+    type: String,
+    trim: true
+  },
   start: {
-    type: Date,
-    default: Date.now,
+    type: String,
+    default: '',
     required: 'Please fill in start',
     trim: true
   },
   end: {
-    type: Date,
-    default: Date.now,
+    type: String,
+    default: '',
     required: 'Please fill in end',
     trim: true
   },
@@ -40,8 +44,17 @@ var CalendarviewSchema = new Schema({
     trim: true
   },
   color: String,
-  details: String,
-  requestOff: String,
+  details: {
+    type: String,
+    default: 'Not Available',
+    trim: true
+  },
+  email: String,
+  requestOff: {
+    type: String,
+    default: '',
+    trim: true
+  },
   requestOffBool: {
     type : Boolean,
     default: false,

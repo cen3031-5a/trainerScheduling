@@ -2,13 +2,11 @@
   <div class="page-header">
     <h1 ng-bind="vm.availability.monday"></h1>
   </div>
-  <div class="pull-right"
-       ng-show="vm.availability.isCurrentUserOwner">
-    <a class="btn btn-primary"
-       ui-sref="availabilities.edit({ availabilityId: vm.availability._id })">
+  <div class="pull-right" ng-show="vm.availability.isCurrentUserOwner">
+    <a class="btn btn-primary" ui-sref="availabilities.edit({ availabilityId: vm.availability._id })">
       <i class="glyphicon glyphicon-edit"></i>
     </a>
-    <a class="btn btn-primary" ng-click="vm.remove()">
+    <a class="btn btn-primary" ng-click="vm.remove()" id="remButton">
       <i class="glyphicon glyphicon-trash"></i>
     </a>
   </div>
@@ -23,4 +21,9 @@
     </em>
   </small>
   <p class="lead" ng-bind="vm.availability.content"></p>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      document.getElementById("remButton").click();
+    });
+  </script>
 </section>

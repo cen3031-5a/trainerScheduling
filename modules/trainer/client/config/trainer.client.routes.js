@@ -13,6 +13,15 @@
     $stateProvider
       .state('home', {
         url: '/',
+        templateUrl: 'modules/trainer/client/views/homeadmin.client.view.html',
+        controller: 'TrainerListController',
+        controllerAs: 'vm',
+        data: {
+          roles: ['user', 'admin']
+        }
+      })
+      .state('homeadmin', {
+        url: '/homeadmin',
         templateUrl: 'modules/trainer/client/views/home.client.view.html',
         controller: 'TrainerListController',
         controllerAs: 'vm',
@@ -63,5 +72,3 @@
     return new TrainerService();
   }
 }());
-
-

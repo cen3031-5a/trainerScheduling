@@ -10,13 +10,19 @@
 
   function menuConfig(menuService) {
     // Set top bar menu items
-    menuService.addMenuItem('topbar', {
-      title: 'Home',
-      state: 'home',
-      //type: 'dropdown',
-      roles: ['user', 'admin']
-    });
-
+    // menuService.addMenuItem('topbar', {
+    //   title: 'Home',
+    //   state: 'home',
+    //   //type: 'dropdown',
+    //   roles: ['user']
+    // });
+    //
+    // menuService.addMenuItem('topbar', {
+    //   title: 'Home',
+    //   state: 'homeadmin',
+    //   //type: 'dropdown',
+    //   roles: ['admin']
+    // });
 
     // Add the dropdown list item
     /*menuService.addSubMenuItem('topbar', 'trainer', {
