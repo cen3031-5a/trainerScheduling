@@ -1,9 +1,9 @@
 <section>
   <div ng-controller=CalendarviewsListController id="app">
     <script>
-      var timer = setInterval(checkDataReady, 100);
+      var timer = setInterval(checkDataReadyCal, 100);
 
-      function checkDataReady() {
+      function checkDataReadyCal() {
         var data = angular.element(document.getElementById('app')).scope().data;
         //var userData = angular.element(document.getElementById('app')).scope().userData;
         if (data) {
