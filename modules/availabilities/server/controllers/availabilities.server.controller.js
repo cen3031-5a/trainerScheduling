@@ -15,6 +15,7 @@ var path = require('path'),
 exports.create = function(req, res) {
   var availability = new Availability(req.body);
   availability.user = req.user;
+
   availability.save(function(err) {
     if (err) {
       return res.status(400).send({
@@ -80,31 +81,15 @@ exports.delete = function(req, res) {
  * List of Availabilities
  */
 exports.list = function(req, res) {
-  //alert(req.user);
-  if (req.user.roles.toString()==='admin'){
-    Availability.find().sort('-created').populate('user', 'displayName').exec(function(err, availabilities) {
-      if (err) {
-        return res.status(400).send({
-          message: errorHandler.getErrorMessage(err)
-        });
-      } 
-      else {
-        res.jsonp(availabilities);
-      }
-    });
-  }
-  else {
-    Availability.find({ 'user': req.user.id }).sort('-created').populate('user', 'displayName').exec(function(err, availabilities) {
-      if (err) {
-        return res.status(400).send({
-          message: errorHandler.getErrorMessage(err)
-        });
-      } 
-      else {
-        res.jsonp(availabilities);
-      }
-    });
-  }
+  Availability.find().sort('-created').populate('user', 'displayName').exec(function(err, availabilities) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(availabilities);
+    }
+  });
 };
 
 /**

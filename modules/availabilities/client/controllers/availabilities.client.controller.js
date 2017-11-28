@@ -18,7 +18,6 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
-    $scope.newItem = null;
     //vm.currentuser = Authentication.currentuser;
 
     $scope.toDelete = function (id) {
@@ -26,14 +25,6 @@
         availabilityId: id
       });
     };
-    $scope.toDeleteNoWin = function (id) {
-      vm.availability._id = id;
-      vm.availability.$remove();
-      vm.availability._id = null;
-    };
-    // $scope.getNewItem = function(){
-    //   return newItem;
-    // }; 
     // Remove existing Availability
     function remove() {
       vm.availability.$remove($state.go('availabilities.create'));
@@ -58,6 +49,9 @@
       }
 
       function successCallback(res) {
+        // $state.go('availabilities.view', {
+        //   availabilityId: res._id
+        // });
       }
 
       function errorCallback(res) {

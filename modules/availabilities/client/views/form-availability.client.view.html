@@ -2,27 +2,25 @@
   <h2 align="center">{{vm.authentication.user.firstName}} {{vm.authentication.user.lastName}} Update Availability</h2>
 <script>
   var timer = setInterval(checkDataReady, 100);
-  var newTimer;
-  var data;
-  var mode="Add or Delete Mode";
   function checkDataReady(){
-        angular.element(document.getElementById('app')).scope().newInfo();
-        data =angular.element(document.getElementById('app')).scope().data;
+        
+        var data =angular.element(document.getElementById('app')).scope().data;
         var userInfo =angular.element(document.getElementById('app')).scope().user;
   if (data&&userInfo&&(user.firstName!=null)){
     clearInterval(timer);
     var name = user.firstName+' '+user.lastName;
     var preData = data;
-    // for(var i = 0;i<data.length;i++){
+    for(var i = 0;i<data.length;i++){
+      //alert("i is"+i+"and"+data[i].trainer+" vs "+name);
 
-    //   if(name!=data[i].trainer){
-    //     data.splice(i,1);
-    //   }
-    // }
-    //$(document).ready(function() {
+      if(name!=data[i].trainer){
+        data.splice(i,1);
+      }
+    }
+      $(document).ready(function() {
         console.log(data);
 
-      $('#calendar').fullCalendar({
+            $('#calendar').fullCalendar({
       header: {
         left: '',
         center: '',
@@ -36,10 +34,6 @@
       columnFormat: "ddd",
       allDaySlot: false,
       select: function(start, end) {
-        if(mode=="Delete Mode"){
-              alert("Entering Add Mode, you must click the time again to create");
-              window.location.reload(true); 
-        }
         var title = name+" Available";//prompt('Event Title:');
         var eventData;
         if (title) {
@@ -48,7 +42,7 @@
             start: start,
             end: end
           };
-          // stick? = true
+          $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
           //data.push(eventData);
           document.getElementById("eventForm").title.value = name+" Available";
           $("#title").trigger("input");
@@ -61,32 +55,16 @@
           document.getElementById("eventForm").details.value = 'No details';
           $("#details").trigger("input");
           document.getElementById("submitButton").click();
-          $('#calendar').fullCalendar('renderEvent', eventData, true); 
-
 
         }
         $('#calendar').fullCalendar('unselect');
 
       },
       eventClick: function(calEvent, jsEvent, view) {
-          //if (confirm('Are you sure you want to delete this availability?')){
-              var foundID=false;
-              for(var i=0;i<data.length;i++){
-                if(data[i]._id==calEvent._id){
-                  foundID=true;
-                }
-              }
-              if(foundID){
-                angular.element(document.getElementById('app')).scope().toDeleteNoWin(calEvent._id);
-                $('#calendar').fullCalendar('removeEvents',calEvent._id);
-              }
-              else{
-                alert("Entering Delete Mode, you must click the time again to delete");
-                window.location.reload(true); 
-              }
-              mode = "Delete Mode";
-              document.getElementById("modeText").innerHTML = mode;
-          //}
+          if (confirm('Are you sure you want to delete this availability?')){
+              angular.element(document.getElementById('app')).scope().toDelete(calEvent._id);
+              $('#calendar').fullCalendar('removeEvents',calEvent._id);
+          }
       },
       editable: false,
       eventLimit: true,
@@ -96,15 +74,8 @@
 
 
 
-      //});
+      });
     }
-    }
-    function clearAll(){
-      for(var i = 0;i<data.length;i++){
-              angular.element(document.getElementById('app')).scope().toDeleteNoWin(data[i]._id);
-              window.location.reload(true); 
-
-      }
     }
   </script>
   <style>
@@ -118,10 +89,24 @@
       margin: 0 auto;
     }
   </style>
-<div align="center">
-<button  onclick="clearAll()" style='display: inline-block; background-color: red; color:white;'>Clear All</button>
-<h4  id="modeText" style='display: inline-block;''>Add or Delete Mode</h4>
-</div>
+  <!--div class="alert alert-warning text-center" ng-if="vm.availabilities.$resolved && !vm.availabilities.length">
+    No Events yet, do you want to <a ui-sref="availabilities.create">create one</a>?
+  </div>
+  <!div class="list-group">
+    <a ng-repeat="availability in vm.availabilities"
+       ui-sref="availabilities.view({ availabilityId: availability._id })"
+       class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="availability.created | date:'mediumDate'"></span>
+        by
+        <span ng-if="availability.user" ng-bind="availability.user.displayName"></span>
+        <span ng-if="!availability.user">Deleted User</span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="availability.title"></h4>
+    </a>
+  </div-->
+
   <div class="col-lg-9" >
     <div id='calendar'></div>
   </div>
