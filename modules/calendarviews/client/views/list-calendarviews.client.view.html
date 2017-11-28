@@ -42,6 +42,30 @@
               events: dataCal,
             });
           });
+
+          var c = new Date();
+          var nhour = c.getHours();
+          var nmin = c.getMinutes();
+          // var cellNum = data.user.cellPhone;
+          var sour = data;
+          var smin = data.calendarviews;
+
+          if(sour - nhour <= 2) {
+            console.log("IT IS TIME TO SEND A MESSAGE!");
+          }
+          else {
+            console.log(c);
+            console.log(nhour);
+            console.log(nmin);
+            // console.log(cellNum);
+            console.log(sour);
+            console.log(smin);
+            console.log(data.start);
+            console.log(data.start.getHours());
+            console.log(data.start.getMinutes());
+            console.log("Please let this work!");
+          }
+
         }
       }
       //setTimeout(checkDataReady,1000);
@@ -64,6 +88,7 @@
     <div class="col-md-9">
       <div id='calendar-list'></div>
     </div>
+
     <div class="col-md-3" style="text-align:center;" ng-if="vm.calendarviews.length">
       <h4>Next Seven Days</h4>
       <div class='row'>

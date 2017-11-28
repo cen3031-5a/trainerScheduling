@@ -53,4 +53,65 @@
     };
 
   }
+
+  function checkTime($scope, $stateParams, $state, $window, Authentication, CalendarviewsService) {
+    var c = new Date();
+    var nhour = c.getHours();
+    var nmin = c.getMinutes();
+    var sour = $scope.data;
+    var smin = $scope.calendarviews.start;
+
+    if(sour - nhour <= 2) {
+      console.log("IT IS TIME TO SEND A MESSAGE!");
+    }
+    else {
+      console.log(c);
+      console.log(nhour);
+      console.log(nmin);
+      console.log(sour);
+      console.log(smin);
+      console.log($scope.data);
+      console.log($scope.start.getHours());
+      console.log($scope.start.getMinutes());
+      console.log("Please let this work!");
+    }
+  }
 }());
+
+// (function() {
+//   'use strict';
+
+//   angular.module('calendarviews').controller('CalendarviewsListController', CalendarviewsListController);
+
+//   CalendarviewsListController.$inject = [
+//     '$scope',
+//     '$stateParams',
+//     '$state',
+//     '$window',
+//     'Authentication',
+//     'CalendarviewsService'
+//   ];
+//   function checkTime($scope, $stateParams, $state, $window, Authentication, CalendarviewsService) {
+//     var vm = this;
+//     var c = new Date();
+//     var nhour  = c.getHours();
+//     var nmin   = c.getMinutes();
+//     var sour = $scope.calendarviews.start;
+//     var smin = $scope.calendarviews.start;
+
+//     if(sour - nhour <= 2) {
+//       console.log("IT IS TIME TO SEND A MESSAGE!");
+//     }
+//     else {
+//       console.log(c);
+//       console.log(nhour);
+//       console.log(nmin);
+//       console.log(sour);
+//       console.log(smin);
+//       console.log(calendarviews.start);
+//       console.log(calendarviews.start.getHours());
+//       console.log(calendarviews.start.getMinutes());
+//       console.log("Please let this work!");
+//     }
+//   }
+// }());
