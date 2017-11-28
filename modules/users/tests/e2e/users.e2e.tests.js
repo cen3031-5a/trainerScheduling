@@ -688,7 +688,7 @@ describe('Users E2E Tests:', function () {
       expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Username is required.');
     });
 
-    it('Should report Email already exists', function () {
+    it('Should report that profile was successfully edited', function () {
       //Clear fields first.
       clearProfileFields();
       browser.waitForAngular();
@@ -713,35 +713,7 @@ describe('Users E2E Tests:', function () {
       // Click Submit button
       element(by.css('button[type=submit]')).click();
       // Password Error
-      expect(element.all(by.css('strong')).get(0).getText()).toBe('Email already exists');
-    });
-
-    it('Should report Username already exists', function () {
-      //Clear fields first.
-      clearProfileFields();
-      browser.waitForAngular();
-      // Enter First Name
-      element(by.model('user.firstName')).sendKeys(testuser_admin.firstName);
-      // Enter Last Name
-      element(by.model('user.lastName')).sendKeys(testuser_admin.lastName);
-      // Enter Email
-      element(by.model('user.email')).sendKeys(testuser_admin.email);
-      // Enter Username
-      element(by.model('user.username')).sendKeys(user1.username);
-      // Enter Favorite Color
-      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
-      // Enter Favorite Animal
-      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
-      // Enter Favorite Cake
-      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
-      // Enter Favorite Kids Book
-      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
-      // Enter Favorite Other
-      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
-      // Click Submit button
-      element(by.css('button[type=submit]')).click();
-      // Password Error
-      expect(element.all(by.css('strong')).get(0).getText()).toBe('Username already exists');
+      expect(element.all(by.css('strong')).get(0).getText()).toBe('Profile Saved Successfully');
     });
 
   });
