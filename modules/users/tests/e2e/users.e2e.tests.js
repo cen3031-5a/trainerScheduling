@@ -40,7 +40,12 @@ describe('Users E2E Tests:', function () {
     favoriteAnimal: 'dog',
     favoriteCake: 'strawberry cake',
     favoriteKidsBook: 'War and Peace',
-    favoriteOther: 'reading'
+    favoriteOther: 'reading',
+    position: 'instructor',
+    birthday: '10/01/2000',
+    officialTitle: 'aerobics instructor',
+    miscNotes: 'I love dancing',
+    reasonToWorkAtGym: 'love helping others'
   };
 
   var user_staff = {
@@ -73,7 +78,6 @@ describe('Users E2E Tests:', function () {
     // Delete all cookies
     browser.driver.manage().deleteAllCookies();
   };
-
 
     /*describe('Signup Validation', function () {
       it('Should report missing first name', function () {
@@ -715,6 +719,719 @@ describe('Users E2E Tests:', function () {
       // Password Error
       expect(element.all(by.css('strong')).get(0).getText()).toBe('Profile Saved Successfully');
     });
+
+  });
+
+  describe('Admin Signup Validation', function () {
+
+    var clearAdminSignUpFields = function () {
+      browser.get('http://localhost:3000/admin/adminSignup');
+      element(by.model('credentials.username')).clear();
+      element(by.model('credentials.password')).clear();
+    };
+
+    it('Should report missing first name', function () {
+      //Sign up
+      signin(testuser_admin);
+      browser.waitForAngular();
+      //Clear username and password fields.
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.id('username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // First Name Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('First name is required.');
+    });
+
+    /*
+
+    it('Should report missing last name', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Last Name Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Last name is required.');
+    });
+
+    it('Should report missing email address', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Email address error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Email address is required.');
+    });
+
+    it('Should report invalid email address - "123"', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys('123');
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Email address error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Email address is invalid.');
+    });
+
+
+     //Note: 123@123 is a valid email adress according to HTML5.
+     //However, 123@123@123 is an invalid email address.
+    it('Should report invalid email address - "123@123@123"', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys('123@123@123');
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Email address error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Email address is invalid.');
+    });
+
+    it('Should report missing username', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Username Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Username is required.');
+    });
+
+    it('Should report a password with less than 10 characters long - "P@$$w0rd!"', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys('P@$$w0rd!');
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Password Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('The password must be at least 10 characters long.');
+    });
+
+    it('Should report a password with greater than 128 characters long.', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(')!/uLT="lh&:`6X!]|15o!$!TJf,.13l?vG].-j],lFPe/QhwN#{Z<[*1nX@n1^?WW-%_.*D)m$toB+N7z}kcN#B_d(f41h%w@0F!]igtSQ1gl~6sEV&r~}~1ub>If1c+');
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Password Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('The password must be fewer than 128 characters.');
+    });
+
+    it('Should report a password with more than 3 or more repeating characters - "P@$$w0rd!!!"', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      browser.get('http://localhost:3000/admin/adminSignup');
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys('P@$$w0rd!!!');
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Password Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('The password may not contain sequences of three or more repeated characters.');
+    });
+
+    it('Should report a password with no uppercase letters - "p@$$w0rd!!"', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys('p@$$w0rd!!');
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Password Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('The password must contain at least one uppercase letter.');
+    });
+
+    it('Should report a password with less than one number - "P@$$word!!"', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys('P@$$word!!');
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Password Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('The password must contain at least one number.');
+    });
+
+    it('Should report a password with less than one special character - "Passw0rdss"', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys('Passw0rdss');
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Password Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('The password must contain at least one special character.');
+    });
+
+    it('Should report missing position', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Position Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Position at gym required.');
+    });
+
+    it('Should report missing birthday', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Birthday Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Birthday required.');
+    });
+
+    it('Should report missing official title', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Official Title Error
+      expect(element.all(by.css('.error-text')).get(0).getText()).toBe('Official Title required.');
+    });
+
+    it('Should Successfully register new admin user', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type="submit"]')).click();
+      expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/');
+    });
+
+    it('Should report Email already exists', function () {
+      // Make sure user is signed out first
+      signout();
+      // Signup
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(user1.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(testuser_admin.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Password Error
+      expect(element.all(by.css('strong')).get(0).getText()).toBe('Email already exists');
+    });
+
+    it('Should report Username already exists', function () {
+      clearAdminSignUpFields();
+      browser.waitForAngular();
+      browser.get('http://localhost:3000/admin/adminSignup');
+      // Enter First Name
+      element(by.model('credentials.firstName')).sendKeys(testuser_admin.firstName);
+      // Enter Last Name
+      element(by.model('credentials.lastName')).sendKeys(testuser_admin.lastName);
+      // Enter Email
+      element(by.model('credentials.email')).sendKeys(testuser_admin.email);
+      // Enter Username
+      element(by.model('credentials.username')).sendKeys(user1.username);
+      // Enter Password
+      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      // Enter Position
+      element(by.model('user.position')).sendKeys(testuser_admin.position);
+      // Enter Birthday
+      element(by.model('user.birthday')).sendKeys(testuser_admin.birthday);
+      // Enter Official Title
+      element(by.model('user.officialTitle')).sendKeys(testuser_admin.officialTitle);
+      // Enter Miscellaneous Notes
+      element(by.model('user.miscNotes')).sendKeys(testuser_admin.miscNotes);
+      // Enter Favorite Color
+      element(by.model('user.favoriteColor')).sendKeys(testuser_admin.favoriteColor);
+      // Enter Favorite Animal
+      element(by.model('user.favoriteAnimal')).sendKeys(testuser_admin.favoriteAnimal);
+      // Enter Favorite Cake
+      element(by.model('user.favoriteCake')).sendKeys(testuser_admin.favoriteCake);
+      // Enter Favorite Kids Book
+      element(by.model('user.favoriteKidsBook')).sendKeys(testuser_admin.favoriteKidsBook);
+      // Enter Favorite Reason To Work At Gym
+      element(by.model('user.favoriteReasonToWorkAtGym')).sendKeys(testuser_admin.reasonToWorkAtGym);
+      // Enter Favorite Other
+      element(by.model('user.favoriteOther')).sendKeys(testuser_admin.favoriteOther);
+      // Click Submit button
+      element(by.css('button[type=submit]')).click();
+      // Password Error
+      expect(element.all(by.css('strong')).get(0).getText()).toBe('Username already exists');
+    });
+
+    */
 
   });
 
