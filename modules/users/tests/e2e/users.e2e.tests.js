@@ -27,8 +27,6 @@ describe('Users E2E Tests:', function () {
     favoriteOther: 'watching movies'
   };
 
-  var newPassword = 'P@$$w0rds!!';
-
   var testuser_admin = {
     firstName: 'test',
     lastName: 'user',
