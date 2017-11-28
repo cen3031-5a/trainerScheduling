@@ -19,7 +19,7 @@
       //alert(result[0]._id._id);
       //alert(result[0]._id);
     //}
-          $scope.data = result;
+      $scope.data = result;
 
     });
 
