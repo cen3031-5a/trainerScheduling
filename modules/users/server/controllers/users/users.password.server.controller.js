@@ -20,7 +20,7 @@ var smtpTransport = nodemailer.createTransport({
   auth: {
     user: 'AllegianceAthleticsEmail@gmail.com',
     //shove this into a node env var
-    pass: G_PASS
+    pass: process.env.G_PASS
   }
 });
 
