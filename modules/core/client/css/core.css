@@ -147,6 +147,10 @@ a:hover .header-profile-image {
   color: #DE6E00;
 }
 
+.list-group-item {
+  border: 0;
+}
+
 .btn-primary{
   background: #f99b3e; /*orange*/
   color: white;
