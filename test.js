@@ -1,5 +1,6 @@
 'use strict';
 process.env.NODE_ENV = 'test';
+process.env.MONGOLAB_URI = 'mongodb://Jgruber27:jamesgruber1227@ds141175.mlab.com:41175/project-test';
 /**
  * Module dependencies.
  */

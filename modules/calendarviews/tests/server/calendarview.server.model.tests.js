@@ -30,7 +30,8 @@ describe('Calendarview Model Unit Tests:', function() {
 
     user.save(function() {
       calendarview = new Calendarview({
-        name: 'Calendarview Name',
+        title: 'Calendarview Name',
+        trainer: 'new trainer',
         user: user
       });
 
@@ -48,7 +49,7 @@ describe('Calendarview Model Unit Tests:', function() {
     });
 
     it('should be able to show an error when try to save without name', function(done) {
-      calendarview.name = '';
+      calendarview.title = '';
 
       return calendarview.save(function(err) {
         should.exist(err);

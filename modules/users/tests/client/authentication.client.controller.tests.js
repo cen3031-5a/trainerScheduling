@@ -28,7 +28,7 @@
     // Load the main application module
     beforeEach(module(ApplicationConfiguration.applicationModuleName));
 
-    describe('Logged out user', function () {
+    /*describe('Logged out user', function () {
       // The injector ignores leading and trailing underscores here (i.e. _$httpBackend_).
       // This allows us to inject a service but then attach it to a variable
       // with the same name as the service.
@@ -145,7 +145,7 @@
           expect(scope.error).toBe('Username already exists');
         });
       });
-    });
+    });*/
 
     describe('Logged in user', function () {
       beforeEach(inject(function ($controller, $rootScope, _$location_, _Authentication_) {

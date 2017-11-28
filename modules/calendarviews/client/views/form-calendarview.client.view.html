@@ -16,9 +16,17 @@
             document.getElementById('color').value = test[i].favoriteColor;
             document.getElementById('trainerName').value = '';
             document.getElementById('trainerName').value = test[i].displayName;
+            document.getElementById('email').value = '';
+            document.getElementById('email').value = test[i].email;
             $("#trainerName").trigger("input");
             $("#color").trigger("input");
+            $("#email").trigger("input");
+
           }
+<<<<<<< HEAD
+
+=======
+>>>>>>> bb6f72cb7bdd8b5404a321ad25dace92b544a9aa
         }
 
       }
@@ -79,8 +87,12 @@
             </div>
 
             <div class="" ng-show="1==-1">
-              <label class="control-label" for="trainerName">Name</label>
+              <label class="control-label" for="trainerName"></label>
               <input  name="trainerName" type="text" ng-model="vm.calendarview.trainerName" id="trainerName" class="form-control" placeholder="Trainer Name">
+            </div>
+            <div class="" ng-show="1==-1">
+              <label class="control-label" for="trainerName"></label>
+              <input  name="email" type="text" ng-model="vm.calendarview.email" id="email" class="form-control" placeholder="Email">
             </div>
 
             <div class="col-md-4" ng-if="vm.authentication.user.roles == 'admin'">
@@ -117,20 +129,19 @@
               </div>
             </div>
 
-            <div class='col-md-4'>
+            <!--COuld not get repeat to work-->
+            <!--div class='col-md-4'>
               <label class="control-label" for="repeat">Repeat</label>
               <div class='input-group date' ng-model="vm.calendarview.repeat" id='datetimepicker3'>
                 <input name="repeat" type='text' ng-model="vm.calendarview.repeat" id="repeat" class="form-control" placeholder="Repeat" onclick="repeatEvent()"/>
                 <span class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
                 </span>
-
               </div>
-
               <div ng-messages="vm.form.calendarviewForm.repeat.$error" role="alert">
                 <p class="help-block error-text" ng-message="required">End time is required.</p>
               </div>
-            </div>
+            </div-->
 
             <script type="text/javascript">
               $(function() {
@@ -181,7 +192,7 @@
 
         </br>
         <div class="form-group">
-          <button type="submit" class="btn btn-default">{{vm.calendarview._id ? 'Update' : 'Create'}}</button>
+          <button type="submit" id="editClassButton" class="btn btn-default">{{vm.calendarview._id ? 'Update' : 'Create'}}</button>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>

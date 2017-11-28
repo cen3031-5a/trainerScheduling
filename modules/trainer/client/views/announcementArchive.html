@@ -15,7 +15,7 @@
 <!-- List the announcements -->
 <div class="scroll">
 <div class="list-group">
-  <a ng-repeat="train in vm.trainer | filter:Announcement_Input" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">
+  <a ng-repeat="train in vm.trainer | orderBy:'created':true | filter:Announcement_Input" ui-sref="viewAnnouncement({ trainerId: train._id })" class="list-group-item">
     <small class="list-group-item-text">
       Posted on
       <span ng-bind="train.created | date:'mediumDate'"></span>

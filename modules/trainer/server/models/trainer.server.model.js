@@ -22,6 +22,11 @@ var TrainerSchema = new Schema({
     required: 'Enter The announcement',
     trim: true
   },
+  safe: {
+    type: String,
+    default: '',
+    trim: true
+  },
   created: {
     type: Date,
     default: Date.now

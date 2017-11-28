@@ -9,12 +9,7 @@ body {
   font-weight: 400;
 }
 
-h1 {
-  font-family: 'Nunito Sans', sans-serif;
-  font-weight: 700;
-}
-
-h2 {
+h1, h2, h3, h4 {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 700;
 }
@@ -57,12 +52,6 @@ a:hover .header-profile-image {
 }
 .has-error .help-inline.error-text {
   display: inline;
-}
-
-.scroll {
-  width: 1150px;
-  height: 750px;
-  overflow: auto;
 }
 
 .navbar-custom {
@@ -158,6 +147,10 @@ a:hover .header-profile-image {
   color: #DE6E00;
 }
 
+.list-group-item {
+  border: 0;
+}
+
 .btn-primary{
   background: #f99b3e; /*orange*/
   color: white;
@@ -178,9 +171,15 @@ a:hover .header-profile-image {
   border-color: #f99b3e;
   font-family: 'Nunito Sans', 'Helvetica', sans-serif;
 }
+
 .btn-file:hover{
   background: #eb9316;
   color: white;
   border-color: #eb9316;
   font-family: 'Nunito Sans', 'Helvetica', sans-serif;
+}
+
+.form-control:focus {
+  border-color: #DDD;
+  box-shadow: 0 0 5px #FF7E00;
 }

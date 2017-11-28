@@ -5,8 +5,8 @@
  */
 var should = require('should'),
   mongoose = require('mongoose'),
-  User = mongoose.model('User', new mongoose.Schema()),
-  Trainer = mongoose.model('Trainer', new mongoose.Schema());
+  User = mongoose.model('User'),
+  Trainer = mongoose.model('Trainer');
 
 /**
  * Globals

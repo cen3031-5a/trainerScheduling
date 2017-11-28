@@ -1,17 +1,17 @@
 <section>
-  <div ng-controller=CalendarviewsListController id="app">
+  <div ng-controller=CalendarviewsListController id="appCal">
     <script>
-      var timer = setInterval(checkDataReady, 100);
+      var timerCal = setInterval(checkDataReadyCal, 100);
 
-      function checkDataReady() {
-        var data = angular.element(document.getElementById('app')).scope().data;
+      function checkDataReadyCal() {
+        var dataCal = angular.element(document.getElementById('appCal')).scope().dataCal;
         //var userData = angular.element(document.getElementById('app')).scope().userData;
-        if (data) {
-          clearInterval(timer);
+        if (dataCal) {
+          clearInterval(timerCal);
           $(document).ready(function() {
-            //console.log(data);
+            //console.log(dataCal);
             //console.log(userData);
-            $('#calendar').fullCalendar({
+            $('#calendar-list').fullCalendar({
               header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -39,9 +39,33 @@
               },*/
               editable: false,
               eventLimit: true, // allow "more" link when too many events
-              events: data,
+              events: dataCal,
             });
           });
+
+          // var c = new Date();
+          // var nhour = c.getHours();
+          // var nmin = c.getMinutes();
+          // // var cellNum = data.user.cellPhone;
+          // var sour = data;
+          // var smin = data.calendarviews;
+
+          // if(sour - nhour <= 2) {
+          //   console.log("IT IS TIME TO SEND A MESSAGE!");
+          // }
+          // else {
+          //   console.log(c);
+          //   console.log(nhour);
+          //   console.log(nmin);
+          //   // console.log(cellNum);
+          //   console.log(sour);
+          //   console.log(smin);
+          //   console.log(data.start);
+          //   console.log(data.start.getHours());
+          //   console.log(data.start.getMinutes());
+          //   console.log("Please let this work!");
+          //}
+
         }
       }
       //setTimeout(checkDataReady,1000);
@@ -53,7 +77,7 @@
         font-size: 14px;
       }
 
-      #calendar {
+      #calendar-list {
         max-width: 900px;
         margin: 0 auto;
       }
@@ -62,8 +86,9 @@
     </br>
 
     <div class="col-md-9">
-      <div id='calendar'></div>
+      <div id='calendar-list'></div>
     </div>
+
     <div class="col-md-3" style="text-align:center;" ng-if="vm.calendarviews.length">
       <h4>Next Seven Days</h4>
       <div class='row'>

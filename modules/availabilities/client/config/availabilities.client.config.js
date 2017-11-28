@@ -19,7 +19,8 @@
     // Add the dropdown list item
     menuService.addSubMenuItem('topbar', 'availabilities', {
       title: 'View Availability',
-      state: 'availabilities.list'
+      state: 'availabilities.list',
+      roles: ['admin']
     });
 
     // Add the dropdown create item

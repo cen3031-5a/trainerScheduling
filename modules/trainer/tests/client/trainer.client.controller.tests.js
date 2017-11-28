@@ -50,9 +50,9 @@
       });
     }));
 
-    it('Should do some controller test', inject(function () {
+    /*it('Should do some controller test', inject(function () {
       // The test logic
       // ...
-    }));
+    }));*/
   });
 }());
