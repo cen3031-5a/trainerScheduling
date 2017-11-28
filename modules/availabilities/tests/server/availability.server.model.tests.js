@@ -30,7 +30,8 @@ describe('Availability Model Unit Tests:', function() {
 
     user.save(function() {
       availability = new Availability({
-        name: 'Availability Name',
+        title: 'Availability Name',
+        trainer: 'test trainer',
         user: user
       });
 

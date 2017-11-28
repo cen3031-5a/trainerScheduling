@@ -196,6 +196,7 @@ module.exports = function (grunt) {
         src: testAssets.tests.server,
         options: {
           print: 'detail',
+          timeout: 10000,
           coverage: true,
           require: 'test.js',
           coverageFolder: 'coverage/server',
