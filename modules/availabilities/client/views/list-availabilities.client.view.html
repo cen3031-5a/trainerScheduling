@@ -14,7 +14,7 @@
       userList = angular.element(document.getElementById('userApp')).scope().users;
       data = angular.element(document.getElementById('app')).scope().data;
 
-      if (data) {
+      if (data && userList) {
 
         clearInterval(timer);
         var nameMap = {};
