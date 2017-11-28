@@ -1,10 +1,14 @@
 <section>
 <div style="width: 100%; overflow: hidden;">
-  <div style="width: 600px; float: left;">
+  <div>
     <h1>Teaching Blogs</h1>
   </div>
+
+  <div style="float: right; z-index: 0; margin-left: 10px; margin-bottom: 10px;" ng-if="!vm.blogs.$resolved || vm.blogs.length">
+    <button class="btn btn-primary"><a style="color: #FFF;" ui-sref="blogs.create">New Entry</a></button>
+  </div>
   <!-- Search Bar-->
-  <div class="input-group add-on" style="margin-left: 620px; margin-top: 20px;">
+  <div class="input-group add-on" style="max-width: 400px; margin-bottom: 10px; float: right;">
     <input type="text" ng-model="Blog_Input.name" placeholder="Search Keywords..." class="form-control">
     <div class="input-group-btn">
       <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
