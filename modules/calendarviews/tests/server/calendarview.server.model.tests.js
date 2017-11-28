@@ -30,9 +30,10 @@ describe('Calendarview Model Unit Tests:', function() {
 
     user.save(function() {
       calendarview = new Calendarview({
-        title: 'Calendarview Name',
-        trainer: 'new trainer',
-        user: user
+        title: 'Calendarview name',
+        trainer: 'example trainer',
+        start: '11/30/2017 11:17 AM',
+        end: '11/30/2017 11:18 AM'
       });
 
       done();

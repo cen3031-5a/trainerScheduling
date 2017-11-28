@@ -54,8 +54,8 @@ describe('Calendarview CRUD tests', function () {
       calendarview = {
         title: 'Calendarview name',
         trainer: 'example trainer',
-        start: Date.now,
-        end: Date.now
+        start: '11/30/2017 11:17 AM',
+        end: '11/30/2017 11:18 AM'
       };
 
       done();
@@ -206,18 +206,6 @@ describe('Calendarview CRUD tests', function () {
       });
   });
 
-  it('should return proper error for single Calendarview which doesnt exist, if not signed in', function (done) {
-    // This is a valid mongoose Id but a non-existent Calendarview
-    request(app).get('/api/calendarviews/559e9cd815f80b4c256a8f41')
-      .end(function (req, res) {
-        // Set assertion
-        res.body.should.be.instanceof(Object).and.have.property('message', 'No Calendarview with that identifier has been found');
-
-        // Call the assertion callback
-        done();
-      });
-  });
-
   it('should be able to delete an Calendarview if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -261,7 +249,7 @@ describe('Calendarview CRUD tests', function () {
       });
   });
 
-  it('should not be able to delete an Calendarview if not signed in', function (done) {
+  it('should not be able to delete a Calendarview if not signed in', function (done) {
     // Set Calendarview user
     calendarview.user = user;
 
@@ -272,10 +260,10 @@ describe('Calendarview CRUD tests', function () {
     calendarviewObj.save(function () {
       // Try deleting Calendarview
       request(app).delete('/api/calendarviews/' + calendarviewObj._id)
-        .expect(404)
+        .expect(403)
         .end(function (calendarviewDeleteErr, calendarviewDeleteRes) {
           // Set message assertion
-          (calendarviewDeleteRes.body.message).should.match('No Calendarview with that identifier has been found');
+          (calendarviewDeleteRes.body.message).should.match('User is not authorized');
 
           // Handle Calendarview error error
           done(calendarviewDeleteErr);

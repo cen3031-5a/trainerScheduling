@@ -51,7 +51,8 @@ describe('Availability CRUD tests', function () {
     // Save a user to the test db and create new Availability
     user.save(function () {
       availability = {
-        name: 'Availability name'
+        title: 'Availability title',
+        trainer: 'test trainer'
       };
 
       done();
@@ -67,7 +68,6 @@ describe('Availability CRUD tests', function () {
         if (signinErr) {
           return done(signinErr);
         }
-
         // Get the userId
         var userId = user.id;
 
@@ -94,7 +94,7 @@ describe('Availability CRUD tests', function () {
 
                 // Set assertions
                 (availabilities[0].user._id).should.equal(userId);
-                (availabilities[0].name).should.match('Availability name');
+                (availabilities[0].title).should.match('Availability title');
 
                 // Call the assertion callback
                 done();
@@ -113,9 +113,9 @@ describe('Availability CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an Availability if no name is provided', function (done) {
-    // Invalidate name field
-    availability.name = '';
+  it('should not be able to save an Availability if no title is provided', function (done) {
+    // Invalidate title field
+    availability.title = '';
 
     agent.post('/api/auth/signin')
       .send(credentials)
@@ -135,7 +135,7 @@ describe('Availability CRUD tests', function () {
           .expect(400)
           .end(function (availabilitySaveErr, availabilitySaveRes) {
             // Set message assertion
-            (availabilitySaveRes.body.message).should.match('Please fill Availability name');
+            (availabilitySaveRes.body.message).should.match('Please fill in class name');
 
             // Handle Availability save error
             done(availabilitySaveErr);
@@ -166,8 +166,8 @@ describe('Availability CRUD tests', function () {
               return done(availabilitySaveErr);
             }
 
-            // Update Availability name
-            availability.name = 'WHY YOU GOTTA BE SO MEAN?';
+            // Update Availability title
+            availability.title = 'WHY YOU GOTTA BE SO MEAN?';
 
             // Update an existing Availability
             agent.put('/api/availabilities/' + availabilitySaveRes.body._id)
@@ -181,7 +181,7 @@ describe('Availability CRUD tests', function () {
 
                 // Set assertions
                 (availabilityUpdateRes.body._id).should.equal(availabilitySaveRes.body._id);
-                (availabilityUpdateRes.body.name).should.match('WHY YOU GOTTA BE SO MEAN?');
+                (availabilityUpdateRes.body.title).should.match('WHY YOU GOTTA BE SO MEAN?');
 
                 // Call the assertion callback
                 done();
@@ -218,7 +218,7 @@ describe('Availability CRUD tests', function () {
       request(app).get('/api/availabilities/' + availabilityObj._id)
         .end(function (req, res) {
           // Set assertion
-          res.body.should.be.instanceof(Object).and.have.property('name', availability.name);
+          res.body.should.be.instanceof(Object).and.have.property('title', availability.title);
 
           // Call the assertion callback
           done();
@@ -363,7 +363,7 @@ describe('Availability CRUD tests', function () {
               }
 
               // Set assertions on new Availability
-              (availabilitySaveRes.body.name).should.equal(availability.name);
+              (availabilitySaveRes.body.title).should.equal(availability.title);
               should.exist(availabilitySaveRes.body.user);
               should.equal(availabilitySaveRes.body.user._id, orphanId);
 
@@ -390,7 +390,7 @@ describe('Availability CRUD tests', function () {
 
                         // Set assertions
                         (availabilityInfoRes.body._id).should.equal(availabilitySaveRes.body._id);
-                        (availabilityInfoRes.body.name).should.equal(availability.name);
+                        (availabilityInfoRes.body.title).should.equal(availability.title);
                         should.equal(availabilityInfoRes.body.user, undefined);
 
                         // Call the assertion callback
