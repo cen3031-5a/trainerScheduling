@@ -51,7 +51,7 @@ var CalendarviewSchema = new Schema({
   },
   requestOff: {
     type: String,
-    default: 'Not Given',
+    default: '',
     trim: true
   },
   requestOffBool: {

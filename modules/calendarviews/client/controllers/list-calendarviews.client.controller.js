@@ -19,14 +19,14 @@
     vm.calendarviews = CalendarviewsService.query();
     vm.calendarview = CalendarviewsService.query().$promise.then(function(result) {
       var userOnly = [];
-      if (vm.authentication.user.roles[0] === 'admin') {
+      if (vm.authentication.user.roles[0].toString() === 'admin') {
         for (var i = 0; i < result.length; i++) {
           //console.log(result[i].start );
           result[i].start = Date.parse(result[i].start).toISOString();
           result[i].end = Date.parse(result[i].end).toISOString();
         }
         //console.log(vm.authentication.user.roles[0]);
-        $scope.data = result;
+        $scope.dataCal = result;
       } else {
         for (var j = 0; j < result.length; j++) {
           if (vm.authentication.user.username === result[j].trainer) {

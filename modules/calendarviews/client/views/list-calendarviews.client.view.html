@@ -4,7 +4,7 @@
       var timerCal = setInterval(checkDataReadyCal, 100);
 
       function checkDataReadyCal() {
-        var dataCal = angular.element(document.getElementById('appCal')).scope().data;
+        var dataCal = angular.element(document.getElementById('appCal')).scope().dataCal;
         //var userData = angular.element(document.getElementById('app')).scope().userData;
         if (dataCal) {
           clearInterval(timerCal);
