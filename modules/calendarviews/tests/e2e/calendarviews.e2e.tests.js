@@ -76,7 +76,6 @@ describe('Calendarviews E2E Tests:', function () {
       // Password Errors
       //Class name error
       element.all(by.css('.error-text')).get(0).getText().then(function (text) {
-        console.log(text);
         expect(text).toBe('Class name is required.');
       });
     });
