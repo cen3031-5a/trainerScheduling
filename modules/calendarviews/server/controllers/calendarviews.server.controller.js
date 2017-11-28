@@ -29,7 +29,7 @@ exports.create = function(req, res) {
       auth: {
         user: 'AllegianceAthleticsEmail@gmail.com',
         //shove this into a node env var
-        pass: '1q!Q1q!Q1q'
+        pass:  process.env.G_PASS
       }
     });
 
