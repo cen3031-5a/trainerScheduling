@@ -12,7 +12,7 @@
   function checkDataReady(){
         userList = angular.element(document.getElementById('userApp')).scope().users;
         data =angular.element(document.getElementById('app')).scope().data;
-        
+
   if (data){
 
     clearInterval(timer);
@@ -27,7 +27,7 @@
     for(var i=0;i<data.length;i++){
       if(!(data[i].trainer in nameMap)){
         if((userListArray.indexOf(data[i].trainer) > -1))
-        {        
+        {
         nameMap[data[i].trainer] = colorlist[counter];
         data[i].backgroundColor = colorlist[counter];
         nameList.push(data[i].trainer);
@@ -38,26 +38,26 @@
         data[i].backgroundColor = nameMap[data[i].trainer];
       }
     }
-      var btn = document.createElement("div");  
+      var btn = document.createElement("div");
       btn.className = 'btnn';      // Create a <button> element
       btn.innerHTML="<button id='allUsers' onclick='showUser(this.id)' style='background: white;'>Show All</button>";
-      document.getElementById('userBtns').appendChild(btn); 
+      document.getElementById('userBtns').appendChild(btn);
 
-      var btn = document.createElement("div");  
+      var btn = document.createElement("div");
       btn.className = 'btnn';      // Create a <button> element
       btn.innerHTML="<button id='hideAllUsers' onclick='showUser(this.id)' style='background: white;'>Hide All</button>";
-      document.getElementById('userBtns').appendChild(btn); 
+      document.getElementById('userBtns').appendChild(btn);
     for(var i =0;i<nameList.length;i++){
-      var btn = document.createElement("div");  
+      var btn = document.createElement("div");
       btn.className = 'btnn';      // Create a <button> element
-      btn.innerHTML="<button id='"+nameList[i]+"' onclick='showUser(this.id)' style='background:"+nameMap[nameList[i]]+";'>"+nameList[i]+"</button>";
+      btn.innerHTML="<button id='"+nameList[i]+"' onclick='showUser(this.id)' style='background:white;'>"+nameList[i]+"</button>";
       //var t = document.createTextNode(nameList[i]);       // Create a text node
       //btn.appendChild(t);                                // Append the text to <button>
-      document.getElementById('userBtns').appendChild(btn);  
+      document.getElementById('userBtns').appendChild(btn);
 
     }
       $(document).ready(function() {
-        console.log(data);
+        //console.log(data);
 
             $('#calendar').fullCalendar({
       header: {
@@ -81,8 +81,8 @@
     }
     }
       function showUser(userName){
-      
-      if(userName!="allUsers"&&userName!="hideAllUsers"&&!showAll){   
+
+      if(userName!="allUsers"&&userName!="hideAllUsers"&&!showAll){
           var userData = data;
           var newData =[];
           if(renderedUsers.indexOf(userName)==-1){

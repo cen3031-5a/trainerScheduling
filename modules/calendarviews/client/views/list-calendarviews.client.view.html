@@ -1,17 +1,17 @@
 <section>
-  <div ng-controller=CalendarviewsListController id="app">
+  <div ng-controller=CalendarviewsListController id="appCal">
     <script>
-      var timer = setInterval(checkDataReadyCal, 100);
+      var timerCal = setInterval(checkDataReadyCal, 100);
 
       function checkDataReadyCal() {
-        var data = angular.element(document.getElementById('app')).scope().data;
+        var dataCal = angular.element(document.getElementById('appCal')).scope().data;
         //var userData = angular.element(document.getElementById('app')).scope().userData;
-        if (data) {
-          clearInterval(timer);
+        if (dataCal) {
+          clearInterval(timerCal);
           $(document).ready(function() {
-            //console.log(data);
+            //console.log(dataCal);
             //console.log(userData);
-            $('#calendar').fullCalendar({
+            $('#calendar-list').fullCalendar({
               header: {
                 left: 'prev,next today',
                 center: 'title',
@@ -39,7 +39,7 @@
               },*/
               editable: false,
               eventLimit: true, // allow "more" link when too many events
-              events: data,
+              events: dataCal,
             });
           });
         }
@@ -53,7 +53,7 @@
         font-size: 14px;
       }
 
-      #calendar {
+      #calendar-list {
         max-width: 900px;
         margin: 0 auto;
       }
@@ -62,7 +62,7 @@
     </br>
 
     <div class="col-md-9">
-      <div id='calendar'></div>
+      <div id='calendar-list'></div>
     </div>
     <div class="col-md-3" style="text-align:center;" ng-if="vm.calendarviews.length">
       <h4>Next Seven Days</h4>
