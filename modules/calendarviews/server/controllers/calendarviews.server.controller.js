@@ -35,10 +35,12 @@ exports.create = function(req, res) {
 
       // setup e-mail data with unicode symbols
     var mailOptions = {
+      //the to can also be sent as a text if needed just need to follow the right
+      //format that texts you instad of email.
       to: calendarview.email,
       from: 'AllegianceAthleticsEmail@gmail.com',
       subject: 'Class Updates', // Subject line
-      text: 'Hello. You have a new class at '+calendarview.start+'. Please enter into your own calendar.', // plaintext body
+      text: 'Hello. You have a class at '+calendarview.start+'. Please enter into your own calendar.', // plaintext body
       html: '' // html body
     };
 
