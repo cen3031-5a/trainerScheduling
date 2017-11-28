@@ -11,23 +11,28 @@
     // Set top bar menu items
     menuService.addMenuItem('topbar', {
       title: 'Availabilities',
-      state: 'availabilities',
-      type: 'dropdown',
-      roles: ['user','admin']
-    });
-
-    // Add the dropdown list item
-    menuService.addSubMenuItem('topbar', 'availabilities', {
-      title: 'View Availability',
       state: 'availabilities.list',
       roles: ['admin']
     });
 
-    // Add the dropdown create item
-    menuService.addSubMenuItem('topbar', 'availabilities', {
-      title: 'Update Availability',
+    // Set top bar menu items
+    menuService.addMenuItem('topbar', {
+      title: 'Availabilities',
       state: 'availabilities.create',
       roles: ['user']
     });
+    // // Add the dropdown list item
+    // menuService.addSubMenuItem('topbar', 'availabilities', {
+    //   title: 'View Availability',
+    //   state: 'availabilities.list',
+    //   roles: ['admin']
+    // });
+    //
+    // // Add the dropdown create item
+    // menuService.addSubMenuItem('topbar', 'availabilities', {
+    //   title: 'Update Availability',
+    //   state: 'availabilities.create',
+    //   roles: ['user']
+    // });
   }
 }());
