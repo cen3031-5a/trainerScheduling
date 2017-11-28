@@ -16,8 +16,12 @@
             document.getElementById('color').value = test[i].favoriteColor;
             document.getElementById('trainerName').value = '';
             document.getElementById('trainerName').value = test[i].displayName;
+            document.getElementById('email').value = '';
+            document.getElementById('email').value = test[i].email;
             $("#trainerName").trigger("input");
             $("#color").trigger("input");
+            $("#email").trigger("input");
+
           }
         }
 
@@ -79,8 +83,12 @@
             </div>
 
             <div class="" ng-show="1==-1">
-              <label class="control-label" for="trainerName">Name</label>
+              <label class="control-label" for="trainerName"></label>
               <input  name="trainerName" type="text" ng-model="vm.calendarview.trainerName" id="trainerName" class="form-control" placeholder="Trainer Name">
+            </div>
+            <div class="" ng-show="1==-1">
+              <label class="control-label" for="trainerName"></label>
+              <input  name="email" type="text" ng-model="vm.calendarview.email" id="email" class="form-control" placeholder="Email">
             </div>
 
             <div class="col-md-4" ng-if="vm.authentication.user.roles == 'admin'">

@@ -49,6 +49,7 @@ var CalendarviewSchema = new Schema({
     default: 'Not Available',
     trim: true
   },
+  email: String,
   requestOff: {
     type: String,
     default: '',
