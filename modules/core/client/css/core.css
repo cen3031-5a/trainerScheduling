@@ -184,3 +184,8 @@ a:hover .header-profile-image {
   border-color: #eb9316;
   font-family: 'Nunito Sans', 'Helvetica', sans-serif;
 }
+
+.form-control:focus {
+  border-color: #DDD;
+  box-shadow: 0 0 5px #FF7E00;
+}
