@@ -21,7 +21,7 @@ module.exports = function (grunt) {
     env: {
       test: {
         NODE_ENV: 'test',
-        MONGOLAB_URI: 'mongodb://Jgruber27:jamesgruber1227@ds141175.mlab.com:41175/project-test'
+        MONGOLAB_URI: 'mongodb://japanglais:iTzmai@ds161164.mlab.com:61164'
 
       },
       dev: {
