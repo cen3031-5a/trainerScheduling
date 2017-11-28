@@ -150,3 +150,30 @@ a:hover .header-profile-image {
 .list-group-item {
   border: 0;
 }
+
+.btn-primary{
+  background: #f99b3e; /*orange*/
+  color: white;
+  border-color: #f99b3e;
+
+}
+.btn-primary:hover{
+  background: #eb9316; /*darker orange*/
+  color: white;
+  border-color: #eb9316;
+}
+
+/*used in change-profile-picture.client.view*/
+.btn-file
+{
+  background: #f99b3e;
+  color: white;
+  border-color: #f99b3e;
+  font-family: 'Nunito Sans', 'Helvetica', sans-serif;
+}
+.btn-file:hover{
+  background: #eb9316;
+  color: white;
+  border-color: #eb9316;
+  font-family: 'Nunito Sans', 'Helvetica', sans-serif;
+}
