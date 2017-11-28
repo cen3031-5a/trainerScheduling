@@ -724,14 +724,14 @@ describe('Users E2E Tests:', function () {
 
     var clearAdminSignUpFields = function () {
       browser.get('http://localhost:3000/admin/adminSignup');
-      element(by.model('credentials.username')).clear();
-      element(by.model('credentials.password')).clear();
+      element(by.id('username')).clear();
+      element(by.id('password')).clear();
     };
 
     it('Should report missing first name', function () {
       //Sign up
-      signin(testuser_admin);
-      browser.waitForAngular();
+      //signin(testuser_admin);
+      //browser.waitForAngular();
       //Clear username and password fields.
       clearAdminSignUpFields();
       browser.waitForAngular();
@@ -742,7 +742,7 @@ describe('Users E2E Tests:', function () {
       // Enter Username
       element(by.id('username')).sendKeys(testuser_admin.username);
       // Enter Password
-      element(by.model('credentials.password')).sendKeys(testuser_admin.password);
+      element(by.id('password')).sendKeys(testuser_admin.password);
       // Enter Position
       element(by.model('user.position')).sendKeys(testuser_admin.position);
       // Enter Birthday

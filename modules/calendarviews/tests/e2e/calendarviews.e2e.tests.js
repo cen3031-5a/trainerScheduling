@@ -54,8 +54,8 @@ describe('Calendarviews E2E Tests:', function () {
   describe('Test New Class', function () {
     it('Should report missing class name', function () {
       //Make sure you are signed in.
-      signin(testuser_admin);
-      browser.waitForAngular();
+      //signin(testuser_admin);
+      //browser.waitForAngular();
       //Check for missing class name.
       browser.get('http://localhost:3000/calendarviews/create');
       //Enter Trainer
