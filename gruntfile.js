@@ -21,16 +21,16 @@ module.exports = function (grunt) {
     env: {
       test: {
         NODE_ENV: 'test',
-        MONGOLAB_URI: 'mongodb://japanglais:iTzmai@ds161164.mlab.com:61164'
+        MONGOLAB_URI: 'mongodb://allegiance:saraclarfield1@ds033196.mlab.com:33196'
 
       },
       dev: {
         NODE_ENV: 'development',
-        MONGOLAB_URI: 'mongodb://japanglais:iTzmai@ds161164.mlab.com:61164'
+        MONGOLAB_URI: 'mongodb://allegiance:saraclarfield1@ds033196.mlab.com:33196'
       },
       prod: {
         NODE_ENV: 'production',
-        MONGOLAB_URI: 'mongodb://japanglais:iTzmai@ds161164.mlab.com:61164'
+        MONGOLAB_URI: 'mongodb://allegiance:saraclarfield1@ds033196.mlab.com:33196'
 
       }
     },
@@ -330,7 +330,7 @@ module.exports = function (grunt) {
     var path = require('path');
     var app = require(path.resolve('./config/lib/app'));
     var server = app.start(function () {
-      
+
       done();
     });
 
