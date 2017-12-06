@@ -20,6 +20,7 @@
         controller: 'AvailabilitiesListController',
         controllerAs: 'vm',
         data: {
+          roles: ['user', 'admin'],
           pageTitle: 'Availabilities List'
         }
       })
