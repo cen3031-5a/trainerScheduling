@@ -12,13 +12,13 @@
   function checkDataReady(){
         userList = angular.element(document.getElementById('userApp')).scope().users;
         data =angular.element(document.getElementById('app')).scope().data;
-        
+
   if (data){
 
     clearInterval(timer);
     var nameMap={};
     var nameList=[];
-    var colorlist= ["red","blue","green"];
+    var colorlist= ["#e6194b","#3cb44b","#0082c8","#f58231","#911eb4","#f032e6","#008080","#aa6e28","#800000","#808000", "#000080"];
     var counter=0;
     for(var j = 0;j<userList.length;j++){
       var thisName = userList[j].firstName+" "+userList[j].lastName;
@@ -27,7 +27,7 @@
     for(var i=0;i<data.length;i++){
       if(!(data[i].trainer in nameMap)){
         if((userListArray.indexOf(data[i].trainer) > -1))
-        {        
+        {
         nameMap[data[i].trainer] = colorlist[counter];
         data[i].backgroundColor = colorlist[counter];
         nameList.push(data[i].trainer);
@@ -38,23 +38,28 @@
         data[i].backgroundColor = nameMap[data[i].trainer];
       }
     }
-      var btn = document.createElement("div");  
+      var btn = document.createElement("div");
       btn.className = 'btnn';      // Create a <button> element
       btn.innerHTML="<button id='allUsers' onclick='showUser(this.id)' style='background: white;'>Show All</button>";
-      document.getElementById('userBtns').appendChild(btn); 
+      document.getElementById('userBtns').appendChild(btn);
 
-      var btn = document.createElement("div");  
+      var btn = document.createElement("div");
       btn.className = 'btnn';      // Create a <button> element
       btn.innerHTML="<button id='hideAllUsers' onclick='showUser(this.id)' style='background: white;'>Hide All</button>";
-      document.getElementById('userBtns').appendChild(btn); 
+      document.getElementById('userBtns').appendChild(btn);
     for(var i =0;i<nameList.length;i++){
-      var btn = document.createElement("div");  
-      btn.className = 'btnn';      // Create a <button> element
-      btn.innerHTML="<button id='"+nameList[i]+"' onclick='showUser(this.id)' style='background:"+nameMap[nameList[i]]+";'>"+nameList[i]+"</button>";
-      //var t = document.createTextNode(nameList[i]);       // Create a text node
-      //btn.appendChild(t);                                // Append the text to <button>
-      document.getElementById('userBtns').appendChild(btn);  
-
+      if(nameList[i]!= ''){
+          var btn = document.createElement("div");
+          btn.className = 'btnn';      // Create a <button> element
+          var color = nameMap[nameList[i]];
+          if(!nameMap[nameList[i]]){
+            color = "black";
+          }
+          btn.innerHTML="<button id='"+nameList[i]+"' onclick='showUser(this.id)' style='background:"+color+";color:white'>"+nameList[i]+"</button>";
+          //var t = document.createTextNode(nameList[i]);       // Create a text node
+          //btn.appendChild(t);                                // Append the text to <button>
+          document.getElementById('userBtns').appendChild(btn);
+      }
     }
       $(document).ready(function() {
         console.log(data);
@@ -81,8 +86,8 @@
     }
     }
       function showUser(userName){
-      
-      if(userName!="allUsers"&&userName!="hideAllUsers"&&!showAll){   
+
+      if(userName!="allUsers"&&userName!="hideAllUsers"&&!showAll){
           var userData = data;
           var newData =[];
           if(renderedUsers.indexOf(userName)==-1){
@@ -122,24 +127,8 @@
       display: inline-block;
     }
   </style>
-  <!--div class="alert alert-warning text-center" ng-if="vm.availabilities.$resolved && !vm.availabilities.length">
-    No Events yet, do you want to <a ui-sref="availabilities.create">create one</a>?
-  </div>
-  <!div class="list-group">
-    <a ng-repeat="availability in vm.availabilities"
-       ui-sref="availabilities.view({ availabilityId: availability._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="availability.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="availability.user" ng-bind="availability.user.displayName"></span>
-        <span ng-if="!availability.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="availability.title"></h4>
-    </a>
-  </div-->
-  <div id="userBtns"></div>
+
+  <div id="userBtns" align="center"></div>
   <div class="col-lg-9" >
     <div id='calendar'></div>
   </div>
