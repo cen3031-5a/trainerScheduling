@@ -67,7 +67,20 @@ $ git clone https://github.com/meanjs/mean.git meanjs
 
 This will clone the latest version of the MEAN.JS repository to a **meanjs** folder.
 
-
+## Database and Server Connections
+
+### mLab
+[mLab](https://mlab.com/) is a MongoDB database used for this web application to connect to the database.
+* Log into the account to access the [mLab database](https://mlab.com/databases/dev)
+* Review account or make account changes in the [mLab login](https://mlab.com/login/)
+* Connect to the database
+    mongodb://<dbuser>:<dbpassword>@ds033196.mlab.com:33196/allegiance
+
+### Heroku
+[Heroku](https://www.heroku.com) is the web server hosting provider
+* [Download & Install Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
+* Use the Heroku CLI to make server connections
+
 ## Features Implemented
 
 ### Admin/Staff Roles
