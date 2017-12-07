@@ -1,5 +1,8 @@
 # Trainer Scheduling
 
+Website
+https://trainer-schedule-allegiance.herokuapp.com
+
 ## Our Project Known working Versions
 
 NPM Version 5.3.0
@@ -84,3 +87,66 @@ The calendar view shows the staff’s schedule with events indicating the class,
 
 ### Users
 Only admin can access the pages to view all users and create new users. Managing users shows a list of all the users when a particular is selected, the admin can see about all the information on that user. These users can be edited or deleted by the admin.
+
+User Features
+Availability
+	Staff members are able to add / update their availability during the week by simply clicking on the menu item Availabilities, and then dragging and dropping the cursor over the calendar view, as shown in Figure 1.	
+Figure 1: “Availability of staff members.”
+Blog
+Blogs List
+	Staff members are able to see the different blogs that have been created by all users of the web app simply by clicking on the Blog menu item (see Figure 2).
+	
+Figure 2: “List of blogs.”
+Search
+Users can search keywords by entering the desired value in the Search bar. The list of blogs will be updated in real time to partially match the entered keyword (see Figure 3).
+
+Figure 3: “Search functionality.”
+Create a New Blog
+In case that a staff member wants to create a blog, he / she can click on the New Entry button shown in Figure 2. He/she will be redirected to another web page in which a new blog entry can be created (see Figure 4).
+
+Figure 4: “Staff members can create blog entries.”
+Calendar
+Calendar View
+	Staff members can view their schedule in a calendar view by clicking on the Calendar -> Show Calendar menu items (see Figure 5). Even though this user has no shifts in his/her calendar yet, as soon as the administrators of the web app decide to assign him/her shifts, the calendar will show this information.
+	On the right side of the view a list of events will be shown (see Figure 5). At this moment the list is empty, but when is not a list of events will appear. Staff members will be able to search keywords by entering the desired value in the Search bar. The list of events will be updated in real time to partially match the entered keyword.
+	
+	Figure 5: “Calendar view of staff member’s schedule.”
+Events List
+	Staff members will be able to view a list of events by clicking on the Calendar -> List All Events menu items (see Figure 6). They will also be able to search keywords by entering the desired value in the Search bar. The list of events will be updated in real time to match the entered keyword.
+
+	
+Figure 6: “List of events associated to a staff member.”
+
+Settings
+Edit Profile
+	Staff members are allowed to edit their profile as they please (see Figure 7). For this they should click on their name and then on Edit Profile menu item. Staff members only have to make sure of entering valid values for First Name, Last Name, Email and Username fields because these fields are required. All other information is optional.
+	
+	Figure 7: “Users can edit their profile.”
+Change Profile Picture
+	Besides editing their profile, staff members can edit their picture by clicking on their name and then on Change Profile Picture menu item (see Figure 8). Once in this web page, staff members can click the Select Image button and choose a local image from their computers or mobile devices.
+	
+	Figure 8: “Staff members can change their profile picture.”
+Change Password
+	In addition to editing their profile and choosing a profile picture, staff members can change their password. If they click on their name and then on the Change Password menu item then they will be redirected to the web page shown in Figure 9. Here they can modify their password.
+	
+	Figure 9: “Staff members can change their password.”
+Admin Features
+The admin will be able to manage all user (admin-screenshot-1)  and also be able to add new users (admin-screenshot-2). This is a requirement as Sara, our client, wants to be the only one to make new accounts, ie , she doesn't want anyone who has access to the site to be able to sign-up new users. So in the Add New User section she will be the only one making the staff’s account.  All of the regular account registration process is kept but we added more schemas in order to specify the staff member. One example is how they choose a color that later will be shown in the availabilities section (admin-screenshot-3). In the availabilities section, the admin will be able to see all staff who are available and also select specific ones to her liking.  She will be able to see this availability when accepting or requesting a “request-off” and when she is creating a new class (admin-screenshot-4). We did this in order for her to have a good idea how who is able to work when replacing the request off and also be able to create classes according the staff who has that available slot. Admins will also have the ability to create announcements that will be shown to all staff members who visit the front page (admin-screenshot-5).
+
+
+admin-Screenshot-1
+
+
+admin-Screenshot-2 
+
+admin-screenshot-3
+
+
+admin-screenshot-4
+
+admin-screenshot-5
+
+
+
+
+
