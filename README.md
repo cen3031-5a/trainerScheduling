@@ -1,4 +1,4 @@
-#Trainer Scheduling#
+#Trainer Scheduling
 
 ## Our Project Known working Versions
 
