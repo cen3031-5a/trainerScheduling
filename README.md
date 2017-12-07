@@ -75,20 +75,20 @@ Only staff members at Allegiance Athletics can have an account on this trainer s
 
 ### Announcements
 The Announcements view on the homepage allows for the user to see updates that the admin posted. Users with the staff role cannot create a new announcement, however, the admin can create, edit and delete announcements that are created. The buttons for these abilities will only show up in the admin view, so the staff cannot go to these pages.
-[![Announcements](/images/allegiance-announcements_admin.png)]
+![Announcements](../images/allegiance-announcements_admin.png)
 
 ### Availabilities
 The user with the staff role will be able to add/update their availability for the week by using a click, draggable calendar that saves the availability for the admin to see. Staffs can only see their own calendar, however, the admin has the ability to view all the staff’s availability on one calendar and even toggle what they want to view on their availability calendar. The admin role can select buttons to see one particular staff availability or see all at the same time.
-[![Availabilities](/images/allegiance-availabilities.png)]
+![Availabilities](../images/allegiance-availabilities.png)
 
 ### Blog View
 Users can see the list of blogs, in which, entries can be created by all users by using the Create New Blog button to access the form. There is a search bar that the users can use to search for keywords in any of the entries. Entries can be edited/deleted by the user who created the entry or by the admin who has access to modify any entry.
-[![Blog](/images/allegiance-blog.png)]
+![Blog](../images/allegiance-blog.png)
 
 ### Calendar View
 The calendar view shows the staff’s schedule with events indicating the class, start time and end time assigned by the admin. The list on the right of the calendar shows upcoming events in the next seven days and users can use the search bar to look for specific keywords to filter out what they are looking for. Users can view all events by going to the events list page where they can use the search bar to filter through the events. Only admin can access the form to create a new class that will add events onto the calendar view that the staff can see.
-[![Calendar](/images/allegiance-blog.png)]
+![Calendar](../images/allegiance-blog.png)
 
 ### Users
 Only admin can access the pages to view all users and create new users. Managing users shows a list of all the users when a particular is selected, the admin can see about all the information on that user. These users can be edited or deleted by the admin.
-[![Users](/images/allegiance-users.png)]
+![Users](../images/allegiance-users.png)
