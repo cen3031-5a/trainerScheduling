@@ -5,20 +5,20 @@ https://trainer-schedule-allegiance.herokuapp.com
 
 ## Our Project Known working Versions
 
-NPM Version 5.3.0
-Node Version 6.11.2
-Bower Version 1.8.2
-Angular version 2.7.2
+* NPM Version 5.3.0
+* Node Version 6.11.2
+* Bower Version 1.8.2
+* Angular version 2.7.2
 
-use "npm install" command followed by "bower install"
-AFter this use "grunt" command to run locally
+* use "npm install" command followed by "bower install"
+* After this use "grunt" command to run locally
 
 ## Credits/APIs used
 
-Fullcalendar.io , version 3.7.0
-Jquery
-Moment.js
-Bootstrap CSS
+* Fullcalendar.io , version 3.7.0
+* Jquery
+* Moment.js
+* Bootstrap CSS
 
 
 ## Prerequisites
