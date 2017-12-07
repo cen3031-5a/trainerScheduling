@@ -74,7 +74,9 @@ This will clone the latest version of the MEAN.JS repository to a **meanjs** fol
 * Log into the account to access the [mLab database](https://mlab.com/databases/dev)
 * Review account or make account changes in the [mLab login](https://mlab.com/login/)
 * Connect to the database
-    mongodb://<dbuser>:<dbpassword>@ds033196.mlab.com:33196/allegiance
+```mLab
+mongodb://<dbuser>:<dbpassword>@ds033196.mlab.com:33196/allegiance
+```
 
 ### Heroku
 [Heroku](https://www.heroku.com) is the web server hosting provider
